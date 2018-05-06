@@ -6,8 +6,9 @@
 "por lo que es necesario instalarlo primero
 "
 "en la consola correr los siguientes comandos:
-"curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
-"    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+"curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs \https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+
+
 "
 "
 
@@ -31,6 +32,8 @@ Plug 'tell-k/vim-autopep8'
 Plug 'scrooloose/syntastic'
 
 Plug 'joonty/vdebug'
+
+Plug 'codeape2/vim-multiple-monitors'
 "----------Temas----------
 Plug 'hzchirs/vim-material'
 
@@ -82,9 +85,6 @@ set mouse=a
 
 "---------Activar deoplete-------
 let g:deoplete#enable_at_startup = 1
-
-"-----Auto iniciar NERDTree-----
-autocmd VimEnter * NERDTree
 
 "-----Autoformatear mapeado a f3 y f8-----
 noremap <F3> :Autoformat<CR>
