@@ -184,7 +184,7 @@ bindsym $mod+m gaps outer current plus 1; gaps inner current plus 3
 bindsym $mod+shift+m gaps outer current minus 1; gaps inner current minus 3
 
 # ejecutar polybar 
-exec polybar example
+exec polybar example -r
 
 # fondo de pantalla
 exec feh --bg-scale /home/david/Imágenes/Wallpapers/10-12.jpg
