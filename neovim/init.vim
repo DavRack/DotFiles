@@ -16,6 +16,17 @@
 call plug#begin()
 
 "----------Plugins----------
+function! BuildComposer(info)
+  if a:info.status != 'unchanged' || a:info.force
+    if has('nvim')
+      !cargo build --release
+    else
+      !cargo build --release --no-default-features --features json-rpc
+    endif
+  endif
+endfunction
+
+Plug 'euclio/vim-markdown-composer', { 'do': function('BuildComposer') }
 
 Plug 'bling/vim-airline'
 
@@ -33,7 +44,7 @@ Plug 'scrooloose/syntastic'
 
 Plug 'joonty/vdebug'
 
-Plug 'codeape2/vim-multiple-monitors'
+Plug 'jamshedvesuna/vim-markdown-preview'
 "----------Temas----------
 Plug 'hzchirs/vim-material'
 
