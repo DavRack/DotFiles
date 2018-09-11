@@ -1,16 +1,8 @@
-
 "configuracion personal de vim por David Londoño
 "
-"Esta configuracion usa vim-plug como plugin mananger
-"
-"por lo que es necesario instalarlo primero
-"
+"Esta configuracion usa vim-plug como plugin mananger por lo que es necesario instalarlo primero
 "en la consola correr los siguientes comandos:
 "curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs \https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-
-
-"
-"
 
 "-----Todos los plugins de vim-plug-----
 call plug#begin()
@@ -36,11 +28,11 @@ Plug 'chiel92/vim-autoformat'
 
 Plug 'Valloric/YouCompleteMe'
 
-Plug 'neomake/neomake'
-
 Plug 'tell-k/vim-autopep8'
 
-Plug 'scrooloose/syntastic'
+Plug 'tpope/vim-surround'
+
+Plug 'w0rp/ale'
 
 Plug 'joonty/vdebug'
 
@@ -66,6 +58,8 @@ set relativenumber
 
 syntax enable
 
+set spelllang=es
+
 "-----Configuraciones de python-----
 
 let python_highlight_all = 1
@@ -79,7 +73,7 @@ set autoindent
 " expand tabs into spaces
 set expandtab
 
-" when using the >> or << commands, shift lines by 4 spaces
+" when using the >> or << commands, shift lines by 4 spacese
 set shiftwidth=4
 
 " show a visual line under the cursor's current line
@@ -120,3 +114,34 @@ highlight link SyntasticErrorSign SignColumn
 highlight link SyntasticWarningSign SignColumn
 highlight link SyntasticStyleErrorSign SignColumn
 highlight link SyntasticStyleWarningSign SignColumn
+
+"------------ Remapeos personales -------------
+"leader key
+let mapleader = " "
+" matematica latex en markdown
+nnoremap <leader>m i$$<Left>
+
+" nueva clase
+nnoremap <leader>c i# Clase  
+" Definicion en notas
+nnoremap <leader>d i### Definicion: **<Left>
+
+" Ejemplo en notas
+nnoremap <leader>e i**Ejemplo:** 
+
+" Solucion en notas
+nnoremap <leader>s i**Solucion:** 
+
+" Propiedades en notas
+nnoremap <leader>p i**Propiedades:**<Return><Return> 1. 
+
+" --------- comandos con leder key.------
+
+" guardar
+nnoremap <leader>S :w<CR>
+
+" nueva linea arriba
+nnoremap <leader>O O<Esc>
+
+" nueva linea abajo
+nnoremap <leader><Return> o<Esc>
