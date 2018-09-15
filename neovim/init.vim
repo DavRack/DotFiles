@@ -1,9 +1,8 @@
-"configuracion personal de vim por David Londoño
-"
+"configuracion personal de vim por David Londoño 
 "Esta configuracion usa vim-plug como plugin mananger por lo que es necesario instalarlo primero
 "en la consola correr los siguientes comandos:
 "curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs \https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-
+    
 "-----Todos los plugins de vim-plug-----
 call plug#begin()
 
@@ -118,11 +117,19 @@ highlight link SyntasticStyleWarningSign SignColumn
 "------------ Remapeos personales -------------
 "leader key
 let mapleader = " "
+
+"--------------- snipets con leader key---------
+"(minisculas)
+
 " matematica latex en markdown
 nnoremap <leader>m i$$<Left>
 
 " nueva clase
-nnoremap <leader>c i# Clase  
+nnoremap <leader>l i---<CR>author: David Londoño Montoya<CR>title: Clase x+1 siendo x la Última clase<CR>date: "`r Sys.Date()`"<CR>output: pdf_document<CR>number_sections: true<CR>---<CR>\tableofcontents<CR><CR>
+
+" bloque de texto
+nnoremap <leader>c i```{}<CR>```<Esc>k$i
+
 " Definicion en notas
 nnoremap <leader>d i### Definicion: **<Left>
 
@@ -136,12 +143,31 @@ nnoremap <leader>s i**Solucion:**
 nnoremap <leader>p i**Propiedades:**<Return><Return> 1. 
 
 " --------- comandos con leder key.------
+"(mayusculas)
 
-" guardar
+" buscar place holder
+nnoremap <leader><Space> /,,<CR>
+
+" desresaltar palabras buscadas
+nnoremap <leader>H :noh<CR>
+
+" guardar 
 nnoremap <leader>S :w<CR>
 
-" nueva linea arriba
+" nueva linea arriba sin insertmode
 nnoremap <leader>O O<Esc>
 
-" nueva linea abajo
+" nueva linea abajo sin insetmode
 nnoremap <leader><Return> o<Esc>
+
+nnoremap <leader>r :w<CR>:!echo<space>"require(rmarkdown);<space>render('<c-r>%')"<space>\|<space>R<space>--vanilla<enter><CR>
+
+nnoremap <leader>q :w<CR>:!echo<space>"require(rmarkdown);<space>render('<c-r>%')"<space>\|<space>R<space>--vanilla<enter>
+" -------- funciones personales --------
+
+" compilar c
+
+function! Comp()
+    exe "normal :w<CR>"
+    exe "normal :!gcc %"
+endfunction 
