@@ -1,5 +1,4 @@
 #!/usr/bin/env python3
-
 import subprocess
 import sys
 import os
@@ -23,7 +22,7 @@ def copiar_Dotfiles():
                 path = path+"/"
 
             if os.path.exists(path): #si existe la carpeta de destino se copria el dotfile
-                comando = "ls "+carpeta 
+                comando = "ls -A "+carpeta 
                 archivos = subprocess.check_output(comando,shell=True).decode("UTF-8").split("\n")[:-1]
                 archivos.remove('path.txt')
                 dotfile = archivos[0]
@@ -52,7 +51,7 @@ def actualizar_Dotfiles():
                 path = path+"/"
 
             if os.path.exists(path):
-                comando = "ls "+carpeta
+                comando = "ls -A "+carpeta
                 archivos = subprocess.check_output(comando,shell=True).decode("UTF-8").split("\n")[:-1]
                 archivos.remove('path.txt')
                 dotfile = archivos[0]

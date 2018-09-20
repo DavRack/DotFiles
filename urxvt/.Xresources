@@ -1,6 +1,6 @@
 ! fuente de letra 
-URxvt.font: xft:DejaVu sans mono:size=10
-urxvt.boldFont: xft:DejaVu Sans Mono:pixelsize=12:weight=bold
+URxvt.font: xft:DejaVu sans mono:size=12
+urxvt.boldFont: xft:DejaVu Sans Mono:pixelsize=14:weight=bold
 
 !! Larger history limit
 urxvt.saveLines: 1000000
@@ -9,8 +9,11 @@ urxvt.saveLines: 1000000
 ! desactivar scroll bar
 URxvt.scrollBar: false
 
+! desactivar bordes
+URxvt.internalBorder: 20
+URxvt.externalBorder: 20
+
 ! desactivar iso
-URxvt*iso14755: false
 
 ! special
 *.foreground:   #f1f1f1
