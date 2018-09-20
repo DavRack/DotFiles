@@ -19,6 +19,8 @@ endfunction
 
 Plug 'euclio/vim-markdown-composer', { 'do': function('BuildComposer') }
 
+Plug 'Yggdroot/indentLine'
+
 Plug 'bling/vim-airline'
 
 Plug 'scrooloose/nerdtree'
@@ -49,6 +51,7 @@ colorscheme onedark
 
 let g:airline_theme='onedark'
 
+let g:airline#extensions#tabline#enabled = 1
 
 "-----Configuraciones varias-----
 set number
@@ -146,7 +149,10 @@ nnoremap <leader>p i**Propiedades:**<Return><Return> 1.
 "(mayusculas)
 
 " buscar place holder
-nnoremap <leader><Space> /,,<CR>
+nnoremap <leader><Space> /+@@+<CR>
+
+" incertar place holder
+nnoremap <leader>h a+@@+<Esc>
 
 " desresaltar palabras buscadas
 nnoremap <leader>H :noh<CR>
@@ -160,6 +166,10 @@ nnoremap <leader>O O<Esc>
 " nueva linea abajo sin insetmode
 nnoremap <leader><Return> o<Esc>
 
+" editar init.vim
+nnoremap <leader>V :edit ~/.config/nvim/init.vim
+
+" compilar R markdown
 nnoremap <leader>r :w<CR>:!echo<space>"require(rmarkdown);<space>render('<c-r>%')"<space>\|<space>R<space>--vanilla<enter><CR>
 
 nnoremap <leader>q :w<CR>:!echo<space>"require(rmarkdown);<space>render('<c-r>%')"<space>\|<space>R<space>--vanilla<enter>
