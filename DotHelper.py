@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 import subprocess
 import sys
 import os
@@ -55,8 +57,12 @@ def actualizar_Dotfiles():
                 archivos.remove('path.txt')
                 dotfile = archivos[0]
                 comando = "cp "+path+dotfile+" "+carpeta
-                archivos = subprocess.check_output(comando,shell=True).decode("UTF-8").split("\n")[:-1]
-                print(dotfile+" se ha copiado a la carpeta DotFiles")
+                if os.path.exists(path+dotfile):
+                    archivos = subprocess.check_output(comando,shell=True).decode("UTF-8").split("\n")[:-1]
+                    print(dotfile+" se ha copiado a la carpeta DotFiles")
+
+                else:
+                    print("El archivo "+dotfile+" no existe")
 
             else:
                 print("no existe la carpeta de destino para "+carpeta)
