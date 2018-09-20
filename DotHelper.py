@@ -68,20 +68,31 @@ def nuevo_dotfile():
     """agregar un nuevo dotfile, pedir al usuario nombre del programa y ruta del archivo"""
     pass
 
+ayuda = "\
+         -c : Copia los Dotfiles a la carpeta destino \n\
+         -a : Actualiza los Dotfiles \n\
+         -h : Muestra ésta ayuda"
+
+
 if len(sys.argv) == 2:
     argumento = sys.argv[1]
+
     if argumento == "-c":
         copiar_Dotfiles()
 
     elif argumento == "-a":
         actualizar_Dotfiles()
 
-elif len(sys.argv) == 1:
-    print("se necesita un argumento \n\
-           -c : Copia los Dotfiles a la carpeta destino \n\
-           -a : Actualiza los Dotfiles")
+    elif argumento == "-h":
+        print(ayuda)
 
-elif len(sys.argv) > 2: print("demasiados argumentos")
+
+elif len(sys.argv) == 1:
+    print("Se necesita un argumento")
+    print(ayuda)
+
+elif len(sys.argv) > 2:
+    print("demasiados argumentos")
 
 
 
