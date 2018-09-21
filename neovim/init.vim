@@ -4,10 +4,11 @@
 "curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs \https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
     
 "-----Todos los plugins de vim-plug-----
-call plug#begin()
+call plug#begin() 
 
 "----------Plugins----------
-function! BuildComposer(info)
+"_________ vim-markdown-composer______
+function! BuildComposer(info) " vim markdown composer
   if a:info.status != 'unchanged' || a:info.force
     if has('nvim')
       !cargo build --release
@@ -17,31 +18,32 @@ function! BuildComposer(info)
   endif
 endfunction
 
-Plug 'euclio/vim-markdown-composer', { 'do': function('BuildComposer') }
+Plug 'euclio/vim-markdown-composer', { 'do': function('BuildComposer') } " compilado en tiempo real de archivos markdown
+"_________________________________________
 
-Plug 'Yggdroot/indentLine'
+Plug 'Yggdroot/indentLine' " muestra marcas de identacion
 
-Plug 'bling/vim-airline'
+Plug 'bling/vim-airline' " barra de estatus y de tabs
+" ________ deoplete.nvim ___________
+Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' } " auto completar
 
-Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+Plug 'zchee/deoplete-clang' " soporte para lenguajes tipo c
 
-Plug 'zchee/deoplete-clang'
+Plug 'zchee/deoplete-jedi' " soporte para python
+" __________________________________
 
-Plug 'zchee/deoplete-jedi'
+Plug 'kien/ctrlp.vim' " buscar archivos con fuzzy find
 
-Plug 'scrooloose/nerdtree'
+Plug 'scrooloose/nerdtree' " arbol de archivos
 
-Plug 'chiel92/vim-autoformat'
+Plug 'chiel92/vim-autoformat' " auto formatea codigo
 
-Plug 'tell-k/vim-autopep8'
+Plug 'tell-k/vim-autopep8' " auto formato para python
 
-Plug 'tpope/vim-surround'
+Plug 'tpope/vim-surround' " permite cambiar lo que rodea un objeto de texto: 'test' -> (test)
 
-Plug 'w0rp/ale'
+Plug 'w0rp/ale' " resaltador de sintaxis
 
-Plug 'joonty/vdebug'
-
-Plug 'jamshedvesuna/vim-markdown-preview'
 "----------Temas----------
 Plug 'hzchirs/vim-material'
 
@@ -122,11 +124,10 @@ autocmd FileType python noremap <buffer> <F8> :call Autopep8()<CR>
 "highlight link SyntasticStyleWarningSign SignColumn
 
 "------------ Remapeos personales -------------
-"leader key
+"leader key = espacio
 let mapleader = " "
 
 "--------------- snipets con leader key---------
-"(minisculas)
 
 " matematica latex en markdown
 nnoremap <leader>m i$$<Left>
@@ -150,7 +151,6 @@ nnoremap <leader>s i**Solucion:**
 nnoremap <leader>p i**Propiedades:**<Return><Return> 1. 
 
 " --------- comandos con leder key.------
-"(mayusculas)
 
 " buscar place holder
 nnoremap <leader><Space> /+@@+<CR>
@@ -176,6 +176,7 @@ nnoremap <leader>V :edit ~/.config/nvim/init.vim
 " compilar R markdown
 nnoremap <leader>r :w<CR>:!echo<space>"require(rmarkdown);<space>render('<c-r>%')"<space>\|<space>R<space>--vanilla<enter><CR>
 
+" compilar R markdown ('debug')
 nnoremap <leader>q :w<CR>:!echo<space>"require(rmarkdown);<space>render('<c-r>%')"<space>\|<space>R<space>--vanilla<enter>
 " -------- funciones personales --------
 
