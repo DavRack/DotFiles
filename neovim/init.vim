@@ -170,6 +170,10 @@ nnoremap <leader>O O<Esc>
 " nueva linea abajo sin insetmode
 nnoremap <leader><Return> o<Esc>
 
+" abrir zathura pdf 
+
+nnoremap <leader>z :!zathura "%:r".pdf &<CR><CR>
+
 " editar init.vim
 nnoremap <leader>V :edit ~/.config/nvim/init.vim
 
