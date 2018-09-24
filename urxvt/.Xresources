@@ -1,6 +1,7 @@
 ! fuente de letra 
 URxvt.font: xft:DejaVu sans mono:size=12
 urxvt.boldFont: xft:DejaVu Sans Mono:pixelsize=12:weight=bold
+URxvt.letterSpace: -1
 
 !! Larger history limit
 urxvt.saveLines: 1000000
