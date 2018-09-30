@@ -83,7 +83,7 @@ def actualizar_Git():
 ayuda = "\
          -a : Actualiza los Dotfiles \n\
          -c : Copia los Dotfiles a la carpeta destino \n\
-         -g : Actualiza el repositorio git \n\
+         -d : Actualiza el repositorio git \n\
          -h : Muestra ésta ayuda"
 
 
@@ -96,7 +96,7 @@ if len(sys.argv) == 2:
     elif argumento == "-a":
         actualizar_Dotfiles()
 
-    elif argumento == "-g":
+    elif argumento == "-d":
         actualizar_Git()
 
     elif argumento == "-h":
