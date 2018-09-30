@@ -73,9 +73,17 @@ def nuevo_dotfile():
     """agregar un nuevo dotfile, pedir al usuario nombre del programa y ruta del archivo"""
     pass
 
+def actualizar_Git():
+    """Realiza un commit y copia todos los datos desde la repo online"""
+    os.system("git add -A")
+    os.system('git commit -m "DotFiles actualizados"')
+    os.system('git fetch --all')
+    os.system('git reset origin/master')
+
 ayuda = "\
-         -c : Copia los Dotfiles a la carpeta destino \n\
          -a : Actualiza los Dotfiles \n\
+         -c : Copia los Dotfiles a la carpeta destino \n\
+         -g : Actualiza el repositorio git \n\
          -h : Muestra ésta ayuda"
 
 
@@ -87,6 +95,9 @@ if len(sys.argv) == 2:
 
     elif argumento == "-a":
         actualizar_Dotfiles()
+
+    elif argumento == "-g":
+        actualizar_Git()
 
     elif argumento == "-h":
         print(ayuda)
