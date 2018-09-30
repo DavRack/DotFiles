@@ -70,7 +70,7 @@ def actualizar_Dotfiles():
 
 
 def nuevo_dotfile():
-    """agregar un nuevo dotfile, pedir al usuario nombre del programa y ruta del archivo"""
+    """Agregar un nuevo dotfile, pedir al usuario nombre del programa y ruta del archivo"""
     pass
 
 def actualizar_Git():
