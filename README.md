@@ -10,7 +10,7 @@ Sientase en la libertad de usar estas configuraciones y/o los scripts que aquí 
 
 Para copiar ésta carpeta a su dispositivo escriba la siguiente orden en la terminal:
 
-git clone https://
+git clone https://github.com/davidlo176/DotFiles
 
 ## Los DotFiles y sus carpetas
 
