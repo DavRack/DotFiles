@@ -176,24 +176,27 @@ bindsym $mod+r mode "resize"
 # gaps settings
 
 # default gaps
+smart_gaps on
 
 gaps inner 10
 gaps outer 5
 
 #change gaps
 
+# aumentar los espacios 
 bindsym $mod+m gaps outer current plus 1; gaps inner current plus 3
-
-
+#disminuir los espacios
 bindsym $mod+shift+m gaps outer current minus 1; gaps inner current minus 3
-
-bindsym $mod+shift+f gaps toggle
+#quitar los espacios
+bindsym $mod+shift+d gaps inner current set 0; gaps outer current set 0
+#establecer los espacios por defecto
+bindsym $mod+Shift+t gaps inner current set 15; gaps outer current set 15
 
 # ejecutar polybar 
 exec polybar example -r
 
 # fondo de pantalla
-exec feh --bg-scale /home/david/Imágenes/Wallpapers/10-12.jpg
+exec feh --bg-scale ~/wall.jpg
 
 # controles de audio
 bindsym XF86AudioRaiseVolume exec amixer -q set Master 2%+ unmute  

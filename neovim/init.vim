@@ -1,4 +1,4 @@
-"configuracion personal de neovim por David Londoño 
+"configuracion personal de vim por David Londoño 
 "Esta configuracion usa vim-plug como plugin mananger por lo que es necesario instalarlo primero
 "en la consola correr los siguientes comandos:
 "curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs \https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
