@@ -7,19 +7,6 @@
 call plug#begin() 
 
 "----------Plugins----------
-"_________ vim-markdown-composer______
-function! BuildComposer(info) " vim markdown composer
-  if a:info.status != 'unchanged' || a:info.force
-    if has('nvim')
-      !cargo build --release
-    else
-      !cargo build --release --no-default-features --features json-rpc
-    endif
-  endif
-endfunction
-
-Plug 'euclio/vim-markdown-composer', { 'do': function('BuildComposer') } " compilado en tiempo real de archivos markdown
-"_________________________________________
 
 Plug 'Yggdroot/indentLine' " muestra marcas de identacion
 
@@ -31,6 +18,8 @@ Plug 'zchee/deoplete-clang' " soporte para lenguajes tipo c
 
 Plug 'zchee/deoplete-jedi' " soporte para python
 " __________________________________
+
+Plug 'mzlogin/vim-markdown-toc'
 
 Plug 'kien/ctrlp.vim' " buscar archivos con fuzzy find
 
@@ -67,6 +56,9 @@ set relativenumber
 syntax enable
 
 set spelllang=es
+
+" mostrar los simbolos de markdown
+set conceallevel=0
 
 "-----Configuraciones de python-----
 
@@ -154,6 +146,9 @@ nnoremap <leader>p i**Propiedades:**<Return><Return> 1.
 
 " buscar place holder
 nnoremap <leader><Space> /+@@+<CR>
+
+" tachar punto de lista
+nnoremap <leader>t 0lli~~<Esc>$a~~<Esc>
 
 " incertar place holder
 nnoremap <leader>h a+@@+<Esc>
