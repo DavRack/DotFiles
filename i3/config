@@ -174,23 +174,20 @@ bindsym $mod+r mode "resize"
 #}
 
 # gaps settings
-
-# default gaps
-smart_gaps on
-
-gaps inner 10
-gaps outer 5
-
-#change gaps
-
-# aumentar los espacios 
-bindsym $mod+m gaps outer current plus 1; gaps inner current plus 3
-#disminuir los espacios
-bindsym $mod+shift+m gaps outer current minus 1; gaps inner current minus 3
-#quitar los espacios
-bindsym $mod+shift+d gaps inner current set 0; gaps outer current set 0
-#establecer los espacios por defecto
-bindsym $mod+Shift+t gaps inner current set 15; gaps outer current set 15
+## default gaps
+#smart_gaps on
+#gaps inner 10
+#gaps outer 5
+#
+##change gaps
+## aumentar los espacios 
+#bindsym $mod+m gaps outer current plus 1; gaps inner current plus 3
+##disminuir los espacios
+#bindsym $mod+shift+m gaps outer current minus 1; gaps inner current minus 3
+##quitar los espacios
+#bindsym $mod+shift+d gaps inner current set 0; gaps outer current set 0
+##establecer los espacios por defecto
+#bindsym $mod+Shift+t gaps inner current set 15; gaps outer current set 15
 
 # ejecutar polybar 
 exec polybar example -r
@@ -207,8 +204,9 @@ bindsym XF86AudioNext exec playerctl next
 bindsym XF86AudioPrev exec playerctl previous  
 
 
-for_window [class="^.*"] border pixel 0
-
+for_window [class="^.*"] border pixel 3
+for_window [instance="ulauncher"] border pixel 0
+for_window [instance="google-chrome"] border pixel 0
 
 # lock screen
 bindsym $mod+b exec i3lock -i ~/Imágenes/Wallpapers/10-12.png -p default -n
@@ -227,3 +225,24 @@ client.urgent           #2f343a #900000 #ffffff #900000   #900000
 client.placeholder      #000000 #0c0c0c #ffffff #000000   #0c0c0c
 
 client.background       #ffffff
+
+# dropdown terminal
+exec --no-startup-id gnome-terminal --title="dropdown"
+for_window [instance="dropdown"] floating enable;
+for_window [instance="dropdown"] resize set 800 600;
+for_window [instance="dropdown"] move scratchpad;
+for_window [instance="dropdown"] borde pixel 5;
+
+
+bindsym $mod+u [instance="dropdown"] scratchpad show; [instance="dropdown"] move position center
+
+# math terminal
+exec --no-startup-id gnome-terminal --title="math" -e R --slave
+for_window [class="gnome-terminal" instance="math"] floating enable
+for_window [class="gnome-terminal" instance="math"] resize set 800 400
+for_window [class="gnome-terminal" instance="math"] move scratchpad
+for_window [class="gnome-terminal" instance="math"] borde pixel 5
+
+
+bindsym $mod+m [instance="math"] scratchpad show; [instance="math"] floating enable
+

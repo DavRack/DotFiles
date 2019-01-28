@@ -148,7 +148,7 @@ nnoremap <leader>p i**Propiedades:**<Return><Return> 1.
 nnoremap <leader><Space> /+@@+<CR>
 
 " tachar punto de lista
-nnoremap <leader>t 0lli~~<Esc>$a~~<Esc>
+nnoremap <leader>t la~~<Esc>$a~~<Esc>
 
 " incertar place holder
 nnoremap <leader>h a+@@+<Esc>
@@ -166,7 +166,6 @@ nnoremap <leader>O O<Esc>
 nnoremap <leader><Return> o<Esc>
 
 " abrir zathura pdf 
-
 nnoremap <leader>z :!zathura "%:r".pdf &<CR><CR>
 
 " editar init.vim
