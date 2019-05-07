@@ -1,7 +1,22 @@
 "configuracion personal de vim por David Londoño 
 "Esta configuracion usa vim-plug como plugin mananger por lo que es necesario instalarlo primero
-"en la consola correr los siguientes comandos:
-"curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs \https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+"install nodejs 
+" curl -sL install-node.now.sh/lts | sh
+
+"Instalacion de vim-plug
+let vimplug_exists=expand('~/.config/nvim/autoload/plug.vim')
+if !filereadable(vimplug_exists)
+  if !executable("curl")
+    echoerr "You have to install curl or first install vim-plug yourself!"
+    execute "q!"
+  endif
+  echo "Installing Vim-Plug..."
+  echo ""
+  silent exec "!\curl -fLo " . vimplug_exists . " --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim"
+  let g:not_finish_vimplug = "yes"
+
+  autocmd VimEnter * PlugInstall
+endif
     
 "-----Todos los plugins de vim-plug-----
 call plug#begin() 
@@ -11,13 +26,17 @@ call plug#begin()
 Plug 'Yggdroot/indentLine' " muestra marcas de identacion
 
 Plug 'bling/vim-airline' " barra de estatus y de tabs
-" ________ deoplete.nvim ___________
-Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' } " auto completar
-
-Plug 'zchee/deoplete-clang' " soporte para lenguajes tipo c
-
-Plug 'zchee/deoplete-jedi' " soporte para python
+" ________ coc.nvim ___________
+Plug 'neoclide/coc.nvim', {'tag': '*', 'do': './install.sh'}
 " __________________________________
+
+"_________ snipets ____________
+Plug 'MarcWeber/vim-addon-mw-utils'
+Plug 'tomtom/tlib_vim'
+Plug 'garbas/vim-snipmate'
+Plug 'honza/vim-snippets' "proveedor de snippets
+" __________________________________
+Plug 'KabbAmine/vCoolor.vim' " color picker
 
 Plug 'mzlogin/vim-markdown-toc'
 
@@ -33,6 +52,21 @@ Plug 'tpope/vim-surround' " permite cambiar lo que rodea un objeto de texto: 'te
 
 Plug 'w0rp/ale' " resaltador de sintaxis
 
+"---------- LSP ----------
+if executable('clangd')
+    au User lsp_setup call lsp#register_server({
+        \ 'name': 'clangd',
+        \ 'cmd': {server_info->['clangd', '-background-index']},
+        \ 'whitelist': ['c', 'cpp', 'objc', 'objcpp'],
+        \ })
+endif
+
+"-------- Ctrl-P ---------
+"abrir archivos en nueva pestaña en lugar de buffer
+let g:ctrlp_prompt_mappings = {     
+    \ 'AcceptSelection("e")': ['<c-t>'],
+    \ 'AcceptSelection("t")': ['<cr>', '<2-LeftMouse>'],
+    \ }
 "----------Temas----------
 Plug 'hzchirs/vim-material'
 
@@ -40,28 +74,39 @@ Plug 'joshdick/onedark.vim'
 
 call plug#end()
 
-
+" ubicaciones de los ejecutables de python
+let g:python3_host_prog = '/usr/bin/python3'
+let g:python_host_prog = '/usr/bin/python2'
 "----------Temas en uso----------
-colorscheme onedark
+colorscheme onedark " tema de neovim
 
-let g:airline_theme='onedark'
+let g:airline_theme='onedark' " tema de la barra inferior y superior
 
-let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#enabled = 1 " Activar airline
 
 "-----Configuraciones varias-----
+
+" Establecer numeros de linea
 set number
 
+" Establecer numeracion relativa
 set relativenumber
 
+" Establecer resaltador de sintaxis
 syntax enable
 
+" Establece el idioma a castellano
 set spelllang=es
 
 " mostrar los simbolos de markdown
 set conceallevel=0
 
+
+" barra izquierda expandida
+set signcolumn=yes
 "-----Configuraciones de python-----
 
+" Establecer resaltador de sintaxis
 let python_highlight_all = 1
 
 " set tabs to have 4 spaces
@@ -88,32 +133,10 @@ set foldmethod=indent
 "---------Activar mouse----------
 set mouse=a
 
-"---------Activar deoplete-------
-let g:deoplete#enable_at_startup = 1
-
 "-----Autoformatear mapeado a f3 y f8-----
 noremap <F3> :Autoformat<CR>
 
 autocmd FileType python noremap <buffer> <F8> :call Autopep8()<CR>
-
-"-----Configuraciones de syntastic----------
-"set statusline+=%#warningmsg#
-"set statusline+=%{SyntasticStatuslineFlag()}
-"set statusline+=%*
-"let g:syntastic_always_populate_loc_list = 1
-"let g:syntastic_loc_list_height = 5
-"let g:syntastic_auto_loc_list = 0
-"let g:syntastic_check_on_open = 1
-"let g:syntastic_check_on_wq = 1
-"let g:syntastic_javascript_checkers = ['eslint']
-"let g:syntastic_error_symbol = '❌'
-"let g:syntastic_style_error_symbol = '⁉️'
-"let g:syntastic_warning_symbol = '⚠️'
-"let g:syntastic_style_warning_symbol = '💩'
-"highlight link SyntasticErrorSign SignColumn
-"highlight link SyntasticWarningSign SignColumn
-"highlight link SyntasticStyleErrorSign SignColumn
-"highlight link SyntasticStyleWarningSign SignColumn
 
 "------------ Remapeos personales -------------
 "leader key = espacio
@@ -172,10 +195,10 @@ nnoremap <leader>z :!zathura "%:r".pdf &<CR><CR>
 nnoremap <leader>V :edit ~/.config/nvim/init.vim
 
 " compilar R markdown
-nnoremap <leader>r :w<CR>:!echo<space>"require(rmarkdown);<space>render('<c-r>%')"<space>\|<space>R<space>--vanilla<enter><CR>
+autocmd FileType rmd nnoremap <leader>r :w<CR>:!echo<space>"require(rmarkdown);<space>render('<c-r>%')"<space>\|<space>R<space>--vanilla<enter><CR>
 
 " compilar R markdown ('debug')
-nnoremap <leader>q :w<CR>:!echo<space>"require(rmarkdown);<space>render('<c-r>%')"<space>\|<space>R<space>--vanilla<enter>
+autocmd FileType rmd nnoremap <leader>q :w<CR>:!echo<space>"require(rmarkdown);<space>render('<c-r>%')"<space>\|<space>R<space>--vanilla<enter>
 " -------- funciones personales --------
 
 " compilar c
