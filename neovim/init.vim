@@ -168,7 +168,7 @@ nnoremap <leader>p i**Propiedades:**<Return><Return> 1.
 " --------- comandos con leder key.------
 
 " buscar place holder
-nnoremap <leader><Space> /+@@+<CR>v4lc
+nnoremap <leader><Space> /+@@+<CR>v3lc
 
 " tachar punto de lista
 nnoremap <leader>t la~~<Esc>$a~~<Esc>
