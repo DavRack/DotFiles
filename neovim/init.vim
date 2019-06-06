@@ -1,7 +1,5 @@
 "configuracion personal de vim por David Londoño 
 "Esta configuracion usa vim-plug como plugin mananger por lo que es necesario instalarlo primero
-"install nodejs 
-" curl -sL install-node.now.sh/lts | sh
 
 "Instalacion de vim-plug
 let vimplug_exists=expand('~/.config/nvim/autoload/plug.vim')
@@ -99,6 +97,7 @@ syntax enable
 set spelllang=es
 
 " mostrar los simbolos de markdown
+let g:indentLine_setConceal = 0
 set conceallevel=0
 
 
@@ -148,7 +147,7 @@ let mapleader = " "
 nnoremap <leader>m i$$<Left>
 
 " nueva clase
-nnoremap <leader>l i---<CR>author: David Londoño Montoya<CR>title: Clase x+1 siendo x la Última clase<CR>date: "`r Sys.Date()`"<CR>output: pdf_document<CR>number_sections: true<CR>---<CR>\tableofcontents<CR><CR>
+nnoremap <leader>l i---<CR>author: David Londoño Montoya<CR>title: +@@+<CR>date: "`r Sys.Date()`"<CR>lang: es-ES<CR>output: <CR>    pdf_document:<CR>    number_sections: false<CR>toc: true<CR><Esc>0i---<CR>\tableofcontents<CR><CR>+@@+<Esc>gg
 
 " bloque de texto
 nnoremap <leader>c i```{}<CR>```<Esc>k$i
@@ -195,10 +194,10 @@ nnoremap <leader>z :!zathura "%:r".pdf &<CR><CR>
 nnoremap <leader>V :edit ~/.config/nvim/init.vim
 
 " compilar R markdown
-autocmd FileType rmd nnoremap <leader>r :w<CR>:!echo<space>"require(rmarkdown);<space>render('<c-r>%')"<space>\|<space>R<space>--vanilla<enter><CR>
+autocmd FileType rmd nnoremap <leader>r :w<CR>:!echo<space>"require(rmarkdown);<space>render('<c-r>%')"<space>\|<space>R<space>-q<space>--vanilla<enter><CR>
 
 " compilar R markdown ('debug')
-autocmd FileType rmd nnoremap <leader>q :w<CR>:!echo<space>"require(rmarkdown);<space>render('<c-r>%')"<space>\|<space>R<space>--vanilla<enter>
+autocmd FileType rmd nnoremap <leader>q :w<CR>:!echo<space>"require(rmarkdown);<space>render('<c-r>%')"<space>\|<space>R<space>-q<space>--vanilla<space><enter>
 " -------- funciones personales --------
 
 " compilar c
