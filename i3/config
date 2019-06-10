@@ -253,7 +253,7 @@ for_window [instance="math"] floating enable
 for_window [instance="math"] resize set 60ppt 35ppt
 for_window [instance="math"] move scratchpad
 for_window [instance="math"] border pixel 5
-exec --no-startup-id st -n scratchpad -f "Mono:size=24" -e R -q
+exec --no-startup-id st -n math -f "Mono:size=24" -e R -q
 bindsym $mod+o [instance="math"] scratchpad show; [instance="math"] move position center
 
 
