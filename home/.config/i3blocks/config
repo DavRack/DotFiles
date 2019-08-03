@@ -2,8 +2,15 @@ color=#f3f4f5
 separator_block_width=15
 markup=none
 
+[volumen]
+command=echo -n "🔊 "; amixer sget Master | awk -F"[][]" '/dB/ { print $2 }'  
+instance=Master
+interval=once
+signal=10
+
 [cputemp]
-command=echo -n "♨️ "; sensors -A coretemp-isa-0000 | awk '/^Package/ {print $4}' | cut -c 2-
+label=♨️
+command=sensors -A coretemp-isa-0000 | awk '/^Package/ {print $4}' | cut -c 2-
 interval=10
 
 [ram]

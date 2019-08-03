@@ -180,9 +180,9 @@ bar {
 }
 
 # controles de audio
-bindsym XF86AudioRaiseVolume exec amixer -q set Master 2%+ unmute  
-bindsym XF86AudioLowerVolume exec amixer -q set Master 2%- unmute  
-bindsym XF86AudioMute exec amixer -q set Master mute toogle 
+bindsym XF86AudioMute exec amixer -q set Master mute toggle;  exec pkill  -RTMIN+10 i3blocks
+bindsym XF86AudioRaiseVolume exec amixer -q set Master 3%+; exec pkill  -RTMIN+10 i3blocks
+bindsym XF86AudioLowerVolume exec amixer -q set Master 3%-; exec pkill  -RTMIN+10 i3blocks
 bindsym XF86AudioPlay exec playerctl play-pause  
 bindsym XF86AudioNext exec playerctl next  
 bindsym XF86AudioPrev exec playerctl previous  
@@ -190,7 +190,6 @@ bindsym XF86AudioPrev exec playerctl previous
 # cambiar el tamaño del borde de las ventanas
 for_window [class="^.*"] border pixel 2
 for_window [instance="ulauncher"] border pixel 0
-for_window [instance="google-chrome"] border pixel 0
 
 # cambiar el color del borde de la ventana
 client.focused              #333333 #424242 #ffffff #424242   #424242
@@ -256,7 +255,8 @@ for_window [instance="math"] border pixel 5
 exec --no-startup-id st -n math -f "Mono:size=24" -e R -q
 bindsym $mod+o [instance="math"] scratchpad show; [instance="math"] move position center
 
-
+# smart_gaps
+hide_edge_borders smart
 ## falta
 # impresora
 # iconos en escritorio
