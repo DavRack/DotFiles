@@ -21,8 +21,6 @@ call plug#begin()
 
 "----------Plugins----------
 
-Plug 'Yggdroot/indentLine' " muestra marcas de identacion
-
 Plug 'bling/vim-airline' " barra de estatus y de tabs
 " ________ coc.nvim ___________
 Plug 'neoclide/coc.nvim', {'tag': '*', 'do': './install.sh'}
@@ -35,10 +33,6 @@ Plug 'garbas/vim-snipmate'
 Plug 'honza/vim-snippets' "proveedor de snippets
 " __________________________________
 Plug 'KabbAmine/vCoolor.vim' " color picker
-
-Plug 'mzlogin/vim-markdown-toc'
-
-Plug 'kien/ctrlp.vim' " buscar archivos con fuzzy find
 
 Plug 'scrooloose/nerdtree' " arbol de archivos
 
@@ -59,19 +53,14 @@ if executable('clangd')
         \ })
 endif
 
-"-------- Ctrl-P ---------
-"abrir archivos en nueva pestaña en lugar de buffer
-let g:ctrlp_prompt_mappings = {     
-    \ 'AcceptSelection("e")': ['<c-t>'],
-    \ 'AcceptSelection("t")': ['<cr>', '<2-LeftMouse>'],
-    \ }
 "----------Temas----------
 Plug 'hzchirs/vim-material'
 
 Plug 'joshdick/onedark.vim'
 
 call plug#end()
-
+" auto instalar extenciones COC
+let g:coc_global_extensions = ['coc-tsserver', 'coc-python', 'coc-json', 'coc-html','coc-css','coc-go','coc-tabnine','coc-rls','coc-xml','coc-texlab','coc-sh','coc-markdownlint']
 " ubicaciones de los ejecutables de python
 let g:python3_host_prog = '/usr/bin/python3'
 let g:python_host_prog = '/usr/bin/python2'

@@ -1,0 +1,62 @@
+#!/bin/bash
+
+dataBaseList=~/DotFiles/DotDataBaseList
+
+DotDataBase=~/DotFiles/DotDataBase
+
+function setDots() {
+    cp -r $DotDataBase/* ~
+}
+function updateDots() {
+    echo ""
+}
+function ayuda() {
+    echo "uso:"
+    echo "  DotMaid -[opcion] [archivo?]"
+    echo "  opciones:"
+    echo "                -a: Copia los dotfiles a la base de datos"
+    echo "                -h: muestra esta ayuda"
+    echo "                -s: Colocar los dotfiles en el lugar de destino"
+    echo "                -u: actualiza los dotfiles a la base de datos"
+}
+function addDots() {
+    # recibe un argumento $1 con la ruta relativa
+    # del archivo o directorio a agregar a la base de datos
+    # ruta absoluta del archivo o carpeta
+
+    # ruta absoluta al archivo o directorio
+    path2file=$1
+
+    # ruta completa con /home/USER remplazado con "~"
+    fullPath="$(realpath $1 | sed "s|$HOME|~|")" 
+
+    # agregar ruta absoluta a la base de datos
+    echo $fullPath >> $dataBaseList
+    
+    # obtener la ultima carpeta del archivo o carpeta
+    lastFolderRelativePath="$(dirname $fullPath | cut -c2-)" # ruta absoluta de la ultima carpeta del archio o carpeta en cuestión
+    
+    # crear carpetas de destino
+    mkdir -p $DotDataBase$lastFolderRelativePath
+
+    # copiar archivos a destino
+    cp -r $fullPath $DotDataBase$lastFolderRelativePath
+}
+
+if [ "$1" == "-s" ]
+then
+    echo "Colocar los dotfiles en el lugar de destino"
+    setDots "$2"
+elif [ "$1" == "-a" ]
+then
+    echo "Copia los dotfiles a la base de datos"
+    addDots "$2"
+elif [ "$1" == "-u" ]
+then
+    updateDots
+elif [ "$1" == "-h" ] || [ "$1" == "--help" ] || [ "$1" == "" ]
+then
+    ayuda
+else
+    ayuda
+fi

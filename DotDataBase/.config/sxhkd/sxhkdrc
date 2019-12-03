@@ -1,0 +1,17 @@
+alt+Print
+    flameshot gui
+
+Escape+l
+  xte "keyup Escape" "keyup l" "key Right"
+    
+Caps_Lock+k
+  xte "keyup Escape" "keyup k" "key Up" "keydown Escape"
+
+Caps_Lock+j
+  xte "keyup Escape" "keyup j" "key Down" "keydown Escape"
+
+Caps_Lock+h
+  xte "keyup Escape" "keyup h" "key Left" "keydown Escape"
+
+Tab
+    xte "keyup Tab" "key Escape"
