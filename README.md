@@ -29,6 +29,9 @@ Escriba: DotMaid -a [ruta absoluta o relativa al archivo o carpeta]
 ### Ejemplo:
 
 *DotMaid -a ~/.config/nvim/init.vim*
+
 Lo anterior es equivalente a:
+
 *cd ~/.config/nvim/*
+
 *DotMaid -a init.vim*
