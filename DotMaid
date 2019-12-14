@@ -1,14 +1,20 @@
 #!/bin/bash
 
 dataBaseList=~/DotFiles/DotDataBaseList
-
 DotDataBase=~/DotFiles/DotDataBase
 
 function setDots() {
     cp -r $DotDataBase/* ~
 }
 function updateDots() {
-    echo ""
+    # hacer una lista con los dotfiles de la base de datos
+    allDots="$(cat $dataBaseList)" 
+
+    # para cada dotfile llamar la funcion addDots
+    for dotFile in $allDots
+    do 
+        addDots "$dotFile"
+    done
 }
 function ayuda() {
     echo "uso:"
@@ -24,14 +30,20 @@ function addDots() {
     # del archivo o directorio a agregar a la base de datos
     # ruta absoluta del archivo o carpeta
 
-    # ruta absoluta al archivo o directorio
-    path2file=$1
+    # ruta absoluta al archivo o directorio con tilde expandida
+    path2file=$(echo $1 | sed "s|~|$HOME|")
 
     # ruta completa con /home/USER remplazado con "~"
-    fullPath="$(realpath $1 | sed "s|$HOME|~|")" 
+    fullPath="$(readlink -f $path2file | sed "s|$HOME|~|")" 
 
-    # agregar ruta absoluta a la base de datos
-    echo $fullPath >> $dataBaseList
+    # buscar si el dot file ya fue añadido a la base de datos
+    if [ $(grep -F "$fullPath" $dataBaseList)=="$fullPath" ]
+    then
+        echo "Actualizando $1"
+    else
+        # agregar ruta absoluta a la base de datos
+        echo $fullPath >> $dataBaseList
+    fi
     
     # obtener la ultima carpeta del archivo o carpeta
     lastFolderRelativePath="$(dirname $fullPath | cut -c2-)" # ruta absoluta de la ultima carpeta del archio o carpeta en cuestión
@@ -39,10 +51,11 @@ function addDots() {
     # crear carpetas de destino
     mkdir -p $DotDataBase$lastFolderRelativePath
 
+    # expandir tilde "~"
+    fullPath=$(echo $fullPath | sed "s|~|$HOME|")
     # copiar archivos a destino
     cp -r $fullPath $DotDataBase$lastFolderRelativePath
 }
-
 if [ "$1" == "-s" ]
 then
     echo "Colocar los dotfiles en el lugar de destino"
