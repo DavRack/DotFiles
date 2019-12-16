@@ -3,7 +3,7 @@ separator_block_width=15
 markup=none
 
 [volumen]
-command=echo -n "🔊 "; amixer sget Master | awk -F"[][]" '/dB/ { print $2 }'  
+command=sleep 0.05s; amixer sget Master | awk -F"[][]" '/dB/ { print $6 $2}' | sed "s/on/🔊/g" | sed "s/off/🔇/"
 instance=Master
 interval=once
 signal=10
