@@ -8,6 +8,16 @@ instance=Master
 interval=once
 signal=10
 
+[brightness]
+command=sleep 0.3s ;echo "☀️ $(xbacklight -get)"
+instance=Master
+interval=once
+signal=11
+
+[battery]
+command=acpi | awk '{print $3 $4}' | sed "s/\,//g" | sed "s/Discharging/🔋/g" | sed "s/Unknown/⚡/g" | sed "s/Charging/⚡/g" | sed "s/Full/✔️ /g"
+interval=2
+
 [cputemp]
 label=♨️
 command=sensors -A coretemp-isa-0000 | awk '/^Package/ {print $4}' | cut -c 2-
