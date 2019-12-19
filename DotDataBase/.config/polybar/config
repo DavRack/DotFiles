@@ -140,9 +140,11 @@ interval = 25
 
 mount-0 = /
 
-label-mounted = %{F#0a81f5}%mountpoint%%{F-}: %percentage_used%%
+label-mounted = %mountpoint%%{F-}: %free%
+label-mounted-underline = ${colors.brightGreen}
 label-unmounted = %mountpoint% not mounted
 label-unmounted-foreground = ${colors.foreground-alt}
+
 
 [module/backlight-acpi]
 inherit = module/xbacklight
@@ -155,6 +157,7 @@ type = internal/alsa
 format-volume = <label-volume> <bar-volume>
 label-volume = VOL
 label-volume-foreground = ${root.foreground}
+format-volume-underline = ${colors.brightGreen}
 
 format-muted-prefix = "  "
 format-muted-foreground = ${colors.foreground-alt}
@@ -199,7 +202,7 @@ interval = 2
 format-prefix = "RAM: "
 format-prefix-foreground = ${colors.foreground-alt}
 format-underline = ${colors.brightGreen}
-label = %percentage_used%%
+label = %gb_used%/%gb_total%
 
 [module/cpu]
 type = internal/cpu
@@ -222,7 +225,10 @@ format-warn = <label-warn>
 format-warn-underline = ${self.format-underline}
 hwmon-path = /sys/devices/platform/coretemp.0/hwmon/hwmon0/temp1_input
 
+format-prefix = TEMP:
+format-prefix-foreground = ${colors.foreground-alt}
 label = %temperature-c%
+
 label-warn = %temperature-c%
 label-warn-underline = ${colors.brightRed}
 label-warn-foreground = ${colors.black}
@@ -230,7 +236,7 @@ label-warn-background = ${colors.brightRed}
 
 [module/date]
 type = internal/date
-interval = 5
+interval = 1
 
 date =
 date-alt = "%Y-%m-%d"
@@ -294,6 +300,7 @@ menu-2-1-exec = menu-open-0
 type = internal/xbacklight
 
 format = <label> <bar>
+format-underline = ${colors.brightGreen}
 label = BL:
 
 bar-width = 10
