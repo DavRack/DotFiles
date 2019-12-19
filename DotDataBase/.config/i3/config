@@ -166,32 +166,32 @@ bindsym $mod+r mode "resize"
 
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
-bar {
-        position top
-        status_command i3blocks
-        font pango:FontAwesome 10
-        #tray_output primary
-        colors {
-            background #232323
-            #                  border  background  text 
-            focused_workspace  #87D787 #87D787 #232323   
-            inactive_workspace #565656 #565656 #f3f4f5  
-            urgent_workspace   #0F3048 #141D28 #f3f4f5
-        }
-}
+#bar {
+#        position top
+#        status_command i3blocks
+#        font pango:FontAwesome 10
+#        #tray_output primary
+#        colors {
+#            background #232323
+#            #                  border  background  text 
+#            focused_workspace  #87D787 #87D787 #232323   
+#            inactive_workspace #565656 #565656 #f3f4f5  
+#            urgent_workspace   #0F3048 #141D28 #f3f4f5
+#        }
+#}
 
 # controles de audio
 bindsym XF86AudioMute exec amixer -qD pulse set Master toggle;  exec pkill  -RTMIN+10 i3blocks
-bindsym XF86AudioRaiseVolume exec amixer -q set Master 3%+; exec pkill  -RTMIN+10 i3blocks
-bindsym XF86AudioLowerVolume exec amixer -q set Master 3%-; exec pkill  -RTMIN+10 i3blocks
+bindsym XF86AudioRaiseVolume exec amixer -q set Master 5%+; exec pkill  -RTMIN+10 i3blocks
+bindsym XF86AudioLowerVolume exec amixer -q set Master 5%-; exec pkill  -RTMIN+10 i3blocks
 bindsym XF86AudioPlay exec playerctl play-pause  
 bindsym XF86AudioNext exec playerctl next  
 bindsym XF86AudioPrev exec playerctl previous  
 
 # control de brillo
-bindsym $mod+questiondown exec xbacklight -inc 10 -fps 60; exec pkill -RTMIN+11 i3blocks
+bindsym $mod+comma exec xbacklight -inc 10 -fps 60; exec pkill -RTMIN+11 i3blocks
 
-bindsym $mod+apostrophe exec xbacklight -dec 10 -fps 60; exec pkill -RTMIN+11 i3blocks
+bindsym $mod+m exec xbacklight -dec 10 -fps 60; exec pkill -RTMIN+11 i3blocks
 
 # cambiar el tamaño del borde de las ventanas
 for_window [class="^.*"] border pixel 2
@@ -230,6 +230,9 @@ exec --no-startup-id nm-applet
 
 # cambiar caps lock a escape
 exec --no-startup-id xmodmap -e 'clear Lock' -e 'keycode 0x42 = Escape'
+
+# barra
+exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 
 # poner fondo de pantalla
 exec feh --randomize --bg-fill ~/Imágenes/wallpaper/

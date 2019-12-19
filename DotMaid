@@ -37,7 +37,7 @@ function addDots() {
     fullPath="$(readlink -f $path2file | sed "s|$HOME|~|")" 
 
     # buscar si el dot file ya fue añadido a la base de datos
-    if [ $(grep -F "$fullPath" $dataBaseList)=="$fullPath" ]
+    if [ "$(grep -F $fullPath $dataBaseList)" == "$fullPath" ]
     then
         echo "Actualizando $1"
     else

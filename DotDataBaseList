@@ -5,3 +5,4 @@
 ~/.config/neofetch/config.conf
 ~/.config/sxhkd/sxhkdrc
 ~/.bashrc
+~/.config/polybar
