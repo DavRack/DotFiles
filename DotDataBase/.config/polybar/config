@@ -77,7 +77,6 @@ font-2 = siji:pixelsize=12;1
 modules-left = i3
 modules-center = 
 modules-right = filesystem backlight-acpi alsa battery memory cpu temperature date powermenu
-;modules-right = filesystem backlight-acpi alsa battery memory cpu temperature date powermenu
 
 tray-position = right
 tray-padding = 2
@@ -140,8 +139,10 @@ interval = 25
 
 mount-0 = /
 
-label-mounted = %mountpoint%%{F-}: %free%
+label-mounted-prefix = Disk:
+label-mounted = %{F#afafaf}Disk: %{F-} %free%
 label-mounted-underline = ${colors.brightGreen}
+label-prefix-foreground = ${colors.foreground-alt}
 label-unmounted = %mountpoint% not mounted
 label-unmounted-foreground = ${colors.foreground-alt}
 
@@ -188,11 +189,16 @@ full-at = 99
 
 
 format-charging = <label-charging>
+format-charging-prefix = CHAR:
 format-charging-underline = ${colors.brightGreen}
+format-charging-prefix-foreground = ${colors.foreground-alt}
 
 format-discharging = <label-discharging>
+format-discharging-prefix = BAT:
+format-discharging-prefix-foreground = ${colors.foreground-alt}
 format-discharging-underline = ${self.format-charging-underline}
 
+format-full-prefix = FULL:
 format-full-prefix-foreground = ${colors.foreground-alt}
 format-full-underline = ${self.format-charging-underline}
 
