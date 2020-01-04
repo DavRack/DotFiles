@@ -1,8 +1,6 @@
-~/.config/nvim/init.vim
-~/.config/i3/config
-~/.config/i3blocks
-~/.config/ulauncher
-~/.config/neofetch/config.conf
 ~/.config/sxhkd/sxhkdrc
+~/.config/i3/config
 ~/.bashrc
+~/.config/nvim/init.vim
 ~/.config/polybar
+~/.config/i3blocks/config

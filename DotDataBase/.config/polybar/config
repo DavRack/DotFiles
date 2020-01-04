@@ -70,9 +70,9 @@ padding-right = 2
 module-margin-left = 1
 module-margin-right = 2
 
-font-0 = dejavu:pixelsize=10;1
-font-1 = mono:fontformat=truetype:size=8:antialias=true;0
-font-2 = siji:pixelsize=12;1
+font-0 = FontAwesome5Free:style=Solid:size=12;4
+font-1 = Font Awesome 5 Free:fontformat=truetype:size=8:antialias=true;0
+font-2 = dejavu:pixelsize=10;1
 
 modules-left = i3
 modules-center = 
@@ -139,8 +139,8 @@ interval = 25
 
 mount-0 = /
 
-label-mounted-prefix = Disk:
-label-mounted = %{F#afafaf}Disk: %{F-} %free%
+label-mounted-prefix = DISK
+label-mounted = %{F#afafaf} %{F-} %free%
 label-mounted-underline = ${colors.brightGreen}
 label-prefix-foreground = ${colors.foreground-alt}
 label-unmounted = %mountpoint% not mounted
@@ -156,30 +156,30 @@ card = intel_backlight
 type = internal/alsa
 
 format-volume = <label-volume> <bar-volume>
-label-volume = VOL
-label-volume-foreground = ${root.foreground}
+label-volume = " "
+label-volume-foreground = ${colors.foreground-alt}
 format-volume-underline = ${colors.brightGreen}
 
 format-muted-prefix = "  "
 format-muted-foreground = ${colors.foreground-alt}
-label-muted = Sonido Muteado
+label-muted = "  Sonido Muteado"
 
-bar-volume-width = 10
+bar-volume-width = 11
 bar-volume-foreground-0 = ${colors.brightGreen}
 bar-volume-foreground-1 = ${colors.brightGreen}
 bar-volume-foreground-2 = ${colors.brightGreen}
 bar-volume-foreground-3 = ${colors.brightGreen}
 bar-volume-foreground-4 = ${colors.brightGreen}
-bar-volume-foreground-5 = ${colors.brightRed}
-bar-volume-foreground-6 = ${colors.brightRed}
+bar-volume-foreground-5 = ${colors.brightGreen}
+bar-volume-foreground-6 = ${colors.brightGreen}
 bar-volume-gradient = false
-bar-volume-indicator = |
+bar-volume-indicator = 
 bar-volume-indicator-font = 2
-bar-volume-fill = -
+bar-volume-fill = █
 bar-volume-fill-font = 2
-bar-volume-empty = -
+bar-volume-empty = █
 bar-volume-empty-font = 2
-bar-volume-empty-foreground = ${colors.foreground-alt}
+bar-volume-empty-foreground = ${colors.background-alt}
 
 [module/battery]
 type = internal/battery
@@ -189,23 +189,23 @@ full-at = 99
 
 
 format-charging = <label-charging>
-format-charging-prefix = CHAR:
+format-charging-prefix = "  "
 format-charging-underline = ${colors.brightGreen}
 format-charging-prefix-foreground = ${colors.foreground-alt}
 
 format-discharging = <label-discharging>
-format-discharging-prefix = BAT:
+format-discharging-prefix = "  "
 format-discharging-prefix-foreground = ${colors.foreground-alt}
 format-discharging-underline = ${self.format-charging-underline}
 
-format-full-prefix = FULL:
+format-full-prefix = "  "
 format-full-prefix-foreground = ${colors.foreground-alt}
 format-full-underline = ${self.format-charging-underline}
 
 [module/memory]
 type = internal/memory
 interval = 2
-format-prefix = "RAM: "
+format-prefix = "  "
 format-prefix-foreground = ${colors.foreground-alt}
 format-underline = ${colors.brightGreen}
 label = %gb_used%/%gb_total%
@@ -214,7 +214,7 @@ label = %gb_used%/%gb_total%
 type = internal/cpu
 interval = 2
 format = <label>
-format-prefix = CPU:
+format-prefix = " "
 label =  %percentage%%
 format-prefix-foreground = ${colors.foreground-alt}
 format-underline = ${colors.brightGreen}
@@ -229,9 +229,9 @@ format-underline = ${colors.brightGreen}
 
 format-warn = <label-warn>
 format-warn-underline = ${self.format-underline}
-hwmon-path = /sys/devices/platform/coretemp.0/hwmon/hwmon0/temp1_input
+hwmon-path = /sys/devices/platform/coretemp.0/hwmon/hwmon3/temp1_input
 
-format-prefix = TEMP:
+format-prefix = " "
 format-prefix-foreground = ${colors.foreground-alt}
 label = %temperature-c%
 
@@ -263,7 +263,7 @@ expand-right = true
 
 format-spacing = 1
 
-label-open = MENU 
+label-open =   
 label-open-foreground = ${colors.black}
 label-open-background = ${colors.brightGreen}
 label-open-padding = 1
@@ -307,18 +307,19 @@ type = internal/xbacklight
 
 format = <label> <bar>
 format-underline = ${colors.brightGreen}
-label = BL:
+label = "  "
+label-foreground = ${colors.foreground-alt}
 
-bar-width = 10
-bar-indicator = |
+bar-width = 11
+bar-indicator = 
 bar-indicator-foreground = #fff
 bar-indicator-font = 2
-bar-fill = -
+bar-fill = █
 bar-fill-font = 2
 bar-fill-foreground = ${colors.brightGreen}
-bar-empty = -
+bar-empty = █
 bar-empty-font = 2
-bar-empty-foreground = ${colors.foreground-alt}
+bar-empty-foreground = ${colors.background-alt}
 
 [settings]
 screenchange-reload = true
@@ -332,7 +333,6 @@ screenchange-reload = true
 margin-top = 5
 margin-bottom = 5
 
-; vim:ft=dosini
 ;
 ;[module/wlan]
 ;type = internal/network
@@ -457,3 +457,4 @@ margin-bottom = 5
 ;label-song-ellipsis = true
 ;
 
+; vim:ft=dosini
