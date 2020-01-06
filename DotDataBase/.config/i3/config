@@ -222,7 +222,7 @@ bindsym $mod+Shift+End	    gaps inner current minus 3
 # ejecutar el copositor
 #exec --no-startup-id compton --backend glx --paint-on-overlay --vsync opengl-swc
 
-exec --no-startup-id picom
+exec --no-startup-id  picom --config ~/.config/picom.conf
 
 # kde connect
 exec --no-startup-id kdeconnect-indicator
@@ -237,8 +237,8 @@ exec --no-startup-id nm-applet
 exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 
 # poner fondo de pantalla
-exec feh --randomize --bg-fill ~/Imágenes/wallpaper/
-bindsym $mod+p exec feh --randomize --bg-fill ~/Imágenes/wallpaper/
+exec feh --randomize --bg-fill ~/Img/wall/
+bindsym $mod+p exec feh --randomize --bg-fill ~/Img/wall/
 
 # lanzar chrome
 bindsym $mod+g exec google-chrome-stable

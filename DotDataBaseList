@@ -4,3 +4,6 @@
 ~/.config/nvim/init.vim
 ~/.config/polybar
 ~/.config/i3blocks/config
+~/.zshrc
+~/.config/picom.conf
+~/Img/wall

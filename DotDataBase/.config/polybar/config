@@ -194,7 +194,7 @@ format-charging-underline = ${colors.brightGreen}
 format-charging-prefix-foreground = ${colors.foreground-alt}
 
 format-discharging = <label-discharging>
-format-discharging-prefix = "  "
+format-discharging-prefix = "  "
 format-discharging-prefix-foreground = ${colors.foreground-alt}
 format-discharging-underline = ${self.format-charging-underline}
 
