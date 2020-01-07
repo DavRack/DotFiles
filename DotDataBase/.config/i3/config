@@ -30,14 +30,10 @@ font pango:monospace 12
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
 
-# start a terminal
-bindsym $mod+Return exec st
 
 # kill focused window
 bindsym $mod+Shift+q kill
 
-# start dmenu (a program launcher)
-bindsym $mod+space exec ulauncher
 # There also is the (new) i3-dmenu-desktop which only displays applications
 # shipping a .desktop file. It is a wrapper around dmenu, so you need that
 # installed.
@@ -180,25 +176,14 @@ bindsym $mod+r mode "resize"
 #        }
 #}
 
-# controles de audio
-bindsym XF86AudioMute exec amixer -q set Master toggle
-bindsym XF86AudioRaiseVolume exec amixer -q set Master 5%+
-bindsym XF86AudioLowerVolume exec amixer -q set Master 5%-
-bindsym XF86AudioPlay exec playerctl play-pause  
-bindsym XF86AudioNext exec playerctl next  
-bindsym XF86AudioPrev exec playerctl previous  
 
-# control de brillo
-bindsym $mod+comma exec xbacklight -inc 10 -fps 60; exec pkill -RTMIN+11 i3blocks
-
-bindsym $mod+m exec xbacklight -dec 10 -fps 60; exec pkill -RTMIN+11 i3blocks
 
 # cambiar el tamaño del borde de las ventanas
 for_window [class="^.*"] border pixel 2
 for_window [instance="ulauncher"] border pixel 0
 
 # cambiar el color del borde de la ventana
-client.focused              #333333 #424242 #ffffff #424242   #424242
+client.focused              #333333 #222222 #4F4F4F #292d2e   #222222
 client.focused_inactive     #333333 #2C2C2C #ffffff #484e50   #2C2C2C
 client.unfocused            #333333 #222222 #4F4F4F #292d2e   #222222
 client.urgent               #2f343a #900000 #ffffff #900000   #900000
@@ -222,7 +207,7 @@ bindsym $mod+Shift+End	    gaps inner current minus 3
 # ejecutar el copositor
 #exec --no-startup-id compton --backend glx --paint-on-overlay --vsync opengl-swc
 
-exec --no-startup-id  picom --config ~/.config/picom.conf
+exec_always --no-startup-id  picom --config ~/.config/picom.conf
 
 # kde connect
 exec --no-startup-id kdeconnect-indicator
@@ -238,26 +223,14 @@ exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 
 # poner fondo de pantalla
 exec feh --randomize --bg-fill ~/Img/wall/
-bindsym $mod+p exec feh --randomize --bg-fill ~/Img/wall/
 
-# lanzar chrome
-bindsym $mod+g exec google-chrome-stable
-
-# lanzar vifm
-bindsym $mod+d exec st -e "vifm"
-
-# captura parte de pantalla
-bindsym $mod+c exec flameshot gui -p ~/Imágenes/capturas/
-
-# captura  de pantalla
-bindsym $mod+Shift+c exec flameshot full -p ~/Imágenes/capturas/
 
 # scratchpad
 for_window [instance="scratchpad"] floating enable
 for_window [instance="scratchpad"] resize set 60ppt 60ppt
 for_window [instance="scratchpad"] move scratchpad
 for_window [instance="scratchpad"] border pixel 5
-exec --no-startup-id st -n scratchpad -e bash
+exec --no-startup-id st -n scratchpad
 bindsym $mod+s [instance="scratchpad"] scratchpad show; [instance="scratchpad"] move position center
 
 #R
@@ -274,3 +247,39 @@ hide_edge_borders smart
 # impresora
 # iconos en escritorio
 # spotlight
+
+################ lanzar aplicaciones ################
+
+# start a terminal
+bindsym $mod+Return exec st
+
+# start dmenu (a program launcher)
+bindsym $mod+space exec ulauncher
+
+# control de brillo
+bindsym $mod+comma exec xbacklight -inc 10 -fps 60; exec pkill -RTMIN+11 i3blocks
+
+bindsym $mod+m exec xbacklight -dec 10 -fps 60; exec pkill -RTMIN+11 i3blocks
+
+# controles de audio
+bindsym XF86AudioMute exec amixer -q set Master toggle
+bindsym XF86AudioRaiseVolume exec amixer -q set Master 5%+
+bindsym XF86AudioLowerVolume exec amixer -q set Master 5%-
+bindsym XF86AudioPlay exec playerctl play-pause  
+bindsym XF86AudioNext exec playerctl next  
+bindsym XF86AudioPrev exec playerctl previous  
+
+# cambiar fondo de pantalla
+bindsym $mod+p exec feh --randomize --bg-fill ~/Img/wall/
+
+# lanzar chrome
+bindsym $mod+g exec google-chrome-stable
+
+# lanzar vifm
+bindsym $mod+d exec st -e "vifm"
+
+# captura parte de pantalla
+bindsym $mod+c exec flameshot gui -p ~/Imágenes/capturas/
+
+# captura  de pantalla
+bindsym $mod+Shift+c exec flameshot full -p ~/Imágenes/capturas/

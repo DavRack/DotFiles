@@ -5,7 +5,7 @@ dataBaseList=~/DotFiles/DotDataBaseList
 DotDataBase=~/DotFiles/DotDataBase
 
 function setDots() {
-    cp -r $DotDataBase/ ~/
+    cp -r $DotDataBase/* ~/
 }
 function updateDots() {
     # hacer una lista con los dotfiles de la base de datos
