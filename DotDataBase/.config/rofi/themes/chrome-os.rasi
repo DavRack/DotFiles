@@ -1,0 +1,88 @@
+configuration {
+    show-icons:                     true;
+    font:                           "Dejavu 14";
+}
+* {
+    background-color:               transparent;
+    background:                     rgba (0, 0, 0, 75%);
+    background-alt:                 #E5E9F047;
+    text-color:                     #D8DEE9;
+    selected-text-color:            #000000;
+    primary:                        #A3BE8C;
+    urgent:                         #BF616A;
+}
+
+window {
+    transparency:                   "real";
+    background-color:               @background;
+    fullscreen:                     true;
+}
+
+prompt {
+    enabled:                        false;
+}
+
+entry{
+    expand:                         false;
+    width:                          100%;
+    margin:                         40px 450px 80px 350px;
+    border-radius:                  0;
+    padding:                        10px 10px 10px 10px;
+    border:                         0px 0px solid 4px 0px;
+    border-color:                   #65696A;
+    font:                           "Dejavu 18";
+    color:                          #fff;
+}
+
+listview {
+    columns:                        6;
+    spacing: 20px;
+    margin: 0px 200px 0 200px;
+    orientation:                    horizontal;
+}
+
+element {
+    padding:                        8px;
+    margin:                         8px;
+    layout: vertical;
+    orientation: vertical;
+}
+
+mainbox {
+    padding:                        10px 40px 10px 40px;
+}
+
+element normal.urgent, element alternate.urgent {
+    background-color:               @urgent;
+}
+
+element normal.active, element alternate.active {
+    background-color:               @background-alt;
+    color:                          @selected-text-color;
+}
+
+element selected {
+  background-color: rgba(60, 60, 70, 30%);
+  text-color: #ffffff;
+}
+
+element selected.urgent {
+    background-color:               @urgent;
+}
+
+element selected.active {
+    background-color:               @background-alt;
+    color:                          @selected-text-color;
+}
+
+element-icon {
+    size:                           60px;
+    border: 0px;
+}
+element-text {
+    expand: false;
+    horizontal-align: 0.5;
+}
+
+
+/* vim:ft=css

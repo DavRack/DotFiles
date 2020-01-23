@@ -241,6 +241,8 @@ for_window [instance="math"] border pixel 5
 exec --no-startup-id st -n math -f "Mono:size=24" -e R -q
 bindsym $mod+o [instance="math"] scratchpad show; [instance="math"] move position center
 
+# combinaciones generales de teclas
+exec_always --no-startup-id killall sxhkd; sxhkd
 # smart_gaps
 hide_edge_borders smart
 ## falta
@@ -250,36 +252,39 @@ hide_edge_borders smart
 
 ################ lanzar aplicaciones ################
 
-# start a terminal
-bindsym $mod+Return exec st
-
-# start dmenu (a program launcher)
-bindsym $mod+space exec ulauncher
-
-# control de brillo
-bindsym $mod+comma exec xbacklight -inc 10 -fps 60; exec pkill -RTMIN+11 i3blocks
-
-bindsym $mod+m exec xbacklight -dec 10 -fps 60; exec pkill -RTMIN+11 i3blocks
-
-# controles de audio
-bindsym XF86AudioMute exec amixer -q set Master toggle
-bindsym XF86AudioRaiseVolume exec amixer -q set Master 5%+
-bindsym XF86AudioLowerVolume exec amixer -q set Master 5%-
-bindsym XF86AudioPlay exec playerctl play-pause  
-bindsym XF86AudioNext exec playerctl next  
-bindsym XF86AudioPrev exec playerctl previous  
-
-# cambiar fondo de pantalla
-bindsym $mod+p exec feh --randomize --bg-fill ~/Img/wall/
-
-# lanzar chrome
-bindsym $mod+g exec google-chrome-stable
-
-# lanzar vifm
-bindsym $mod+d exec st -e "vifm"
-
-# captura parte de pantalla
-bindsym $mod+c exec flameshot gui -p ~/Imágenes/capturas/
-
-# captura  de pantalla
-bindsym $mod+Shift+c exec flameshot full -p ~/Imágenes/capturas/
+## start a terminal
+#bindsym $mod+Return exec st
+#
+## start dmenu (a program launcher)
+#bindsym $mod+space exec rofi -show drun
+#
+## control de brillo
+#bindsym $mod+comma exec xbacklight -inc 10 -fps 60; exec pkill -RTMIN+11 i3blocks
+#
+#bindsym $mod+m exec xbacklight -dec 10 -fps 60; exec pkill -RTMIN+11 i3blocks
+#
+## controles de audio
+#bindsym XF86AudioMute exec amixer -q set Master toggle
+#bindsym XF86AudioRaiseVolume exec amixer -q set Master 5%+
+#bindsym XF86AudioLowerVolume exec amixer -q set Master 5%-
+#bindsym XF86AudioPlay exec playerctl play-pause  
+#bindsym XF86AudioNext exec playerctl next  
+#bindsym XF86AudioPrev exec playerctl previous  
+#
+## cambiar fondo de pantalla
+#bindsym $mod+p exec feh --randomize --bg-fill ~/Img/wall/
+#
+## lanzar chrome
+#bindsym $mod+g exec google-chrome-stable
+#
+## lanzar vifm
+#bindsym $mod+d exec st -e "vifm"
+#
+## captura parte de pantalla
+#bindsym $mod+c exec flameshot gui -p ~/Imágenes/capturas/
+#
+## captura  de pantalla
+#bindsym $mod+Shift+c exec flameshot full -p ~/Imágenes/capturas/
+#
+## lanzar gestor grafico de archivos
+#bindsym $mod+n exec nautilus

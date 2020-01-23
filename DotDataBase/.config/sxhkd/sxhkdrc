@@ -1,17 +1,34 @@
 alt+Print
     flameshot gui
-
-Escape+l
-  xte "keyup Escape" "keyup l" "key Right"
-    
-Caps_Lock+k
-  xte "keyup Escape" "keyup k" "key Up" "keydown Escape"
-
-Caps_Lock+j
-  xte "keyup Escape" "keyup j" "key Down" "keydown Escape"
-
-Caps_Lock+h
-  xte "keyup Escape" "keyup h" "key Left" "keydown Escape"
-
-Tab
-    xte "keyup Tab" "key Escape"
+super+Return 
+    st
+super+space 
+    rofi -show drun
+super+comma 
+    xbacklight -inc 10 -fps 60
+super+m 
+    xbacklight -dec 10 -fps 60
+XF86AudioMute 
+    amixer -q -D pulse set Master toggle
+XF86AudioRaiseVolume 
+    amixer -q -M set Master 5%+
+XF86AudioLowerVolume 
+    amixer -q -M set Master 5%-
+XF86AudioPlay 
+    playerctl play-pause  
+XF86AudioNext 
+    playerctl next  
+XF86AudioPrev 
+    playerctl previous  
+super+p 
+    feh --randomize --bg-fill ~/Img/wall/
+super+g 
+    google-chrome-stable
+super+d 
+    st -e "vifm"
+super+c 
+    flameshot gui -p ~/Img/capturas
+super+shift+c 
+    flameshot full -p ~/Img/capturas
+super+n 
+    nautilus

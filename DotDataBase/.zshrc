@@ -72,6 +72,7 @@ bindkey '^e' edit-command-line
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh 2>/dev/null
 
 alias vim="nvim"
+alias vi="nvim"
 alias ls='ls --color=auto'
 
 neofetch
