@@ -215,6 +215,9 @@ exec --no-startup-id kdeconnect-indicator
 # wifi applet
 exec --no-startup-id nm-applet
 
+# wifi applet
+exec/always --no-startup-id sxhkd
+
 # cambiar caps lock a escape
 #exec --no-startup-id xmodmap -e 'clear Lock' -e 'keycode 0x42 = Escape'
 

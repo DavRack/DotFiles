@@ -182,7 +182,7 @@ bar-volume-empty-foreground = ${colors.background-alt}
 
 [module/battery]
 type = internal/battery
-battery = BAT1
+battery = BAT0
 adapter = ACAD
 full-at = 99
 
@@ -228,7 +228,7 @@ format-underline = ${colors.primary}
 
 format-warn = <label-warn>
 format-warn-underline = ${self.format-underline}
-hwmon-path = /sys/devices/platform/coretemp.0/hwmon/hwmon3/temp1_input
+hwmon-path = /sys/devices/platform/coretemp.0/hwmon/hwmon5/temp1_input
 
 format-prefix = " "
 format-prefix-foreground = ${colors.foreground-alt}
@@ -241,7 +241,7 @@ label-warn-background = ${colors.brightRed}
 
 [module/wlan]
 type = internal/network
-interface = wlp2s0
+interface = wlo1
 interval = 3.0
 
 format-connected = <ramp-signal> <label-connected>

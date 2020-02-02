@@ -9,7 +9,8 @@ super+comma
 super+m 
     xbacklight -dec 10 -fps 60
 XF86AudioMute 
-    amixer -q -D pulse set Master toggle
+    #amixer -q -D pulse set Master toggle
+    amixer -q set Master toggle
 XF86AudioRaiseVolume 
     amixer -q -M set Master 5%+
 XF86AudioLowerVolume 
