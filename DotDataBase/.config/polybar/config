@@ -38,7 +38,7 @@ brightCyan   = #00afd7
 brightWhite  = #dadada  
 
 alert = #ff5f87
-background = #262626
+background = #ea262626
 background-alt = #5f5f5f
 foreground = #dadada
 foreground-alt = #afafaf

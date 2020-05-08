@@ -207,16 +207,16 @@ bindsym $mod+Shift+End	    gaps inner current minus 3
 # ejecutar el copositor
 #exec --no-startup-id compton --backend glx --paint-on-overlay --vsync opengl-swc
 
-exec_always --no-startup-id  picom --config ~/.config/picom.conf
+exec_always --no-startup-id dbus-launch picom --experimental-backends --config ~/.config/picom.conf &
 
 # kde connect
-exec --no-startup-id kdeconnect-indicator
+exec_always --no-startup-id kdeconnect-indicator
 
 # wifi applet
 exec --no-startup-id nm-applet
 
 # wifi applet
-exec/always --no-startup-id sxhkd
+exec_always --no-startup-id sxhkd
 
 # cambiar caps lock a escape
 #exec --no-startup-id xmodmap -e 'clear Lock' -e 'keycode 0x42 = Escape'
@@ -225,7 +225,7 @@ exec/always --no-startup-id sxhkd
 exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 
 # poner fondo de pantalla
-exec feh --randomize --bg-fill ~/Img/wall/
+exec_always feh --randomize --bg-fill ~/img/wall/
 
 
 # scratchpad

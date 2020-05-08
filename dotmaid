@@ -5,21 +5,15 @@ dataBaseList=~/DotFiles/DotDataBaseList
 DotDataBase=~/DotFiles/DotDataBase
 
 function setDots() {
-    cp -r $DotDataBase/* ~/
-}
-function updateDots() {
-    # hacer una lista con los dotfiles de la base de datos
-    allDots=$(cat $dataBaseList)
-
-    # para cada dotfile llamar la funcion addDots
-    for dotFile in $allDots
-    do 
-        f=$(echo $dotFile | sed "s|~|$HOME|")
-
-        # si el directorio o archivo existe hacer update
-        test -e "$f" && addDots $dotFile || echo "$dotFile no existe"
+    archivosYCarpetas=$(find $DotDataBase -mindepth 1 -print)
+    for i in $archivosYCarpetas; do
+        elemento=$(echo $i | sed "s|/DotFiles/DotDataBase||")
+        if [ -d $i ]; then
+            echo "mk dir $elemento"
+        else
+            echo "copiar desde $i a $elemento"
+        fi
     done
-
 }
 function ayuda() {
     echo "uso:"
@@ -59,6 +53,19 @@ function addDots() {
     fullPath=$(echo $fullPath | sed "s|~|$HOME|")
     # copiar archivos a destino
     cp -r $fullPath $DotDataBase$lastFolderRelativePath
+}
+function updateDots() {
+    # hacer una lista con los dotfiles de la base de datos
+    allDots=$(cat $dataBaseList)
+
+    # para cada dotfile llamar la funcion addDots
+    for dotFile in $allDots
+    do 
+        f=$(echo $dotFile | sed "s|~|$HOME|")
+        if [ -a $f ]; then
+            addDots $f
+        fi
+    done
 }
 if [ "$1" == "-s" ]
 then

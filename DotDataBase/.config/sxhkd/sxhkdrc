@@ -1,16 +1,16 @@
 alt+Print
     flameshot gui
 super+Return 
-    st
+    alacritty
 super+space 
     rofi -show drun
 super+comma 
     xbacklight -inc 10 -fps 60
 super+m 
     xbacklight -dec 10 -fps 60
-XF86AudioMute 
+XF86AudioMute
+    amixer -D pulse sset Master toggle -q
     #amixer -q -D pulse set Master toggle
-    amixer -q set Master toggle
 XF86AudioRaiseVolume 
     amixer -q -M set Master 5%+
 XF86AudioLowerVolume 
@@ -22,14 +22,14 @@ XF86AudioNext
 XF86AudioPrev 
     playerctl previous  
 super+p 
-    feh --randomize --bg-fill ~/Img/wall/
+    feh --randomize --bg-fill ~/img/wall/
 super+g 
-    google-chrome-stable
+    brave
 super+d 
     st -e "vifm"
 super+c 
-    flameshot gui -p ~/Img/capturas
+    flameshot gui -p ~/img/capturas
 super+shift+c 
-    flameshot full -p ~/Img/capturas
+    flameshot full -p ~/img/capturas
 super+n 
     nautilus

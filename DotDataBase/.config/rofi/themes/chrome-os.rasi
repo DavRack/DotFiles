@@ -4,7 +4,7 @@ configuration {
 }
 * {
     background-color:               transparent;
-    background:                     rgba (0, 0, 0, 75%);
+    background:                     rgba (90, 90, 90, 20%);
     background-alt:                 #E5E9F047;
     text-color:                     #D8DEE9;
     selected-text-color:            #000000;
