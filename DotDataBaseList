@@ -10,3 +10,4 @@
 ~/.config/fontconfig/fonts.conf
 ~/.config/rofi
 ~/.config/alacritty/alacritty.yml
+~/.config/nvim/snippets
