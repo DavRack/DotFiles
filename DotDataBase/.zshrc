@@ -2,14 +2,14 @@
 
 # Enable colors and change prompt:
 autoload -U colors && colors
-#PS1="%B%{$fg[blue]%}[%{$fg[green]%}%n%{$fg[magenta]%}@%{$fg[blue]%}%M %{$fg[magenta]%}%~%{$fg[blue]%}]%{$reset_color%}$%b "
 PS1="%B%F{12}[%F{10}%n%F{12}@%M %F{13}%~%F{12}]%{$reset_color%}$ "
 
 # History in cache directory:
 HISTSIZE=10000
 SAVEHIST=10000
 HISTFILE=~/.cache/zsh/history
-
+setopt hist_ignore_all_dups #dont save doplucate commands
+setopt hist_ignore_space #dont save spaces in history file
 # Basic auto/tab complete:
 autoload -U compinit
 zstyle ':completion:*' menu select

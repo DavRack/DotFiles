@@ -1,5 +1,5 @@
-"configuracion personal de vim por David Londoño 
-"Esta configuracion usa vim-plug como plugin mananger por lo que es necesario instalarlo primero
+"configuracion personal de (neo)vim por David Londoño 
+ "Esta configuracion usa vim-plug como plugin mananger por lo que es necesario instalarlo primero
 
 "Instalacion de vim-plug
 let vimplug_exists=expand('~/.config/nvim/autoload/plug.vim')
@@ -24,26 +24,28 @@ call plug#begin()
 Plug 'bling/vim-airline' " barra de estatus y de tabs
 " ________ coc.nvim ___________
 Plug 'neoclide/coc.nvim', {'tag': '*', 'do': './install.sh'}
-" __________________________________
-
 "_________ snipets ____________
+"dependencias para vim-snipmate
 Plug 'MarcWeber/vim-addon-mw-utils'
 Plug 'tomtom/tlib_vim'
+
+" motor de snipets
 Plug 'garbas/vim-snipmate'
 Plug 'honza/vim-snippets' "proveedor de snippets
 " __________________________________
 Plug 'KabbAmine/vCoolor.vim' " color picker
 
 Plug 'scrooloose/nerdtree' " arbol de archivos
-
-Plug 'chiel92/vim-autoformat' " auto formatea codigo
-
-Plug 'tell-k/vim-autopep8' " auto formato para python
+Plug 'ryanoasis/vim-devicons'
+Plug 'ap/vim-css-color'
 
 Plug 'tpope/vim-surround' " permite cambiar lo que rodea un objeto de texto: 'test' -> (test)
+Plug 'tpope/vim-commentary' 
 
 Plug 'w0rp/ale' " resaltador de sintaxis
 
+Plug 'junegunn/fzf' "buscador de archivos
+Plug 'junegunn/fzf.vim' "buscador de archivos
 "---------- LSP ----------
 if executable('clangd')
     au User lsp_setup call lsp#register_server({
@@ -54,24 +56,30 @@ if executable('clangd')
 endif
 
 "----------Temas----------
-Plug 'hzchirs/vim-material'
-
 Plug 'joshdick/onedark.vim'
 
 call plug#end()
 " auto instalar extenciones COC
-let g:coc_global_extensions = ['coc-tsserver', 'coc-python', 'coc-json', 'coc-html','coc-css','coc-go','coc-tabnine','coc-rls','coc-xml','coc-texlab','coc-sh','coc-markdownlint']
+let g:coc_global_extensions = ['coc-tsserver', 'coc-python', 'coc-json', 'coc-html', 'coc-css','coc-go','coc-rls','coc-texlab','coc-sh','coc-markdownlint']
 " ubicaciones de los ejecutables de python
 let g:python3_host_prog = '/usr/bin/python3'
 let g:python_host_prog = '/usr/bin/python2'
-"----------Temas en uso----------
-colorscheme onedark " tema de neovim
-
-let g:airline_theme='onedark' " tema de la barra inferior y superior
+"----------Temas de color----------
+"activar fonts para que airline funcione
+let g:airline_powerline_fonts = 1
 
 let g:airline#extensions#tabline#enabled = 1 " Activar airline
 
+colorscheme onedark " tema de neovim
+
+"usar onedark en modo de 256 colores
+let g:onedark_termcolors=256
+
+let g:airline_theme='onedark' " tema de la barra inferior y superior
+
+
 "-----Configuraciones varias-----
+set clipboard+=unnamedplus
 
 " Establecer numeros de linea
 set number
@@ -85,18 +93,17 @@ syntax enable
 " Establece el idioma a castellano
 set spelllang=es
 
+" resaltar el complemento de [] {} y ()
+set showmatch
+
 " mostrar los simbolos de markdown
 let g:indentLine_setConceal = 0
-set conceallevel=0
 
+set conceallevel=0
 
 " barra izquierda expandida
 set signcolumn=yes
 "-----Configuraciones de python-----
-
-" Establecer resaltador de sintaxis
-let python_highlight_all = 1
-
 " set tabs to have 4 spaces
 set tabstop=4
 
@@ -112,8 +119,14 @@ set shiftwidth=4
 " show a visual line under the cursor's current line
 set cursorline
 
-" show the matching part of the pair for [] {} and ()
-set showmatch
+" background transparente
+hi Normal guibg=NONE ctermbg=NONE
+
+" quitar linea del cursor
+hi clear cursorLine
+
+" Establecer resaltador de sintaxis
+let python_highlight_all = 1
 
 "---------Activar folding---------
 set foldmethod=indent 
@@ -121,14 +134,30 @@ set foldmethod=indent
 "---------Activar mouse----------
 set mouse=a
 
-"-----Autoformatear mapeado a f3 y f8-----
-noremap <F3> :Autoformat<CR>
+"---------fzf------------------
+"formas de abrir archivo con fzf
+let g:fzf_action = {
+    \ 'ctrl-t': 'tab split',
+    \ 'ctrl-x': 'split',
+    \ 'ctrl-v': 'vsplit' }
+"---------Splits-------------
+"
+"nuevo split aparece debajo o a la derecha de la ventana anterio
+set splitbelow splitright
 
-autocmd FileType python noremap <buffer> <F8> :call Autopep8()<CR>
+" Remap splits navigation to just CTRL + hjkl
+nnoremap <C-h> <C-w>h
+nnoremap <C-j> <C-w>j
+nnoremap <C-k> <C-w>k
+nnoremap <C-l> <C-w>l
 
-"------------ Remapeos personales -------------
+"------------ Remapeos -------------
 "leader key = espacio
 let mapleader = " "
+
+"---------Terminal-----------
+" abrir terminal a la derecha
+nnoremap <leader>t :vs<CR> :terminal<CR>
 
 "--------------- snipets con leader key---------
 
@@ -154,21 +183,21 @@ nnoremap <leader>s i**Solucion:**
 nnoremap <leader>p i**Propiedades:**<Return><Return> 1. 
 
 " --------- comandos con leder key.------
+nnoremap <leader>f :NERDTreeToggle<CR>
+" buscar archivo con fzf en el dirctorio actual
+nnoremap <leader><Space> :FZF<CR>
+
+" buscar archivo con fzf en home
+nnoremap <leader>s :FZF ~<CR>
+
+" buscar archivo con fzf en home
+nnoremap <leader>w :w<CR>
 
 " buscar place holder
-nnoremap <leader><Space> /+@@+<CR>:noh<CR>v3lc
-
-" tachar punto de lista
-nnoremap <leader>t la~~<Esc>$a~~<Esc>
+nnoremap <leader>n /+@@+<CR>v3lc
 
 " incertar place holder
 nnoremap <leader>h a+@@+<Esc>
-
-" desresaltar palabras buscadas
-nnoremap <leader>H :noh<CR>
-
-" guardar 
-nnoremap <leader>S :w<CR>
 
 " nueva linea arriba sin insertmode
 nnoremap <leader>O O<Esc>
@@ -187,11 +216,3 @@ autocmd FileType rmd nnoremap <leader>r :w<CR>:!echo<space>"require(rmarkdown);<
 
 " compilar R markdown ('debug')
 autocmd FileType rmd nnoremap <leader>q :w<CR>:!echo<space>"require(rmarkdown);<space>render('<c-r>%')"<space>\|<space>R<space>-q<space>--vanilla<space><enter>
-" -------- funciones personales --------
-
-" compilar c
-
-function! Comp()
-    exe "normal :w<CR>"
-    exe "normal :!gcc %"
-endfunction 

@@ -22,14 +22,14 @@ XF86AudioNext
 XF86AudioPrev 
     playerctl previous  
 super+p 
-    feh --randomize --bg-fill ~/img/wall/
+    feh --bg-fill ~/multimedia/img/wall/minimal-mojave-day-gi.jpg
 super+g 
     brave
 super+d 
     st -e "vifm"
 super+c 
-    flameshot gui -p ~/img/capturas
+    flameshot gui -p ~/multimedia/img/capturas
 super+shift+c 
-    flameshot full -p ~/img/capturas
+    flameshot full -p ~/multimedia/img/capturas
 super+n 
     nautilus

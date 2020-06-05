@@ -26,7 +26,7 @@ entry{
     expand:                         false;
     width:                          100%;
     margin:                         40px 450px 80px 350px;
-    border-radius:                  0;
+    border-radius:                  10px;
     padding:                        10px 10px 10px 10px;
     border:                         0px 0px solid 4px 0px;
     border-color:                   #65696A;
@@ -38,7 +38,7 @@ listview {
     columns:                        6;
     spacing: 20px;
     margin: 0px 200px 0 200px;
-    orientation:                    horizontal;
+    orientation:                    vertical;
 }
 
 element {
@@ -62,7 +62,7 @@ element normal.active, element alternate.active {
 }
 
 element selected {
-  background-color: rgba(60, 60, 70, 30%);
+  background-color: rgba(50, 50, 50, 30%);
   text-color: #ffffff;
 }
 

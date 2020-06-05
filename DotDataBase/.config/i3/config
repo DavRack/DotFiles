@@ -225,8 +225,7 @@ exec_always --no-startup-id sxhkd
 exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 
 # poner fondo de pantalla
-exec_always feh --randomize --bg-fill ~/img/wall/
-
+exec_always feh --bg-fill ~/multimedia/img/wall/minimal-mojave-day-gi.jpg
 
 # scratchpad
 for_window [instance="scratchpad"] floating enable
