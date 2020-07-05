@@ -1,7 +1,7 @@
 alt+Print
     flameshot gui
 super+Return 
-    alacritty
+    st
 super+space 
     rofi -show drun
 super+comma 

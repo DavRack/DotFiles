@@ -2,7 +2,8 @@
 
 # Enable colors and change prompt:
 autoload -U colors && colors
-PS1="%B%F{12}[%F{10}%n%F{12}@%M %F{13}%~%F{12}]%{$reset_color%}$ "
+# PS1="%B%F{12}[%F{10}%n%F{12}@%M %F{13}%~%F{12}]%{$reset_color%}$ "
+PS1="%F{10}%~ %F{12}>%{$reset_color%} "
 
 # History in cache directory:
 HISTSIZE=10000

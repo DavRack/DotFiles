@@ -1,0 +1,3 @@
+#!/bin/sh
+var=$(ping -c5 1.1.1.1 | grep received | awk '{print $4}')
+echo $var

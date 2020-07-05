@@ -35,6 +35,8 @@ Plug 'honza/vim-snippets' "proveedor de snippets
 " __________________________________
 Plug 'KabbAmine/vCoolor.vim' " color picker
 
+Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install'  }
+
 Plug 'scrooloose/nerdtree' " arbol de archivos
 Plug 'ryanoasis/vim-devicons'
 Plug 'ap/vim-css-color'
