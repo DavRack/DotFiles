@@ -1,0 +1,15 @@
+
+snippet nvar
+
+${1} _${2};
+get $2{
+	return _$2;
+}
+
+set $2($1 $2){
+	this._$2 = $2;
+
+	notifyListeners();
+}
+
+endsnippet

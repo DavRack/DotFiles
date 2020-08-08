@@ -15,7 +15,7 @@ if !filereadable(vimplug_exists)
 
   autocmd VimEnter * PlugInstall
 endif
-    
+
 "-----Todos los plugins de vim-plug-----
 call plug#begin() 
 
@@ -23,14 +23,19 @@ call plug#begin()
 
 Plug 'bling/vim-airline' " barra de estatus y de tabs
 " ________ coc.nvim ___________
-Plug 'neoclide/coc.nvim', {'tag': '*', 'do': './install.sh'}
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+
+"__________ lang suport for Dart (flutter)
+Plug 'dart-lang/dart-vim-plugin'
+Plug 'thosakwe/vim-flutter'
+Plug 'tiagofumo/dart-vim-flutter-layout'
 "_________ snipets ____________
 "dependencias para vim-snipmate
-Plug 'MarcWeber/vim-addon-mw-utils'
-Plug 'tomtom/tlib_vim'
+" Plug 'MarcWeber/vim-addon-mw-utils'
+" Plug 'tomtom/tlib_vim'
 
 " motor de snipets
-Plug 'garbas/vim-snipmate'
+Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets' "proveedor de snippets
 " __________________________________
 Plug 'KabbAmine/vCoolor.vim' " color picker
@@ -48,6 +53,9 @@ Plug 'w0rp/ale' " resaltador de sintaxis
 
 Plug 'junegunn/fzf' "buscador de archivos
 Plug 'junegunn/fzf.vim' "buscador de archivos
+
+" guias de identación
+Plug 'yggdroot/indentLine'
 "---------- LSP ----------
 if executable('clangd')
     au User lsp_setup call lsp#register_server({
@@ -62,7 +70,7 @@ Plug 'joshdick/onedark.vim'
 
 call plug#end()
 " auto instalar extenciones COC
-let g:coc_global_extensions = ['coc-tsserver', 'coc-python', 'coc-json', 'coc-html', 'coc-css','coc-go','coc-rls','coc-texlab','coc-sh','coc-markdownlint']
+let g:coc_global_extensions = ['coc-tsserver', 'coc-python', 'coc-json', 'coc-html', 'coc-css','coc-go','coc-rls','coc-texlab','coc-sh','coc-markdownlint','coc-flutter']
 " ubicaciones de los ejecutables de python
 let g:python3_host_prog = '/usr/bin/python3'
 let g:python_host_prog = '/usr/bin/python2'
@@ -81,6 +89,15 @@ let g:airline_theme='onedark' " tema de la barra inferior y superior
 
 
 "-----Configuraciones varias-----
+"activar guias de identacíon
+let g:indentLine_enabled = 1
+let g:indentLine_concealcursor = 'inc'
+let g:indentLine_char_list = ['|','┊']
+" flutter snippets
+autocmd BufRead,BufNewFile,BufEnter *.dart UltiSnipsAddFiletypes dart-flutter
+let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsJumpForwardTrigger="<tab>"
+let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 set clipboard+=unnamedplus
 
 " Establecer numeros de linea
@@ -99,15 +116,17 @@ set spelllang=es
 set showmatch
 
 " mostrar los simbolos de markdown
-let g:indentLine_setConceal = 0
+"let g:indentLine_setConceal = 0
 
 set conceallevel=0
 
 " barra izquierda expandida
 set signcolumn=yes
-"-----Configuraciones de python-----
 " set tabs to have 4 spaces
-set tabstop=4
+"set tabstop=4
+"-----Configuraciones de dart/flutter------
+autocmd Filetype dart set expandtab tabstop=2 shiftwidth=2 softtabstop=2
+"-----Configuraciones de python-----
 
 " indent when moving to the next line while writing code
 set autoindent

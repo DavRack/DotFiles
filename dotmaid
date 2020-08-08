@@ -9,9 +9,9 @@ function setDots() {
     for i in $archivosYCarpetas; do
         elemento=$(echo $i | sed "s|/DotFiles/DotDataBase||")
         if [ -d $i ]; then
-            echo "mk dir $elemento"
+            mkdir $elemento
         else
-            echo "copiar desde $i a $elemento"
+            cp $i $elemento
         fi
     done
 }
