@@ -1,5 +1,5 @@
 "configuracion personal de (neo)vim por David Londoño 
- "Esta configuracion usa vim-plug como plugin mananger por lo que es necesario instalarlo primero
+"Esta configuracion usa vim-plug como plugin mananger por lo que es necesario instalarlo primero
 
 "Instalacion de vim-plug
 let vimplug_exists=expand('~/.config/nvim/autoload/plug.vim')
@@ -69,11 +69,11 @@ endif
 Plug 'joshdick/onedark.vim'
 
 call plug#end()
-" auto instalar extenciones COC
+""auto instalar extenciones COC
 let g:coc_global_extensions = ['coc-tsserver', 'coc-python', 'coc-json', 'coc-html', 'coc-css','coc-go','coc-rls','coc-texlab','coc-sh','coc-markdownlint','coc-flutter']
-" ubicaciones de los ejecutables de python
+"" ubicaciones de los ejecutables de python
 let g:python3_host_prog = '/usr/bin/python3'
-let g:python_host_prog = '/usr/bin/python2'
+" let g:python_host_prog = '/usr/bin/python2'
 "----------Temas de color----------
 "activar fonts para que airline funcione
 let g:airline_powerline_fonts = 1
@@ -122,10 +122,16 @@ set conceallevel=0
 
 " barra izquierda expandida
 set signcolumn=yes
+
 " set tabs to have 4 spaces
-"set tabstop=4
+set tabstop=4
+"
+" when using the >> or << commands, shift lines by 4 spacese
+set shiftwidth=4
+
 "-----Configuraciones de dart/flutter------
 autocmd Filetype dart set expandtab tabstop=2 shiftwidth=2 softtabstop=2
+
 "-----Configuraciones de python-----
 
 " indent when moving to the next line while writing code
@@ -133,9 +139,6 @@ set autoindent
 
 " expand tabs into spaces
 set expandtab
-
-" when using the >> or << commands, shift lines by 4 spacese
-set shiftwidth=4
 
 " show a visual line under the cursor's current line
 set cursorline

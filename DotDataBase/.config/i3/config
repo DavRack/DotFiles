@@ -103,11 +103,11 @@ set $ws9 "9"
 set $ws10 "10"
 
 # switch to workspace
-bindsym $mod+1 workspace $ws1
-bindsym $mod+2 workspace $ws2
-bindsym $mod+3 workspace $ws3
-bindsym $mod+4 workspace $ws4
-bindsym $mod+5 workspace $ws5
+bindsym $mod+y workspace $ws1
+bindsym $mod+u workspace $ws2
+bindsym $mod+i workspace $ws3
+bindsym $mod+o workspace $ws4
+bindsym $mod+p workspace $ws5
 bindsym $mod+6 workspace $ws6
 bindsym $mod+7 workspace $ws7
 bindsym $mod+8 workspace $ws8
@@ -115,11 +115,11 @@ bindsym $mod+9 workspace $ws9
 bindsym $mod+0 workspace $ws10
 
 # move focused container to workspace
-bindsym $mod+Shift+1 move container to workspace $ws1
-bindsym $mod+Shift+2 move container to workspace $ws2
-bindsym $mod+Shift+3 move container to workspace $ws3
-bindsym $mod+Shift+4 move container to workspace $ws4
-bindsym $mod+Shift+5 move container to workspace $ws5
+bindsym $mod+Shift+y move container to workspace $ws1
+bindsym $mod+Shift+u move container to workspace $ws2
+bindsym $mod+Shift+i move container to workspace $ws3
+bindsym $mod+Shift+o move container to workspace $ws4
+bindsym $mod+Shift+p move container to workspace $ws5
 bindsym $mod+Shift+6 move container to workspace $ws6
 bindsym $mod+Shift+7 move container to workspace $ws7
 bindsym $mod+Shift+8 move container to workspace $ws8
@@ -207,7 +207,6 @@ bindsym $mod+Shift+End	    gaps inner current minus 3
 # ejecutar el copositor
 #exec --no-startup-id compton --backend glx --paint-on-overlay --vsync opengl-swc
 
-exec_always --no-startup-id dbus-launch picom --experimental-backends --config ~/.config/picom.conf &
 
 # kde connect
 exec_always --no-startup-id kdeconnect-indicator
@@ -227,6 +226,16 @@ exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 # poner fondo de pantalla
 exec_always feh --bg-fill ~/multimedia/img/wall/minimal-mojave-day-gi.jpg
 
+############ Integración con Gnome ################
+exec --no-startup-id /usr/lib/gsd-xsettings
+exec_always --no-startup-id gnome-power-manager
+exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
+exec --no-startup-id gnome-flashback
+exec --no-startup-id gsettings set org.gnome.gnome-flashback desktop false
+###################################################
+
+exec_always --no-startup-id dbus-launch picom --experimental-backends --config ~/.config/picom.conf &
+
 # scratchpad
 for_window [instance="scratchpad"] floating enable
 for_window [instance="scratchpad"] resize set 60ppt 60ppt
@@ -241,7 +250,7 @@ for_window [instance="math"] resize set 60ppt 35ppt
 for_window [instance="math"] move scratchpad
 for_window [instance="math"] border pixel 5
 exec --no-startup-id st -n math -f "Mono:size=24" -e R -q
-bindsym $mod+o [instance="math"] scratchpad show; [instance="math"] move position center
+bindsym $mod+t [instance="math"] scratchpad show; [instance="math"] move position center
 
 # combinaciones generales de teclas
 exec_always --no-startup-id killall sxhkd; sxhkd

@@ -71,7 +71,11 @@ bindkey '^e' edit-command-line
 #[ -f "$HOME/.config/aliasrc" ] && source "$HOME/.config/aliasrc"
 
 # Load zsh-syntax-highlighting; should be last.
-
+progl() {
+ export LD_LIBRARY_PATH="${HOME}/pro/drivers:${LD_LIBRARY_PATH}"
+  export LIBGL_DRIVERS_PATH="${HOME}/pro/drivers/dri"
+  export dri_driver="amdgpu"
+}
 
 alias vim="nvim"
 alias vi="nvim"
