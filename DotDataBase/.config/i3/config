@@ -234,7 +234,7 @@ exec --no-startup-id gnome-flashback
 exec --no-startup-id gsettings set org.gnome.gnome-flashback desktop false
 ###################################################
 
-exec_always --no-startup-id dbus-launch picom --experimental-backends --config ~/.config/picom.conf &
+exec_always --no-startup-id dbus-launch picom --config ~/.config/picom.conf &
 
 # scratchpad
 for_window [instance="scratchpad"] floating enable

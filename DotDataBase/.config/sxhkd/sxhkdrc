@@ -1,7 +1,3 @@
-super+Return 
-    st
-super+space 
-    rofi -show drun
 super+comma 
     xbacklight -inc 10 -fps 60
 super+m 
@@ -19,13 +15,50 @@ XF86AudioNext
     playerctl next  
 XF86AudioPrev 
     playerctl previous  
-super+g 
-    brave
-super+d 
-    st -e "vifm"
-super+c 
-    flameshot gui -p ~/multimedia/img/capturas
-super+shift+c 
-    flameshot full -p ~/multimedia/img/capturas
-super+n 
+
+# aplicaciones
+super+Return 
+    st
+
+super+BackSpace 
+    rofi -show drun
+
+super+y
     nautilus
+
+super+u 
+    brave
+
+super+i 
+    flameshot gui -p ~/multimedia/img/capturas
+
+super+o 
+    flameshot full -p ~/multimedia/img/capturas
+
+#bspwm
+
+super+w
+    bspc node -t \~fullscreen
+
+# restart bspwm
+super+shift+r
+    bspc wm -r
+
+super+n
+    bspc config window_gap {0, 12}
+
+# kill window
+super+q
+    xdo close
+    # xdo close && bspunhide
+
+# focus windows
+super+{h,j,k,l}
+    bspc node -f {west,south,north,east}
+
+# send window to desktop
+super+shift+{f,d,s,a,v,c,x,z}
+    bspc node -d {1-8}
+
+super+{f,d,s,a,v,c,x,z}
+    bspc desktop -f {1-8}

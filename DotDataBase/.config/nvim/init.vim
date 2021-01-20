@@ -54,6 +54,8 @@ Plug 'w0rp/ale' " resaltador de sintaxis
 Plug 'junegunn/fzf' "buscador de archivos
 Plug 'junegunn/fzf.vim' "buscador de archivos
 
+" syntax python
+Plug 'sheerun/vim-polyglot'
 " guias de identación
 Plug 'yggdroot/indentLine'
 "---------- LSP ----------
@@ -70,7 +72,7 @@ Plug 'joshdick/onedark.vim'
 
 call plug#end()
 ""auto instalar extenciones COC
-let g:coc_global_extensions = ['coc-tsserver', 'coc-python', 'coc-json', 'coc-html', 'coc-css','coc-go','coc-rls','coc-texlab','coc-sh','coc-markdownlint','coc-flutter']
+let g:coc_global_extensions = ['coc-tsserver','coc-pyright','coc-json', 'coc-html', 'coc-css','coc-go','coc-rls','coc-texlab','coc-sh','coc-markdownlint','coc-flutter']
 "" ubicaciones de los ejecutables de python
 let g:python3_host_prog = '/usr/bin/python3'
 " let g:python_host_prog = '/usr/bin/python2'
