@@ -20,7 +20,7 @@ XF86AudioPrev
 super+Return 
     st
 
-super+BackSpace 
+super+p 
     rofi -show drun
 
 super+y
@@ -36,7 +36,6 @@ super+o
     flameshot full -p ~/multimedia/img/capturas
 
 #bspwm
-
 super+w
     bspc node -t \~fullscreen
 
@@ -50,11 +49,21 @@ super+n
 # kill window
 super+q
     xdo close
-    # xdo close && bspunhide
 
 # focus windows
-super+{h,j,k,l}
+super+{h, j, k, l}
     bspc node -f {west,south,north,east}
+
+# move windows
+super+shift+{h,j,k,l}
+    bspc node -s {west,south,north,east}
+
+# expand windows
+super+ctrl+{h, j, k, l}
+  bspc node -z {left -20 0 || bspc node -z right -20 0, \
+                bottom 0 20 || bspc node -z top 0 20,\
+                top 0 -20 || bspc node -z bottom 0 -20,\
+                right 20 0 || bspc node -z left 20 0}
 
 # send window to desktop
 super+shift+{f,d,s,a,v,c,x,z}
