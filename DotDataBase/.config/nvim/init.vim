@@ -31,8 +31,6 @@ Plug 'thosakwe/vim-flutter'
 Plug 'tiagofumo/dart-vim-flutter-layout'
 "_________ snipets ____________
 "dependencias para vim-snipmate
-" Plug 'MarcWeber/vim-addon-mw-utils'
-" Plug 'tomtom/tlib_vim'
 
 " motor de snipets
 Plug 'SirVer/ultisnips'
@@ -42,7 +40,6 @@ Plug 'KabbAmine/vCoolor.vim' " color picker
 
 Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install'  }
 
-Plug 'scrooloose/nerdtree' " arbol de archivos
 Plug 'ryanoasis/vim-devicons'
 Plug 'ap/vim-css-color'
 
@@ -163,7 +160,7 @@ set mouse=a
 "---------fzf------------------
 "formas de abrir archivo con fzf
 let g:fzf_action = {
-    \ 'ctrl-t': 'tab split',
+    \ 'ctrl-space': 'tab split',
     \ 'ctrl-x': 'split',
     \ 'ctrl-v': 'vsplit' }
 "---------Splits-------------
@@ -187,26 +184,11 @@ nnoremap <leader>t :vs<CR> :terminal<CR>
 
 "--------------- snipets con leader key---------
 
-" matematica latex en markdown
-nnoremap <leader>m i$$<Left>
+"--------------- lanzar una nueva instancia de st ------------
+nnoremap <leader>t :!nohup sh -c st > /dev/null 2>&1 & <CR><CR>
 
-" nueva clase
-nnoremap <leader>l i---<CR>author: David Londoño Montoya<CR>title: +@@+<CR>date: "`r Sys.Date()`"<CR>lang: es-ES<CR>output: <CR>    pdf_document:<CR>    number_sections: false<CR>toc: true<CR><Esc>0i---<CR>\tableofcontents<CR><CR>+@@+<Esc>gg
+nnoremap <leader>e :bd <CR>
 
-" bloque de texto
-nnoremap <leader>c i```{}<CR>```<Esc>k$i
-
-" Definicion en notas
-nnoremap <leader>d i### Definicion: **<Left>
-
-" Ejemplo en notas
-nnoremap <leader>e i**Ejemplo:** 
-
-" Solucion en notas
-nnoremap <leader>s i**Solucion:** 
-
-" Propiedades en notas
-nnoremap <leader>p i**Propiedades:**<Return><Return> 1. 
 
 " --------- comandos con leder key.------
 nnoremap <leader>f :NERDTreeToggle<CR>
@@ -227,9 +209,6 @@ nnoremap <leader>h a+@@+<Esc>
 
 " nueva linea arriba sin insertmode
 nnoremap <leader>O O<Esc>
-
-" nueva linea abajo sin insetmode
-nnoremap <leader><Return> o<Esc>
 
 " abrir zathura pdf 
 nnoremap <leader>z :!zathura "%:r".pdf &<CR><CR>
