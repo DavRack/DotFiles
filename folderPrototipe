@@ -1,0 +1,16 @@
+home
+├── capturas
+├── descargas
+├── documentos
+│   ├── isos
+│   └── vm
+├── multimedia
+│   ├── imagenes
+│   │   ├── capturas
+│   │   ├── fotos
+│   │   └── wallpapers
+│   └── videos
+├── proyectos
+└── scripts
+
+13 directories, 0 files
