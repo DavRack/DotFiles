@@ -1,0 +1,10 @@
+~/.config/bspwm
+~/.config/fontconfig
+~/.config/nvim/UltiSnips
+~/.config/nvim/init.vim
+~/.config/nvim/snippets
+~/.config/picom.conf
+~/.config/rofi
+~/.config/skr
+~/.config/sxhkd
+~/.zshrc

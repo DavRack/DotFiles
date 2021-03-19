@@ -1,0 +1,19 @@
+#!/bin/bash
+
+currentDir=$(pwd)
+dotpath="$currentDir/dotdb"
+
+for origin in $(cat filesToTrack); do
+
+    origin=$(echo $origin | sed "s|~|$HOME|g")
+    destination=$(dirname $(echo $origin) | sed "s|$HOME|$dotpath|g")
+    echo "Updating $(basename $origin)"
+
+    # if $origin references a file, make sure that the directory that
+    # contains $origin is precent in dotdb
+    if [ -f $origin ]; then
+        mkdir -p $destination
+    fi
+
+    cp -r $origin $destination
+done
