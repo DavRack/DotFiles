@@ -1,0 +1,57 @@
+#!/bin/bash
+
+networkCardInUse() {
+    out=$(ip route get "1.1.1.1" | grep -Po '(?<=(dev )).*(?= src| proto)')
+    echo $out
+}
+
+#default config
+interface=$( networkCardInUse )
+t="1"
+
+# parse arguments
+while [[ $# -gt 0 ]]; do
+    key="$1"
+
+    case $key in
+        -i)
+        shift
+        interface="$1"
+        ;;
+        -t)
+        shift
+        t="$1"
+        ;;
+        -pi)
+        echo $( networkCardInUse )
+        exit
+        ;;
+        *)
+        shift
+        ;;
+    esac
+done
+
+tm=$(awk "BEGIN {print 1/$t}")
+
+# down
+fr=$(cat /proc/net/dev | grep $interface | awk '{print $2}')
+# up
+fs=$(cat /proc/net/dev | grep $interface | awk '{print $10}')
+
+sleep $tm
+
+# down
+sr=$(cat /proc/net/dev | grep $interface | awk '{print $2}')
+# up
+ss=$(cat /proc/net/dev | grep $interface | awk '{print $10}')
+
+# speed per second
+
+up=$((( $sr - $fr ) * $t))
+down=$((( $ss - $fs ) * $t))
+ups=$(echo $up | numfmt --to=iec-i --suffix=B/s --padding=10)
+downs=$(echo $down | numfmt --to=iec-i --suffix=B/s --padding=10)
+
+
+echo "$ups $downs"

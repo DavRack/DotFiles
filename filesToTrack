@@ -4,7 +4,9 @@
 ~/.config/nvim/init.vim
 ~/.config/nvim/snippets
 ~/.config/picom.conf
+~/.config/polybar
 ~/.config/rofi
 ~/.config/skr
 ~/.config/sxhkd
 ~/.zshrc
+~/scripts

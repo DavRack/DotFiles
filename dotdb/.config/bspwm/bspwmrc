@@ -18,7 +18,8 @@ gsettings set org.gnome.gnome-flashback desktop false
 
 # monitores
 bspc monitor eDP-1 -d  "A1" "A2" "A3" "A4" "A5"
-bspc monitor HDMI-2 -d "B1" "B2" "B3" "B4" "B5" 
+bspc monitor DP-1-2 -d "B1" "B2" "B3" "B4" "B5" 
+bspc monitor DP-1-1 -d "C1" "C2" "C3" "C4" "C5" 
 
 bspc config border_width         2
 bspc config normal_border_color "#222"

@@ -4,18 +4,16 @@ currentDir=$(pwd)
 dotpath="$currentDir/dotdb"
 
 # create directories
-for path in $(find $dotpath | sed '1d')
-do
+for path in $(find $dotpath | sed '1d'); do
     if [ -d $path ]; then
-        echo "mkdir -p $(echo $path | sed "s|$dotpath|$HOME|g")"
+        mkdir -p $(echo $path | sed "s|$dotpath|$HOME|g")
     fi
 done
 
 # copy dotfiles
 
-for path in $(find $dotpath | sed '1d')
-do
+for path in $(find $dotpath | sed '1d'); do
     if [ -f  $path ]; then
-        echo "cp $path $(echo $path | sed "s|$dotpath|$HOME|g")"
+        cp -r $path $(echo $path | sed "s|$dotpath|$HOME|g")
     fi
 done
