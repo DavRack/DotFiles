@@ -1,13 +1,19 @@
 #!/bin/bash
+# prints thw current network speed 
+# also can get the currently used network card
 
 networkCardInUse() {
-    out=$(ip route get "1.1.1.1" | grep -Po '(?<=(dev )).*(?= src| proto)')
-    echo $out
+    echo $(ip route get "1.1.1.1" 2>/dev/null | grep -Po '(?<=(dev )).*(?= src| proto)')
 }
 
 #default config
 interface=$( networkCardInUse )
+
+
 t="1"
+
+upsufix=""
+downsufix=""
 
 # parse arguments
 while [[ $# -gt 0 ]]; do
@@ -18,12 +24,20 @@ while [[ $# -gt 0 ]]; do
         shift
         interface="$1"
         ;;
+        --upsufix)
+        shift
+        upsufix="$1"
+        ;;
+        --downsufix)
+        shift
+        downsufix="$1"
+        ;;
         -t)
         shift
         t="$1"
         ;;
         -pi)
-        echo $( networkCardInUse )
+        echo $interface
         exit
         ;;
         *)
@@ -32,26 +46,32 @@ while [[ $# -gt 0 ]]; do
     esac
 done
 
+# if no interface
+if [ -z $interface ];then
+    echo "No conection"
+    exit
+fi
+
 tm=$(awk "BEGIN {print 1/$t}")
 
 # down
-fr=$(cat /proc/net/dev | grep $interface | awk '{print $2}')
+fr=$(cat /proc/net/dev | grep $interface | awk '{print $10}')
 # up
-fs=$(cat /proc/net/dev | grep $interface | awk '{print $10}')
+fs=$(cat /proc/net/dev | grep $interface | awk '{print $2}')
 
 sleep $tm
 
 # down
-sr=$(cat /proc/net/dev | grep $interface | awk '{print $2}')
+sr=$(cat /proc/net/dev | grep $interface | awk '{print $10}')
 # up
-ss=$(cat /proc/net/dev | grep $interface | awk '{print $10}')
+ss=$(cat /proc/net/dev | grep $interface | awk '{print $2}')
 
 # speed per second
 
 up=$((( $sr - $fr ) * $t))
 down=$((( $ss - $fs ) * $t))
-ups=$(echo $up | numfmt --to=iec-i --suffix=B/s --padding=10)
-downs=$(echo $down | numfmt --to=iec-i --suffix=B/s --padding=10)
+ups=$(echo $up | numfmt --to=iec-i --suffix=B/s  --padding 8)
+downs=$(echo $down | numfmt --to=iec-i --suffix=B/s --padding 8)
 
 
-echo "$ups $downs"
+echo "$ups$upsufix $downs$downsufix"

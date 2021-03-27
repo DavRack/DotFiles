@@ -1,0 +1,18 @@
+#!/bin/bash
+# helper de multiples monitores en bspwm
+
+# verificar que la carpeta en .cache existe
+cache="$HOME/.cache/bmm/"
+
+if ! [ -d $cache ]; then
+    mkdir -p $cache
+fi
+
+# get current monitors
+monitors=$(bspc query -M --names)
+
+# for each monitor create a file with the current desktops asosiated
+# with it
+for monitor in $(echo $monitors); do
+    bspc query -D -m $monitor --names > $cache$monitor
+done

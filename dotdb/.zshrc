@@ -85,5 +85,3 @@ alias ls='ls --color=auto'
 
 export CHROME_EXECUTABLE=/usr/bin/brave
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh 2>/dev/null
-eval "$(pyenv init -)"
-eval "$(pyenv virtualenv-init -)"

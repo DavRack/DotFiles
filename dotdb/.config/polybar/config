@@ -80,7 +80,7 @@ font-2 = FontAwesome5Free:style=Solid:size=12;4
 
 modules-left = bspwm
 modules-center = 
-modules-right = filesystem backlight-acpi alsa battery memory cpu temperature netspeed wlan date powermenu
+modules-right = filesystem backlight-acpi alsa battery1 battery2 memory cpu temperature netspeed wlan date powermenu
 
 tray-position = right
 tray-padding = 2
@@ -206,12 +206,31 @@ bar-volume-empty = █
 bar-volume-empty-font = 2
 bar-volume-empty-foreground = ${colors.background-alt}
 
-[module/battery]
+[module/battery1]
 type = internal/battery
 battery = BAT0
 adapter = ACAD
 full-at = 99
 
+format-charging = <label-charging>
+format-charging-prefix = "  "
+format-charging-underline = ${colors.primary}
+format-charging-prefix-foreground = ${colors.foreground-alt}
+
+format-discharging = <label-discharging>
+format-discharging-prefix = "  "
+format-discharging-prefix-foreground = ${colors.foreground-alt}
+format-discharging-underline = ${self.format-charging-underline}
+
+format-full-prefix = "  "
+format-full-prefix-foreground = ${colors.foreground-alt}
+format-full-underline = ${self.format-charging-underline}
+
+[module/battery2]
+type = internal/battery
+battery = BAT1
+adapter = ACAD
+full-at = 99
 
 format-charging = <label-charging>
 format-charging-prefix = "  "
@@ -230,7 +249,7 @@ format-full-underline = ${self.format-charging-underline}
 [module/memory]
 type = internal/memory
 interval = 2
-format-prefix = "  "
+format-prefix = "  "
 format-prefix-foreground = ${colors.foreground-alt}
 format-underline = ${colors.primary}
 label = %gb_used%/%gb_total%
@@ -266,7 +285,7 @@ label-warn-background = ${colors.brightRed}
 
 [module/netspeed]
 type = custom/script
-exec = ~/scripts/netSpeed -t 2
+exec = ~/scripts/netSpeed -t 2 --upsufix " "  --downsufix " "
 interval = 1
 format-underline = ${colors.primary}
 

@@ -1,13 +1,17 @@
 #! /bin/sh
 
+# definiciones 
+
+## monitores
+export monitor0="eDP-1" 
+export monitor1="DP-1-2"
+export monitor2="DP-1-1"
+
 # limpiar reglas al reiniciar 
 bspc rule -r "*"
 
 # polybar
 ~/.config/polybar/launch.sh
-
-# fondo de pantalla
-feh --bg-fill ~/multimedia/img/wall/minimal-mojave-day-gi.jpg
 
 # integración con gnome
 /usr/lib/gsd-xsettings
@@ -17,9 +21,9 @@ gnome-flashback
 gsettings set org.gnome.gnome-flashback desktop false
 
 # monitores
-bspc monitor eDP-1 -d  "A1" "A2" "A3" "A4" "A5"
-bspc monitor DP-1-2 -d "B1" "B2" "B3" "B4" "B5" 
-bspc monitor DP-1-1 -d "C1" "C2" "C3" "C4" "C5" 
+bspc monitor $monitor0 -d  "A1" "A2" "A3" "A4" "A5"
+bspc monitor $monitor1 -d "B1" "B2" "B3" "B4" "B5" 
+bspc monitor $monitor2 -d "C1" "C2" "C3" "C4" "C5" 
 
 bspc config border_width         2
 bspc config normal_border_color "#222"
@@ -36,6 +40,9 @@ bspc rule -a Gimp desktop='^8' state=floating follow=on
 bspc rule -a Chromium desktop='^2'
 
 # aplicaciones al inicio
+
+# fondo de pantalla
+feh --bg-fill ~/multimedia/imagenes/wallpapers/wall.*
 
 # reiniciar las aplicaciones
 killall sxhkd; sxhkd &

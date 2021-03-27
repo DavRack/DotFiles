@@ -31,10 +31,10 @@ super+w
     brave
 
 super+e 
-    flameshot gui -p ~/multimedia/img/capturas
+    flameshot gui -p ~/multimedia/imagenes/capturas
 
 super+r 
-    flameshot full -p ~/multimedia/img/capturas
+    flameshot full -p ~/multimedia/imagenes/capturas
 
 #bspwm
 super+z
@@ -74,4 +74,4 @@ super+{y,u,i,o,p}
     /home/david/.config/sxhkd/moveToWindow {1,2,3,4,5}
 
 super+{a,s,d}
-    bspc monitor -f {eDP-1,HDMI-2,HDMI-3}
+    bspc monitor -f {$monitor0,$monitor1,$monitor2}
