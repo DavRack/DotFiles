@@ -163,7 +163,6 @@ type = internal/fs
 interval = 25
 
 mount-0 = /
-
 label-mounted-prefix = DISK
 label-mounted = %{F#afafaf} %{F-} %free%
 label-mounted-underline = ${colors.primary}

@@ -81,6 +81,11 @@ alias vim="nvim"
 alias vi="nvim"
 alias ls='ls --color=auto'
 
+export PATH="$HOME/scripts:$PATH"
+
+# create config variables
+source $HOME/.config/vars
+
 # neofetch
 
 export CHROME_EXECUTABLE=/usr/bin/brave

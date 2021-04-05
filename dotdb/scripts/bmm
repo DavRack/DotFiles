@@ -1,18 +1,144 @@
 #!/bin/bash
 # helper de multiples monitores en bspwm
 
-# verificar que la carpeta en .cache existe
-cache="$HOME/.cache/bmm/"
+# verificar que la carpeta en /tmp/bmm existe
+cache="/tmp/bmm/"
 
 if ! [ -d $cache ]; then
     mkdir -p $cache
 fi
 
-# get current monitors
-monitors=$(bspc query -M --names)
+saveDesktops() {
+    # get current monitors
+    monitors=$(bspc query -M)
 
-# for each monitor create a file with the current desktops asosiated
-# with it
-for monitor in $(echo $monitors); do
-    bspc query -D -m $monitor --names > $cache$monitor
+    # for each monitor create a file with the current desktops asosiated
+    # with it
+    for monitor in $(echo $monitors); do
+        bspc query -D -m $monitor > $cache$monitor
+    done
+}
+restoreDesktops() {
+    # get current monitors
+    monitors=$(bspc query -M)
+
+    for monitor in $(ls $cache); do
+        for desktop in $(cat $cache$monitor); do
+            # move desktop to monitor
+            bspc desktop $desktop -m $monitor
+        done
+    done
+}
+moveToMonitor() {
+    # recibe un argumento: monitor
+    desktop=$(bspc query -D -d)
+    echo "$desktop $1"
+    bspc desktop $desktop -m $1
+    saveDesktops
+}
+moveToMainMonitor() {
+    # moves all desktops to main monitor
+    monitors=$(bspc query -M --names)
+
+    # bspwm will not let you move all desktops, a monitor needs at least one
+    # create a tmp desktop to move the real desktops to a monitor
+    for monitor in $monitors; do
+        if [ $monitor != $monitor0 ]; then
+            bspc monitor $monitor -a "tmp"
+        fi
+    done
+
+    for desktop in $(bspc query -D); do
+        # move desktop to monitor
+        bspc desktop $desktop -m $monitor0
+    done
+}
+fillEmpy(){
+    monitors=$(bspc query -M)
+
+    for monitor in $monitors; do
+        desktops=$(bspc query -D -m $monitor --names)
+        if [ $(echo $desktops | wc -w) -eq 1 ]; then
+            if [ "$desktops" = "Desktop" ]; then
+                newDesktop $monitor
+            fi
+        fi
+
+    done
+}
+deleteTmp(){
+    # delete tmp desktops
+    tmps=$(bspc query -D --names | grep tmp)
+    for tmp in $tmps; do
+        bspc desktop $tmp -r
+    done
+}
+deleteEmpty(){
+
+    # delete all empty desktops that are not focused
+    empty=$(bspc query -D -d '.!occupied.!active' --names)
+    for emptyDesktop in $empty; do
+        bspc desktop $emptyDesktop -r
+    done
+
+}
+newDesktop(){
+    # recives a monitor to create the new desktop, if current is passed
+    # creates a new desktop in the focused desktop
+
+    # get all desktops in order
+    desktops=$(bspc query -D --names | sort)
+
+    # get the fist free desktop
+    let d=1
+    for desktop in $desktops; do
+        if [ $d = $desktop ]; then
+            let d++
+        fi
+    done
+
+    if [ "$1" = "current" ]; then
+        bspc monitor -a $d
+    else
+        bspc monitor $1 -a $d
+    fi
+}
+
+if [ $# -eq 0 ]; then
+    echo "nothing to do"
+    exit
+fi
+
+# parse arguments
+while [[ $# -gt 0 ]]; do
+    key="$1"
+
+    case $key in
+        -M)
+        shift
+        moveToMainMonitor
+        ;;
+        -m)
+        shift
+        moveToMonitor $1
+        ;;
+        -n)
+        shift
+        newDesktop
+        ;;
+        -rs)
+        shift
+        restoreDesktops
+        deleteTmp
+        ;;
+        -s)
+        shift
+        saveDesktops
+        ;;
+        -d)
+        shift
+        deleteEmpty
+        ;;
+    esac
+    shift
 done

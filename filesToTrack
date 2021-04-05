@@ -8,5 +8,6 @@
 ~/.config/rofi
 ~/.config/skr
 ~/.config/sxhkd
+~/.config/vars
 ~/.zshrc
 ~/scripts

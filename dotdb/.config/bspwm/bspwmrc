@@ -1,11 +1,9 @@
-#! /bin/sh
+#!/bin/bash
+# vars
+. $HOME/.config/vars
 
-# definiciones 
-
-## monitores
-export monitor0="eDP-1" 
-export monitor1="DP-1-2"
-export monitor2="DP-1-1"
+#hotkeys
+killall sxhkd; sxhkd &
 
 # limpiar reglas al reiniciar 
 bspc rule -r "*"
@@ -20,10 +18,15 @@ gnome-power-manager
 gnome-flashback
 gsettings set org.gnome.gnome-flashback desktop false
 
+
 # monitores
-bspc monitor $monitor0 -d  "A1" "A2" "A3" "A4" "A5"
-bspc monitor $monitor1 -d "B1" "B2" "B3" "B4" "B5" 
-bspc monitor $monitor2 -d "C1" "C2" "C3" "C4" "C5" 
+if [ $($HOME/scripts/dockstate) = "docked" ]; then
+    bspc monitor $monitor0 -d "A1" "A2" "A3" "A4" "A5"
+    bspc monitor $monitor1 -d "B1" "B2" "B3" "B4" "B5" 
+    bspc monitor $monitor2 -d "C1" "C2" "C3" "C4" "C5" 
+else
+    bspc monitor $monitor0 -d "A1" "A2" "A3" "A4" "A5" "B1" "B2" "B3" "B4" "B5" "C1" "C2" "C3" "C4" "C5"
+fi
 
 bspc config border_width         2
 bspc config normal_border_color "#222"
@@ -45,5 +48,4 @@ bspc rule -a Chromium desktop='^2'
 feh --bg-fill ~/multimedia/imagenes/wallpapers/wall.*
 
 # reiniciar las aplicaciones
-killall sxhkd; sxhkd &
 killall picom; picom &

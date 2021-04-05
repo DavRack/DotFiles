@@ -1,0 +1,7 @@
+#!/bin/bash
+
+#monitores en orden
+#monitor 0 es el principal
+export monitor0="eDP-1" 
+export monitor1="DP-1-2"
+export monitor2="DP-1-1"

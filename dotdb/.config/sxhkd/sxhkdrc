@@ -44,8 +44,12 @@ super+z
 super+shift+r
     bspc wm -r
 
-super+n
+super+g
     bspc config window_gap {0, 12}
+
+# create new desktop
+super+n
+    bmm -n current
 
 # kill window
 super+x
