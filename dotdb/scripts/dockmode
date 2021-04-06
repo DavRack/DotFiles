@@ -8,7 +8,11 @@ dock(){
 
     # send bspwm desktops to dock screens
     bmm -rs
+
     echo "docked" > /tmp/currentDockState
+
+    sleep 1
+    $HOME/.config/polybar/launch.sh
 }
 undock(){
     # set audio output to internal speaker
@@ -18,14 +22,16 @@ undock(){
     $HOME/scripts/laptop.sh
 
     # send all desktops to laptop
+
     if [ $(cat /tmp/currentDockState) = "docked" ]; then
+        rm /tmp/bmm/*
         bmm -s
     fi
     bmm -M
     echo "undocked" > /tmp/currentDockState
 }
-auto(){
-    if [ $(/tmp/currentDockState) = "docked" ];then
+last(){
+    if [ "$(cat /tmp/currentDockState)" = "docked" ];then
         dock
     else
         undock
@@ -44,10 +50,9 @@ while [[ $# -gt 0 ]]; do
         shift
         undock
         ;;
-        auto)
+        last)
         shift
-        dockstate > /tmp/currentDockState
-        auto
+        last
         ;;
     esac
     shift

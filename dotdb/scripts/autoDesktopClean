@@ -1,0 +1,5 @@
+#!/bin/bash
+
+bspc subscribe desktop_focus | while read line; do
+    bmm -d
+done

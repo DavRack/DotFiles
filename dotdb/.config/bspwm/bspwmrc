@@ -18,15 +18,20 @@ gnome-power-manager
 gnome-flashback
 gsettings set org.gnome.gnome-flashback desktop false
 
-
-# monitores
-if [ $($HOME/scripts/dockstate) = "docked" ]; then
-    bspc monitor $monitor0 -d "A1" "A2" "A3" "A4" "A5"
-    bspc monitor $monitor1 -d "B1" "B2" "B3" "B4" "B5" 
-    bspc monitor $monitor2 -d "C1" "C2" "C3" "C4" "C5" 
-else
-    bspc monitor $monitor0 -d "A1" "A2" "A3" "A4" "A5" "B1" "B2" "B3" "B4" "B5" "C1" "C2" "C3" "C4" "C5"
+if [ ! -f /tmp/currentDockState ]; then
+    dockstate -a
 fi
+
+dockmode last
+
+# llenar monitores vacios
+bmm -f
+
+# eliminar desktops vacios
+bmm -d
+
+# acciones a ejecutar cuando bspwm muta
+killall autoDesktopClean; autoDesktopClean &
 
 bspc config border_width         2
 bspc config normal_border_color "#222"

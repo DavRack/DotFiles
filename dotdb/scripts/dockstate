@@ -1,3 +1,43 @@
 #!/bin/bash
-cat ~/dock
+dockState(){
+    # se define que esta en modo dock si:
+    # está conectada a 3 pantallas
+
+    # pantalla externa
+    pantallas=$(xrandr | awk '/connected/ && /[[:digit:]]x[[:digit:]].*+/{print $1}'|wc -l)
+    if [ "$pantallas" = 3 ]; then
+        echo "docked"
+    else
+        echo "undocked"
+    fi
+
+}
+
+if [[ $# -eq 0 ]]; then
+    echo $( dockState )
+fi
+
+while [[ $# -gt 0 ]]; do
+    key="$1"
+
+    case $key in
+        -a)
+        shift
+        dockState > /tmp/currentDockState
+        ;;
+        -g)
+        shift
+        cat /tmp/currentDockState
+        ;;
+        -s)
+        shift
+        if [ "$1" = "docked" ]; then
+            echo "docked" > /tmp/currentDockState
+        elif [ "$1" = "undocked" ]; then
+            echo "undocked" > /tmp/currentDockState
+        fi
+        ;;
+    esac
+    shift
+done
 
