@@ -56,8 +56,9 @@ fillEmpy(){
     for monitor in $monitors; do
         desktops=$(bspc query -D -m $monitor --names)
         if [ $(echo $desktops | wc -w) -eq 1 ]; then
-            if [ [ "$desktops" = "Desktop" ] || [ "$desktops" = "tmp" ] ]; then
-                newDesktop $monitor
+            if [ "$desktops" = "Desktop" ] || [ "$desktops" = "tmp" ] ; then
+                d=$( newDesktop $monitor )
+                bspc desktop $d -f
             fi
         fi
     done
@@ -87,7 +88,7 @@ deleteEmpty(){
 }
 newDesktop(){
     # recives a monitor to create the new desktop, if current is passed
-    # creates a new desktop in the focused desktop
+    # creates a new desktop in the focused monitor
 
     if [ "$1" = "current" ]; then
         monitor=""
@@ -102,13 +103,17 @@ newDesktop(){
     let d=1
     for desktop in $desktops; do
         if [ "$d" = "$desktop" ]; then
-            echo $d
             ((d++))
         fi
     done
 
     bspc monitor $1 -a "$d"
-    bspc desktop $d -f
+    echo "$d"
+}
+
+moveToNewDesktop(){
+    n=$( newDesktop )
+    bspc node -d "$n" --follow
 }
 
 if [ $# -eq 0 ]; then
@@ -131,7 +136,12 @@ while [[ $# -gt 0 ]]; do
         ;;
         -n)
         shift
-        newDesktop
+        d=$( newDesktop )
+        bspc desktop $d -f
+        ;;
+        -na)
+        shift
+        moveToNewDesktop
         ;;
         -rs)
         shift

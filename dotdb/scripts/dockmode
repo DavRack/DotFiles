@@ -13,6 +13,9 @@ dock(){
 
     sleep 1
     $HOME/.config/polybar/launch.sh
+    
+    # llenar monitores vacios
+    bmm -f
 }
 undock(){
     # set audio output to internal speaker

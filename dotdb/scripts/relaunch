@@ -1,0 +1,11 @@
+#!/bin/bash
+
+# terminate all running instances
+killall -g $1
+
+# wait for all instances to be terminated
+while pgrep -u $UID -x $1 >/dev/null; do
+    sleep 0.2
+done
+
+$1

@@ -3,7 +3,7 @@
 . $HOME/.config/vars
 
 #hotkeys
-killall sxhkd; sxhkd &
+relaunch sxhkd &
 
 # limpiar reglas al reiniciar 
 bspc rule -r "*"
@@ -11,27 +11,6 @@ bspc rule -r "*"
 # polybar
 ~/.config/polybar/launch.sh
 
-# integración con gnome
-/usr/lib/gsd-xsettings
-gnome-power-manager
-/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
-gnome-flashback
-gsettings set org.gnome.gnome-flashback desktop false
-
-if [ ! -f /tmp/currentDockState ]; then
-    dockstate -a
-fi
-
-dockmode last
-
-# llenar monitores vacios
-bmm -f
-
-# eliminar desktops vacios
-bmm -d
-
-# acciones a ejecutar cuando bspwm muta
-killall autoDesktopClean; autoDesktopClean &
 
 bspc config border_width         2
 bspc config normal_border_color "#222"
@@ -47,10 +26,34 @@ bspc config gapless_monocle      true
 bspc rule -a Gimp desktop='^8' state=floating follow=on
 bspc rule -a Chromium desktop='^2'
 
+if [ ! -f /tmp/currentDockState ]; then
+    sleep 2
+    dockstate -a
+fi
+
+dockmode last
+
+# llenar monitores vacios
+bmm -f
+
+# eliminar desktops vacios
+bmm -d
+
+# acciones a ejecutar cuando bspwm muta
+killall autoDesktopClean; autoDesktopClean &
+
+
 # aplicaciones al inicio
 
 # fondo de pantalla
 feh --bg-fill ~/multimedia/imagenes/wallpapers/wall.*
 
 # reiniciar las aplicaciones
-killall picom; picom &
+relaunch picom &
+
+# integración con gnome
+# /usr/lib/gsd-xsettings
+# gnome-power-manager
+/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
+# gnome-flashback
+# gsettings set org.gnome.gnome-flashback desktop false
