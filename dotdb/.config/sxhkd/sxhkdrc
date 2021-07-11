@@ -76,8 +76,9 @@ super+m
 
 super+shift+m
     bmm -na
-super+{y,u,i,o,p}
-    /home/david/.config/sxhkd/moveToWindow {1,2,3,4,5}
+
+super+{u, i}
+    bspc desktop -f {prev,next}.local
 
 super+{a,s,d}
     bspc monitor -f {$monitor0,$monitor1,$monitor2}

@@ -1,6 +1,6 @@
 #!/bin/bash
 
-varName=$(bspc query -D --names | dmenu -i -fn "Mono:size=24" -p "Mover a")
+varName=$(bspc query -D --names | dmenu -i -fn "Mono:size=24" -sb "#87d787" -sf "#262626" -p "Mover a")
 
 # n is the node, n is a global variable set by sxhkd before launchin
 # this script

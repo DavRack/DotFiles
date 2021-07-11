@@ -1,0 +1,14 @@
+#!/bin/bash
+# find $HOME -mindepth 1 -maxdepth 1 -type d ! -path "*/.cache" ! -path "*/.npm" > /tmp/foldersToSearch
+# realpath $(find $HOME -mindepth 1 -type d ! -path "*cache/*"  | grep -v '\.npm.*' | fzf)
+
+# echo "" > /tmp/foldersToSearch
+tmp=""
+
+find $HOME -mindepth 1 -maxdepth 1 -type d | grep -v -e '.cache' -e '.npm' -e 'paru' | while read -r line
+do
+    tmp=""find "$line" -type d | grep -v -e '.git' 
+done
+
+# cat /tmp/foldersToSearch | fzf
+cat /tmp/foldersToSearch | wc -l

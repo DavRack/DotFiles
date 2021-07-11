@@ -1,0 +1,2 @@
+#!/bin/bash
+grep '^connected$' /sys/class/drm/card*/status

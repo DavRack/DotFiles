@@ -80,13 +80,17 @@ progl() {
 alias vim="nvim"
 alias vi="nvim"
 alias ls='ls --color=auto'
+alias runback="swag init -p pascalcase --generatedTime && go run main.go"
 
 export PATH="$HOME/scripts:$PATH"
 
 # create config variables
 source $HOME/.config/vars
-
+if [[ -n $VIRTUAL_ENV && -e "${VIRTUAL_ENV}/bin/activate" ]]; then
+  source "${VIRTUAL_ENV}/bin/activate"
+fi
 # neofetch
 
 export CHROME_EXECUTABLE=/usr/bin/brave
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh 2>/dev/null
+source /usr/share/nvm/init-nvm.sh

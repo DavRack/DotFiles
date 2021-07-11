@@ -1,10 +1,10 @@
 #!/bin/bash
 dock(){
     # set audio output to hdmi screen
-    pactl set-card-profile 0 output:hdmi-stereo+input:analog-stereo
+    pactl set-card-profile 0 output:hdmi-stereo-extra1+input:analog-stereo
     
     # set xrandr to output to external screens
-    $HOME/scripts/dock.sh
+    bash $HOME/.screenlayout/dock.sh
 
     # send bspwm desktops to dock screens
     bmm -rs
@@ -22,7 +22,7 @@ undock(){
     pactl set-card-profile 0 output:analog-stereo+input:analog-stereo
 
     # set xrandr to output to internal screen
-    $HOME/scripts/laptop.sh
+    bash $HOME/.screenlayout/laptop.sh
 
     # send all desktops to laptop
 

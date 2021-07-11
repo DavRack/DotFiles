@@ -11,5 +11,7 @@ export PATH="$HOME/go/bin:$PATH"
 
 # monitores
 export monitor0="eDP-1" 
-export monitor1="DP-1-2"
-export monitor2="DP-1-1"
+export monitor1="DP-2-2"
+export monitor2="DP-2-1"
+
+# colores

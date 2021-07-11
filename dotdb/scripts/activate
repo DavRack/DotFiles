@@ -1,0 +1,3 @@
+#!/bin/bash
+
+. $HOME/.virtualenvs/$1/bin/activate

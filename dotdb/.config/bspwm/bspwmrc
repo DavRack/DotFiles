@@ -50,7 +50,7 @@ feh --bg-fill ~/multimedia/imagenes/wallpapers/wall.*
 
 # reiniciar las aplicaciones
 relaunch picom &
-
+relaunch xfce4-power-manager &
 # integración con gnome
 # /usr/lib/gsd-xsettings
 # gnome-power-manager

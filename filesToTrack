@@ -3,6 +3,7 @@
 ~/.config/nvim/UltiSnips
 ~/.config/nvim/init.vim
 ~/.config/nvim/snippets
+~/.config/nvim/config
 ~/.config/picom.conf
 ~/.config/polybar
 ~/.config/rofi
