@@ -1,6 +1,11 @@
 #!/bin/bash
 
-path=$(~/scripts/programs/g/g $HOME | fzf)
+paths="~/scripts/programs/g/g $HOME"
+if [ "$1" == "--bookmarks" ]; then
+    paths="cat $HOME/.data/g/bookmarks | sort"
+fi
+
+path=$(exec $paths | fzf)
 
 [[ ! -z "$path" ]] && cd $path
 clear

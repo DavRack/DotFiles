@@ -5,10 +5,10 @@
 #hotkeys
 relaunch sxhkd &
 
-# limpiar reglas al reiniciar 
+# # limpiar reglas al reiniciar 
 bspc rule -r "*"
 
-# polybar
+# # polybar
 ~/.config/polybar/launch.sh
 
 
@@ -27,7 +27,6 @@ bspc rule -a Gimp desktop='^8' state=floating follow=on
 bspc rule -a Chromium desktop='^2'
 
 if [ ! -f /tmp/currentDockState ]; then
-    sleep 2
     dockstate -a
 fi
 
@@ -39,21 +38,43 @@ bmm -f
 # eliminar desktops vacios
 bmm -d
 
-# acciones a ejecutar cuando bspwm muta
+# # acciones a ejecutar cuando bspwm muta
 killall autoDesktopClean; autoDesktopClean &
 
 
-# aplicaciones al inicio
+# # aplicaciones al inicio
 
-# fondo de pantalla
-feh --bg-fill ~/multimedia/imagenes/wallpapers/wall.*
+# # fondo de pantalla
+# feh --bg-fill ~/multimedia/imagenes/wallpapers/wall.*
 
 # reiniciar las aplicaciones
 relaunch picom &
-relaunch xfce4-power-manager &
+
+# integración xfce4
+# relaunch xfce4-power-manager &
+# relaunch /usr/lib/xfce-polkit/xfce-polkit &
+# relaunch xfsettingsd &
+
+# relaunch /usr/lib/gsd-a11y-settings &
 # integración con gnome
-# /usr/lib/gsd-xsettings
-# gnome-power-manager
-/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
-# gnome-flashback
-# gsettings set org.gnome.gnome-flashback desktop false
+relaunch /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
+relaunch gnome-flashback &
+gsettings set org.gnome.gnome-flashback desktop false &
+# /usr/lib/gsd-color &
+# relaunch /usr/lib/gsd-datetime &
+# relaunch /usr/lib/gsd-housekeeping &
+# relaunch /usr/lib/gsd-keyboard &
+# relaunch /usr/lib/gsd-media-keys &
+# relaunch /usr/lib/gsd-power &
+# relaunch /usr/lib/gsd-print-notifications &
+# relaunch /usr/lib/gsd-rfkill &
+# relaunch /usr/lib/gsd-screensaver-proxy &
+# relaunch /usr/lib/gsd-sharing &
+# relaunch /usr/lib/gsd-smartcard &
+# relaunch /usr/lib/gsd-disk-utility-notify &
+# relaunch /usr/lib/gsd-sound &
+# relaunch /usr/lib/gsd-usb-protection &
+# relaunch /usr/lib/gsd-wacom &
+# relaunch /usr/lib/gsd-xsettings &
+# relaunch /usr/lib/gsd-printer &
+

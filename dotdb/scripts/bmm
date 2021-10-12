@@ -26,7 +26,7 @@ restoreDesktops() {
         done
     done
 }
-moveToMonitor() {
+moveDesktopToMonitor() {
     # recibe un argumento: monitor
     desktop=$(bspc query -D -d)
     echo "$desktop $1"
@@ -41,7 +41,7 @@ moveToMainMonitor() {
     # create a tmp desktop to move the real desktops to a monitor
     for monitor in $monitors; do
         if [ $monitor != $monitor0 ]; then
-            bspc monitor $monitor -a "tmp"
+            bspc monitor %$monitor -a "tmp"
         fi
     done
 
@@ -121,42 +121,44 @@ if [ $# -eq 0 ]; then
     exit
 fi
 
+commnds=()
+
 # parse arguments
 while [[ $# -gt 0 ]]; do
     key="$1"
 
     case $key in
-        -M)
+        -M | --moveToMainMonitor)
         shift
         moveToMainMonitor
         ;;
-        -m)
+        -m | --moveDesktopToMonitor)
         shift
-        moveToMonitor $1
+        moveDesktopToMonitor $1
         ;;
-        -n)
+        -n | --newDesktop)
         shift
         d=$( newDesktop )
         bspc desktop $d -f
         ;;
-        -na)
+        -na | --moveToNewDesktop)
         shift
         moveToNewDesktop
         ;;
-        -rs)
+        -rs | --restoreDesktops)
         shift
         restoreDesktops
         deleteTmp
         ;;
-        -s)
+        -s | --saveDesktops)
         shift
         saveDesktops
         ;;
-        -d)
+        -d | --deleteEmpty)
         shift
         deleteEmpty
         ;;
-        -f)
+        -f | --fillEmpy)
         shift
         fillEmpy
         ;;

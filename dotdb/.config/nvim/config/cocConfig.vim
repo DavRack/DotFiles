@@ -13,5 +13,5 @@ let g:coc_global_extensions = ['coc-tsserver',
             \ 'coc-svelte',
             \ 'coc-flutter']
 
-nmap <leader>d :call CocAction('jumpDefinition', 'tab drop')<CR>
-nmap <leader>r :call CocAction('jumpReferences', 'tab drop')<CR>
+" nmap <leader>d :call CocAction('jumpDefinition', 'tab drop')<CR>
+" nmap <leader>r :call CocAction('jumpReferences', 'tab drop')<CR>

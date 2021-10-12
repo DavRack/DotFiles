@@ -4,18 +4,19 @@ XF86AudioRaiseVolume
     amixer -q -M set Master 5%+
 XF86AudioLowerVolume 
     amixer -q -M set Master 5%-
-F20
-    amixer set Capture toggle
-XF86AudioPlay 
-    playerctl play-pause  
-XF86AudioNext 
-    playerctl next  
-XF86AudioPrev 
-    playerctl previous  
-XF86MonBrightnessUp
-    xbacklight -inc 5 -fps 60
-XF86MonBrightnessDown
-    xbacklight -dec 5 -fps 60
+# F20
+#     amixer set Capture toggle
+# XF86AudioPlay 
+#     playerctl play-pause  
+# XF86AudioNext 
+#     playerctl next  
+# XF86AudioPrev 
+#     playerctl previous  
+super+b
+    light -A 5
+
+super+shift+b
+    light -U 5
 
 # aplicaciones
 super+Return 
@@ -55,6 +56,12 @@ super+n
 super+x
     xdo close
 
+super+f
+    bspc node focused -t floating
+
+super+shift+f
+    bspc node focused -t tiled
+
 # focus windows
 super+{h, j, k, l}
     bspc node -f {west,south,north,east}
@@ -81,4 +88,4 @@ super+{u, i}
     bspc desktop -f {prev,next}.local
 
 super+{a,s,d}
-    bspc monitor -f {$monitor0,$monitor1,$monitor2}
+    bspc monitor -f %{$monitor0,$monitor1,$monitor2}

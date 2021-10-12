@@ -812,7 +812,7 @@ key_bindings:
   - { key: U,              mods: Control,                         action: ResetFontSize    }
   - { key: I,              mods: Control,                         action: IncreaseFontSize }
   - { key: O,              mods: Control,                         action: DecreaseFontSize }
-  - { key: N,           mods: Control,                         action: SpawnNewInstance }
+  - { key: N,              mods: Control,                         action: SpawnNewInstance }
   #- { key: NumpadAdd,      mods: Control,                         action: IncreaseFontSize }
   #- { key: Minus,          mods: Control,                         action: DecreaseFontSize }
 

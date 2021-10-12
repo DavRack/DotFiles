@@ -3,17 +3,13 @@
 
 source ~/.config/nvim/config/plugInstall.vim
 
-" "" ubicaciones de los ejecutables de python
-" let g:python3_host_prog = '/usr/bin/env python3'
-
 "-----Configuraciones varias-----
-let g:ale_python_pylint_options = '--load-plugins pylint_django'
 set clipboard+=unnamedplus
+
+set nowrap
 
 " Establecer numeros de linea
 set number
-
-set nowrap
 
 " Establecer numeracion relativa
 set relativenumber
@@ -39,11 +35,17 @@ set tabstop=4
 " when using the >> or << commands, shift lines by 4 spacese
 set shiftwidth=4
 
-"-----Configuraciones de dart/flutter------
-autocmd Filetype dart set expandtab tabstop=2 shiftwidth=2 softtabstop=2
+set hidden
+
+set incsearch
+
+set scrolloff=10
 
 " indent when moving to the next line while writing code
 set autoindent
+
+set foldmethod=expr
+set foldexpr=nvim_tresitter#foldexpr()
 
 " expand tabs into spaces
 set expandtab
@@ -84,18 +86,15 @@ let mapleader = " "
 nnoremap <leader>t :vs<CR> :terminal<CR>
 
 "--------------- cerrar buffer------------
-nnoremap <leader>e :bd <CR>
+nnoremap <leader>x :bd<CR>
+
+nnoremap <leader>u :bp<CR>
+nnoremap <leader>i :bn<CR>
 
 " --------- comandos con leder key.------
 
 " guardar archivo
 nnoremap <leader>w :w<CR>
-
-" buscar place holder
-nnoremap <leader>n /+@@+<CR>v3lc
-
-" incertar place holder
-nnoremap <leader>h a+@@+<Esc>
 
 " nueva linea arriba sin insertmode
 nnoremap <leader>o O<Esc>
@@ -108,14 +107,45 @@ nnoremap <leader>V :edit ~/.config/nvim/init.vim
 
 nnoremap <leader>b <C-^>
 
+vnoremap <leader>p "_dP
+
+set completeopt=menu,menuone,noselect
+
 " compilar R markdown
 autocmd FileType rmd nnoremap <leader>r :w<CR>:!echo<space>"require(rmarkdown);<space>render('<c-r>%')"<space>\|<space>R<space>-q<space>--vanilla<enter><CR>
 
 " compilar R markdown ('debug')
 autocmd FileType rmd nnoremap <leader>q :w<CR>:!echo<space>"require(rmarkdown);<space>render('<c-r>%')"<space>\|<space>R<space>-q<space>--vanilla<space><enter>
 
-source ~/.config/nvim/config/fzf.vim
+lua require("config.init")
+" source ~/.config/nvim/config/fzf.vim
 source ~/.config/nvim/config/indent.vim
 source ~/.config/nvim/config/snippets.vim
 source ~/.config/nvim/config/cocConfig.vim
 source ~/.config/nvim/config/colorScheme.vim
+source ~/.config/nvim/config/langs.vim
+
+" >> Lsp key bindings
+nnoremap <silent> gd    <cmd>lua vim.lsp.buf.definition()<CR>
+nnoremap <silent> gD    <cmd>lua vim.lsp.buf.declaration()<CR>
+nnoremap <silent> gr    <cmd>lua vim.lsp.buf.references()<CR>
+nnoremap <silent> gi    <cmd>lua vim.lsp.buf.implementation()<CR>
+nnoremap <silent> K     <cmd>Lspsaga hover_doc<CR>
+nnoremap <silent> <C-k> <cmd>lua vim.lsp.buf.signature_help()<CR>
+nnoremap <silent> <C-p> <cmd>Lspsaga diagnostic_jump_prev<CR>
+nnoremap <silent> <C-n> <cmd>Lspsaga diagnostic_jump_next<CR>
+nnoremap <silent> gf    <cmd>lua vim.lsp.buf.formatting()<CR>
+nnoremap <silent> gn    <cmd>lua vim.lsp.buf.rename()<CR>
+nnoremap <silent> ga    <cmd>Lspsaga code_action<CR>
+xnoremap <silent> ga    <cmd>Lspsaga range_code_action<CR>
+nnoremap <silent> gs    <cmd>Lspsaga signature_help<CR>
+
+imap <expr> <Tab>   vsnip#available(1)  ? '<Plug>(vsnip-expand-or-jump)' : '<Tab>'
+smap <expr> <Tab>   vsnip#available(1)  ? '<Plug>(vsnip-expand-or-jump)' : '<Tab>'
+
+nnoremap <leader>a <cmd>Telescope find_files<cr>
+nnoremap <leader>p :lua require('config.telescope').search_project()<cr>
+nnoremap <leader>d :lua require('config.telescope').grep_reference()<cr>
+nnoremap <leader><Space> :lua require('config.telescope').grep_project()<cr>
+nnoremap <leader>b <cmd>Telescope buffers<cr>
+nnoremap <leader>s <cmd>Telescope current_buffer_fuzzy_find<cr>

@@ -38,7 +38,7 @@ func main() {
 	for i := 0; i < len(lines)-1; i++ {
 		wg.Add(1)
 		go func(i int) {
-			response = Exec(createCMD(0, 1, lines[i]))
+			response = Exec(createCMD(1, 3, lines[i]))
 			response = strings.TrimSuffix(response, "\n")
 			fmt.Println(response)
 			wg.Done()

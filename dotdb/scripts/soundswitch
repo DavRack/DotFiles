@@ -1,2 +1,4 @@
 #!/bin/bash
-grep '^connected$' /sys/class/drm/card*/status
+# grep '^connected$' /sys/class/drm/card*/status
+
+pactl list cards | programs/parsePactl

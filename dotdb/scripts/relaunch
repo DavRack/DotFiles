@@ -8,4 +8,4 @@ while pgrep -u $UID -x $1 >/dev/null; do
     sleep 0.2
 done
 
-$1
+$1 > /dev/null 2> /dev/null
