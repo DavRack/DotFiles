@@ -9,7 +9,30 @@ export TERMINAL="alacritty"
 export PATH="$HOME/scripts:$PATH"
 export PATH="$HOME/go/bin:$PATH"
 
+# DE settings
+export bar_size=35
+
 # monitores
 export monitor0="eDP-1-1" 
 export monitor1="DP-0.2"
 export monitor2="DP-0.1"
+export monitor4="HDMI-1-1"
+
+# colors
+export black="#262626" 
+export red="#ff0000" 
+export green="#5faf5f" 
+export yellow="#d7af5f" 
+export blue="#005faf" 
+export magenta="#af00af" 
+export cyan="#005f5f" 
+export white="#afafaf" 
+ 
+export brightBlack="#5f5f5f"  
+export brightRed="#ff5f87"  
+export brightGreen="#87d787"  
+export brightYellow="#d7af87"  
+export brightBlue="#00afff"  
+export brightMagenta="#d75fd7"  
+export brightCyan="#00afd7"  
+export brightWhite="#dadada"  

@@ -1,0 +1,16 @@
+{
+    "ejercicio_ticademia": {
+        "prefix": [
+            "ti"
+        ],
+        "body": [
+            "def run():",
+            "   n=int(input())",
+            "   for i in range(n):",
+            "       $1",
+            " ",
+            "if __name__ == '__main__':",
+            "   run()"
+        ]
+    }
+}

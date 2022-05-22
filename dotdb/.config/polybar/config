@@ -19,30 +19,30 @@
 [colors]
 
 #colores normales
-black   = #262626 
-red     = #ff0000 
-green   = #5faf5f 
-yellow  = #d7af5f 
-blue    = #005faf 
-magenta = #af00af 
-cyan    = #005f5f 
-white   = #afafaf 
+black   = ${env:black:}
+red     = ${env:red:}
+green   = ${env:green:}
+yellow  = ${env:yellow:}
+blue    = ${env:blue:}
+magenta = ${env:magenta:}
+cyan    = ${env:cyan:}
+white   = ${env:white:}
 #colores brillantes
-brightBlack  = #5f5f5f  
-brightRed    = #ff5f87  
-brightGreen  = #87d787  
-brightYellow = #d7af87  
-brightBlue   = #00afff  
-brightMagenta= #d75fd7  
-brightCyan   = #00afd7  
-brightWhite  = #dadada  
+brightBlack  = ${env:brightBlack:}
+brightRed    = ${env:brightRed:}
+brightGreen  = ${env:brightGreen:}
+brightYellow = ${env:brightYellow:}
+brightBlue   = ${env:brightBlue:}
+brightMagenta= ${env:brightMagenta:}
+brightCyan   = ${env:brightCyan:}
+brightWhite  = ${env:brightWhite:}
 
-alert = #ff5f87
-focus = #ABBDAB
-background = #262626
-background-alt = #5f5f5f
-foreground = #dadada
-foreground-alt = #afafaf
+alert = ${colors.brightRed}
+focus = ${colors.red}
+background = ${colors.black}
+background-alt = ${colors.brightBlack}
+foreground-alt =${colors.white}
+foreground =${colors.brightWhite}
 primary = ${colors.brightGreen}
 secondary = #e60053
 
@@ -53,9 +53,7 @@ networkName = enp60s0u1u3
 enable-ipc = true
 monitor = ${env:MONITOR:}
 width = 100%
-height = 35
-;offset-x = 1%
-;offset-y = 1%
+height = ${env:bar_size:}
 radius = 0
 fixed-center = false
 
@@ -75,8 +73,8 @@ module-margin-left = 1
 module-margin-right = 2
 
 font-0 = dejavu:pixelsize=10;1
-font-1 = Font Awesome 5 Free:fontformat=truetype:size=8:antialias=true;0
-font-2 = FontAwesome5Free:style=Solid:size=12;4
+font-1 = FontAwesome6Free:fontformat=truetype:size=8:antialias=true;0
+font-2 = FontAwesome6Free:style=Solid:size=12;4
 
 modules-left = bspwm
 modules-center = 
@@ -178,6 +176,7 @@ card = intel_backlight
 
 [module/alsa]
 type = internal/alsa
+master-soundcard = default
 
 format-volume = <label-volume> <bar-volume>
 label-volume = " "
@@ -197,11 +196,11 @@ bar-volume-foreground-4 = ${colors.primary}
 bar-volume-foreground-5 = ${colors.primary}
 bar-volume-foreground-6 = ${colors.primary}
 bar-volume-gradient = false
-bar-volume-indicator = 
+bar-volume-indicator =
 bar-volume-indicator-font = 2
-bar-volume-fill = █
+bar-volume-fill = "|"
 bar-volume-fill-font = 2
-bar-volume-empty = █
+bar-volume-empty = "|"
 bar-volume-empty-font = 2
 bar-volume-empty-foreground = ${colors.background-alt}
 
@@ -299,11 +298,11 @@ label-connected = %essid%
 
 format-disconnected =
 
-ramp-signal-0 = 
-ramp-signal-1 = 
-ramp-signal-2 = 
-ramp-signal-3 = 
-ramp-signal-4 = 
+ramp-signal-0 =
+ramp-signal-1 =
+ramp-signal-2 =
+ramp-signal-3 =
+ramp-signal-4 =
 ramp-signal-foreground = ${colors.foreground-alt}
 
 [module/date]

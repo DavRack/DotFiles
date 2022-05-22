@@ -1,0 +1,20 @@
+#!/bin/bash
+
+mode=on
+
+if [ "$1" = "off" ]; then
+    mode=off
+fi
+
+if [ "$mode" = "on" ]; then
+    supergfxctl -m integrated
+    asusctl -c 100
+    echo "Cambiando graficos a integrados y límite de carga a 100%"
+    gnome-session-quit
+fi
+
+if [ "$mode" = "off" ]; then
+    supergfxctl -m nvidia
+    asusctl -c 80
+    echo "Cambiando graficos a nvidia y límite de carga a 80%"
+fi

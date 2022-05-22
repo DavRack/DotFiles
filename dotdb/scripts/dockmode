@@ -1,7 +1,7 @@
 #!/bin/bash
 dock(){
     # set audio output to hdmi screen
-    pactl set-card-profile 0 output:hdmi-stereo-extra1+input:analog-stereo
+    pactl set-card-profile alsa_card.pci-0000_01_00.1 output:hdmi-stereo-extra1
     
     # set xrandr to output to external screens
     bash $HOME/.screenlayout/dock.sh

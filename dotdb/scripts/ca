@@ -1,0 +1,3 @@
+#!/bin/bash
+arduino-cli compile --fqbn arduino:avr:mega $1 && \
+sudo arduino-cli upload -b arduino:avr:mega $1 -p /dev/ttyACM0

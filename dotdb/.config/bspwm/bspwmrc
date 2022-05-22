@@ -8,7 +8,7 @@ relaunch sxhkd &
 # # limpiar reglas al reiniciar 
 bspc rule -r "*"
 
-# # polybar
+# polybar
 ~/.config/polybar/launch.sh
 
 
@@ -16,7 +16,7 @@ bspc config border_width         2
 bspc config normal_border_color "#222"
 bspc config active_border_color "#555"
 bspc config window_gap          12
-bspc config top_padding         35
+bspc config top_padding         "$bar_size"
 
 bspc config split_ratio          0.52
 bspc config single_monocle       true
@@ -30,8 +30,6 @@ if [ ! -f /tmp/currentDockState ]; then
     dockstate -a
 fi
 
-dockmode last
-
 # llenar monitores vacios
 bmm -f
 
@@ -41,40 +39,17 @@ bmm -d
 # # acciones a ejecutar cuando bspwm muta
 killall autoDesktopClean; autoDesktopClean &
 
-
-# # aplicaciones al inicio
-
 # # fondo de pantalla
-# feh --bg-fill ~/multimedia/imagenes/wallpapers/wall.*
+feh --bg-fill ~/multimedia/imagenes/wall/wall.*
 
 # reiniciar las aplicaciones
 relaunch picom &
 
-# integración xfce4
-# relaunch xfce4-power-manager &
-# relaunch /usr/lib/xfce-polkit/xfce-polkit &
-# relaunch xfsettingsd &
-
-# relaunch /usr/lib/gsd-a11y-settings &
 # integración con gnome
 relaunch /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
 relaunch gnome-flashback &
 gsettings set org.gnome.gnome-flashback desktop false &
-# /usr/lib/gsd-color &
-# relaunch /usr/lib/gsd-datetime &
-# relaunch /usr/lib/gsd-housekeeping &
-# relaunch /usr/lib/gsd-keyboard &
-# relaunch /usr/lib/gsd-media-keys &
-# relaunch /usr/lib/gsd-power &
-# relaunch /usr/lib/gsd-print-notifications &
-# relaunch /usr/lib/gsd-rfkill &
-# relaunch /usr/lib/gsd-screensaver-proxy &
-# relaunch /usr/lib/gsd-sharing &
-# relaunch /usr/lib/gsd-smartcard &
-# relaunch /usr/lib/gsd-disk-utility-notify &
-# relaunch /usr/lib/gsd-sound &
-# relaunch /usr/lib/gsd-usb-protection &
-# relaunch /usr/lib/gsd-wacom &
-# relaunch /usr/lib/gsd-xsettings &
-# relaunch /usr/lib/gsd-printer &
+
+sleep 1
+dockmode last
 

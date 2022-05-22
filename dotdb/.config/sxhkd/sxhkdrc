@@ -32,7 +32,7 @@ super+w
     brave
 
 super+e 
-    flameshot gui -p ~/multimedia/imagenes/capturas
+    flameshot gui
 
 super+r 
     flameshot full -p ~/multimedia/imagenes/capturas
