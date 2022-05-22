@@ -36,10 +36,36 @@ require('packer').startup(function(use)
   -- fuzzy finder
   use {
   'nvim-telescope/telescope.nvim',
-  requires = {
-	  {'nvim-lua/plenary.nvim'},
-	  {'nvim-telescope/telescope-fzf-native.nvim', run = 'make'},
-	  {'tpope/vim-fugitive'},
-  }
-}
+		requires = {
+			{'nvim-lua/plenary.nvim'},
+			{'nvim-telescope/telescope-fzf-native.nvim', run = 'make'},
+			{'tpope/vim-fugitive'},
+		}
+	}
+
+	-- change surround things
+	use {'tpope/vim-surround'}
+
+	-- help commenting things
+	use {'tpope/vim-commentary'}
+
+	-- show hex colors
+	use {'ap/vim-css-color'}
+
+	-- enable better languaje features treesitter
+	use {'nvim-treesitter/nvim-treesitter', run = ':TSUpdate'}
+
+	use {'nvim-treesitter/nvim-treesitter-textobjects'}
+
+	use {'ryanoasis/vim-devicons'}
+
+	use {
+		'nvim-lualine/lualine.nvim',
+		requires = { 'kyazdani42/nvim-web-devicons', opt = true }
+	}
+	use {
+		'kdheepak/tabline.nvim',
+		requires = { { 'hoob3rt/lualine.nvim', opt=true }, {'kyazdani42/nvim-web-devicons', opt = true} }
+	}
+
 end)

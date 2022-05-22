@@ -1,15 +1,33 @@
 HOME = os.getenv("HOME")
 
 require("packerConfig")
-require("colorSchemeConfig")
 require("lspConfig")
 require("telescopeConfig")
+require("treesitterConfig")
+require("statusBarConfig")
+require("colorSchemeConfig")
 
 -- random things
 local set = vim.opt
 set.wrap = false
 set.number = true
 set.relativenumber = true
+set.signcolumn = "yes"
+set.tabstop = 2
+set.shiftwidth = 2
+set.cursorline = true
+set.mouse="a"
+set.clipboard = "unnamedplus"
+set.showmode = false
+set.hidden = false
+vim.opt.completeopt = 'menu,menuone,noselect'
+
+-- show buffer tabs
+set.showtabline=2
+
+set.foldmethod = "expr"
+vim.cmd("set foldexpr=nvim_treesitter#foldexpr()")
+
 -- Helper functional wrapper for mapping custom keybindings
 function map(mode, lhs, rhs, opts)
     local options = { noremap = true }
@@ -31,6 +49,15 @@ finders = require('telescopeFinders')
 -- search file name in project
 map('n', '<leader>a', ':lua finders.search_project()<cr>', { silent = true })
 -- search inside files in project
-map('n', '<leader><Space>', ':lua finders.grep_project<cr>', { silent = true })
+map('n', '<leader><Space>', ':lua finders.grep_project()<cr>', { silent = true })
 -- search inside current buffer
 map('n', '<leader>s', '<cmd>Telescope current_buffer_fuzzy_find<cr>', { silent = true })
+
+
+map('n', '<leader>x', ':bd<CR>', { silent = true })
+map('n', '<leader>u', ':bp<CR>', { silent = true })
+map('n', '<leader>i', ':bn<CR>', { silent = true })
+
+map('n', '<leader>w', ':w<CR>', { silent = true })
+map('n', '<leader>o', 'O<Esc>', { silent = true })
+map('v', '<leader>p', '"_dP', { silent = true })
