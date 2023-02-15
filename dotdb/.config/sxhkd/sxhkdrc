@@ -89,3 +89,7 @@ super+{u, i}
 
 super+{a,s,d}
     bspc monitor -f %{$monitor0,$monitor1,$monitor2}
+
+# start pomodoro
+super+p
+    $TERMINAL -o font.size=40 -e pomo start -p 20 -d 50m "Trabajar"

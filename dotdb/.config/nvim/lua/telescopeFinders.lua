@@ -25,6 +25,12 @@ customFinders.search_project = function()
     })
 end
 
+customFinders.search_local = function()
+    require("telescope.builtin").find_files({
+        prompt_title = "Files in buffer folder",
+				cwd = vim.fn.expand('%:p:h')
+    })
+end
 
 customFinders.grep_project = function()
     require("telescope.builtin").live_grep({

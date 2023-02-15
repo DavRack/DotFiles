@@ -5,6 +5,9 @@
 #hotkeys
 relaunch sxhkd &
 
+# control media players
+playerctld daemon
+
 # # limpiar reglas al reiniciar 
 bspc rule -r "*"
 
@@ -46,9 +49,9 @@ feh --bg-fill ~/multimedia/imagenes/wall/wall.*
 relaunch picom &
 
 # integración con gnome
-relaunch /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
-relaunch gnome-flashback &
-gsettings set org.gnome.gnome-flashback desktop false &
+relaunch /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
+# relaunch gnome-flashback &
+# gsettings set org.gnome.gnome-flashback desktop false &
 
 sleep 1
 dockmode last

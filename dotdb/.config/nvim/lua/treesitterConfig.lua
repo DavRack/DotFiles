@@ -30,6 +30,8 @@ require'nvim-treesitter.configs'.setup {
             ["ia"] = "@parameter.inner",
             ["aa"] = "@parameter.outer",
             ["is"] = "@scopename.inner",
+            ["ic"] = "@call.inner",
+            ["aa"] = "@call.inner",
           },
         },
   },

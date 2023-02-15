@@ -5,7 +5,7 @@ if [ "$1" == "--bookmarks" ]; then
     paths="cat $HOME/.data/g/bookmarks | sort"
 fi
 
-path=$(exec $paths | fzf)
+path=$(exec $paths | grep -v "^\s*$"| fzf)
 
 [[ ! -z "$path" ]] && cd $path
 clear

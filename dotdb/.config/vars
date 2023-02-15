@@ -14,8 +14,8 @@ export bar_size=35
 
 # monitores
 export monitor0="eDP-1-1" 
-export monitor1="DP-0.2"
-export monitor2="DP-0.1"
+export monitor1="DP-0.1"
+export monitor2="DP-0.2"
 export monitor4="HDMI-1-1"
 
 # colors

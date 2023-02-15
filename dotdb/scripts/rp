@@ -1,0 +1,17 @@
+#!/bin/bash
+# executes last command changing first program with new program
+
+if [ "-h" == "$1" ]; then
+	echo "changes first program to another"
+	echo "rp <new command> <old command or !!>"
+	exit
+fi
+
+
+newProgram="$1"
+shift
+shift
+
+newCommand="$newProgram $@"
+echo "$newCommand"
+exec eval "$newCommand"

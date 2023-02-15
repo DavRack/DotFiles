@@ -1,11 +1,17 @@
 HOME = os.getenv("HOME")
 
+-- precompile lua to make openin nvim faster
+require("impatient")
+
 require("packerConfig")
 require("lspConfig")
 require("telescopeConfig")
 require("treesitterConfig")
 require("statusBarConfig")
 require("colorSchemeConfig")
+require("indentConfig")
+require("dapConfig")
+require("gitsignsConfig")
 
 -- random things
 local set = vim.opt
@@ -14,12 +20,12 @@ set.number = true
 set.relativenumber = true
 set.signcolumn = "yes"
 set.tabstop = 2
+set.expandtab = true
 set.shiftwidth = 2
 set.cursorline = true
 set.mouse="a"
 set.clipboard = "unnamedplus"
-set.showmode = false
-set.hidden = false
+set.swapfile = false
 vim.opt.completeopt = 'menu,menuone,noselect'
 
 -- show buffer tabs
@@ -48,6 +54,8 @@ map('n', 'q:', '<nop>', { silent = true })
 finders = require('telescopeFinders')
 -- search file name in project
 map('n', '<leader>a', ':lua finders.search_project()<cr>', { silent = true })
+-- search file name in buffer path directory
+map('n', '<leader>l', ':lua finders.search_local()<cr>', { silent = true })
 -- search inside files in project
 map('n', '<leader><Space>', ':lua finders.grep_project()<cr>', { silent = true })
 -- search inside current buffer
@@ -57,7 +65,11 @@ map('n', '<leader>s', '<cmd>Telescope current_buffer_fuzzy_find<cr>', { silent =
 map('n', '<leader>x', ':bd<CR>', { silent = true })
 map('n', '<leader>u', ':bp<CR>', { silent = true })
 map('n', '<leader>i', ':bn<CR>', { silent = true })
+map('n', '<leader>j', ':%!jq<CR>:set filetype=json<CR>:set foldmethod=expr<CR>:set foldexpr=nvim_treesitter#foldexpr()<CR>:set foldlevel=1<CR>', { silent = true })
 
 map('n', '<leader>w', ':w<CR>', { silent = true })
 map('n', '<leader>o', 'O<Esc>', { silent = true })
-map('v', '<leader>p', '"_dP', { silent = true })
+
+map('x', '<leader>p', "\"_dP")
+map('v', 'J', ":m '>+1<CR>gv=gv")
+map('v', 'K', ":m '<-2<CR>gv=gv")

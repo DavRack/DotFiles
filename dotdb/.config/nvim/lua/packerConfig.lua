@@ -4,6 +4,14 @@ packerPath = os.getenv("HOME").."/.local/share/nvim/site/pack/packer/start/packe
 installCommand = string.format([[ test -d '%s' || git clone --depth 1 https://github.com/wbthomason/packer.nvim %s ]], packerPath, packerPath)
 os.execute(installCommand)
 
+-- run PackerCompile when this file is updated
+vim.cmd([[
+  augroup packer_user_config
+    autocmd!
+    autocmd BufWritePost packerConfig.lua source <afile> | PackerSync
+  augroup end
+]])
+
 -- packer config
 require('packer').startup(function(use)
   use 'wbthomason/packer.nvim'
@@ -67,5 +75,17 @@ require('packer').startup(function(use)
 		'kdheepak/tabline.nvim',
 		requires = { { 'hoob3rt/lualine.nvim', opt=true }, {'kyazdani42/nvim-web-devicons', opt = true} }
 	}
+
+	-- indent guides
+	use {"lukas-reineke/indent-blankline.nvim"}
+
+	-- make open vim faster precompiling lua files
+	use {"lewis6991/impatient.nvim"}
+
+	-- debugger
+	use { "rcarriga/nvim-dap-ui", requires = {"mfussenegger/nvim-dap"} }
+
+	-- git diff
+	use { 'lewis6991/gitsigns.nvim', }
 
 end)

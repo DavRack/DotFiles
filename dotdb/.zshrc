@@ -26,10 +26,12 @@ zstyle ':completion:*' menu select
 zmodload zsh/complist
 compinit
 _comp_options+=(globdots)		# Include hidden files.
+export HISTFILE=~/.zsh_history
 
 # vi mode
 bindkey -v
 export KEYTIMEOUT=1
+setopt HIST_IGNORE_SPACE
 
 # Use vim keys in tab complete menu:
 bindkey -M menuselect 'h' vi-backward-char
@@ -98,8 +100,9 @@ alias conectdb="psql -h 172.21.9.49 -p 5432 -U meallabs meal_labs -W"
 alias enterdb="docker exec -it postgres psql -U meal_labs meal_labs_db"
 alias enterapp="docker exec -it meal_labs_app bash"
 alias lasttag="git tag --sort=committerdate | tail -1"
-alias arduinoupload="arduino-cli compile --fqbn arduino:avr:mega sound.ino && sudo arduino-cli upload -b arduino:avr:mega sound.ino -p /dev/ttyACM0"
+alias arduinoupload="arduino-cli compile --fqbn arduino:avr:uno && sudo arduino-cli upload -b arduino:avr:uno -p /dev/ttyACM0"
 
+export XDG_SESSION_TYPE="wayland dbus-run-session gnome-session"
 export PATH="$HOME/scripts:$PATH"
 alias npm="source /usr/share/nvm/init-nvm.sh; npm"
 

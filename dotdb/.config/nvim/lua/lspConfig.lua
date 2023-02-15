@@ -18,16 +18,16 @@ cmp_mappings["<Tab>"] = cmp.mapping(function(fallback)
 	fallback()
       end
     end, {'i', 's'})
-cmp_mappings["<S-j>"] = cmp.mapping(function()
-	if cmp.visible() then
-		cmp.scroll_docs(5)
-	end
-    end, {'i', 's'})
-cmp_mappings["<S-k>"] = cmp.mapping(function()
-	if cmp.visible() then
-		cmp.scroll_docs(-5)
-	end
-    end, {'i', 's'})
+-- cmp_mappings["<S-j>"] = cmp.mapping(function()
+-- 	if cmp.visible() then
+-- 		cmp.scroll_docs(5)
+-- 	end
+--     end, {'i', 's'})
+-- cmp_mappings["<S-k>"] = cmp.mapping(function()
+-- 	if cmp.visible() then
+-- 		cmp.scroll_docs(-5)
+-- 	end
+--     end, {'i', 's'})
 -- deactivate unused default mappings
 cmp_mappings["<S-Tab>"] = nil
 cmp_mappings["<C-b>"] = nil

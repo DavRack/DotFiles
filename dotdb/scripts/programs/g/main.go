@@ -21,8 +21,10 @@ func createCMD(mindepth int, maxdepth int, args ...string) string {
 	}
 	cmd += "-mindepth "
 	cmd += fmt.Sprint(mindepth)
-	cmd += " -maxdepth "
-	cmd += fmt.Sprint(maxdepth)
+  if maxdepth > 0 {
+    cmd += " -maxdepth "
+    cmd += fmt.Sprint(maxdepth)
+  }
 	cmd += " -type d"
 	return cmd
 }
@@ -32,13 +34,13 @@ func main() {
 	paths := os.Args[1:]
 	// depth := flag.Int("depth", 1, "Number of recursion steps")
 	var wg sync.WaitGroup
-	result := Exec(createCMD(1, 1, paths...))
+	result := Exec(createCMD(0, 2, paths...))
 	lines := strings.Split(result, "\n")
 	var response string
 	for i := 0; i < len(lines)-1; i++ {
 		wg.Add(1)
 		go func(i int) {
-			response = Exec(createCMD(1, 3, lines[i]))
+			response = Exec(createCMD(1, -1, lines[i]))
 			response = strings.TrimSuffix(response, "\n")
 			fmt.Println(response)
 			wg.Done()
