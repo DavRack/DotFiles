@@ -4,8 +4,8 @@ dockState(){
     # está conectada a 3 pantallas
 
     # pantalla externa
-    pantallas=$(xrandr | awk '/connected/ && /[[:digit:]]x[[:digit:]].*+/{print $1}'|wc -l)
-    if [ "$pantallas" = 3 ]; then
+    pantallas=$(xrandr --listactivemonitors | sed 1q | awk '{print $2}')
+    if [ "$pantallas" -gt 1 ]; then
         echo "docked"
     else
         echo "undocked"

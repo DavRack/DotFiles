@@ -3,6 +3,14 @@ require('telescope').setup{
 		file_ignore_patterns = {".git/*","node_modules", "env/*"},
 		color_devincons = true,
 		file_sorter = require('telescope.sorters').get_fzy_sorter,
+    layout_config = {
+      vertical = {
+        width = 0.98,
+      },
+      horizontal = {
+        width = 0.98,
+      },
+    },
 	},
 	pickers = {
 	},

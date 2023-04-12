@@ -102,6 +102,9 @@ alias enterapp="docker exec -it meal_labs_app bash"
 alias lasttag="git tag --sort=committerdate | tail -1"
 alias arduinoupload="arduino-cli compile --fqbn arduino:avr:uno && sudo arduino-cli upload -b arduino:avr:uno -p /dev/ttyACM0"
 
+alias deploytofix="./devscripts/deploytofix"
+alias start="docker-compose up"
+
 export XDG_SESSION_TYPE="wayland dbus-run-session gnome-session"
 export PATH="$HOME/scripts:$PATH"
 alias npm="source /usr/share/nvm/init-nvm.sh; npm"
@@ -113,6 +116,16 @@ if [[ -n $VIRTUAL_ENV && -e "${VIRTUAL_ENV}/bin/activate" ]]; then
 fi
 # neofetch
 
+eval "$(direnv hook zsh)"
+
 export CHROME_EXECUTABLE=/usr/bin/brave
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh 2>/dev/null
 # source /usr/share/nvm/init-nvm.sh
+
+# pnpm
+export PNPM_HOME="/home/david/.local/share/pnpm"
+case ":$PATH:" in
+  *":$PNPM_HOME:"*) ;;
+  *) export PATH="$PNPM_HOME:$PATH" ;;
+esac
+# pnpm end

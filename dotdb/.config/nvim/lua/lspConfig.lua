@@ -1,7 +1,9 @@
 -- basic lsp-zero config
 vim.opt.signcolumn = 'yes'
 local lsp = require('lsp-zero')
-lsp.preset('recommended')
+lsp.preset(
+  'recommended'
+)
 
 -- remaps
 local luasnip = require('luasnip')
@@ -37,5 +39,26 @@ lsp.setup_nvim_cmp({
   mapping = cmp_mappings
 })
 
+lsp.configure("rust_analyzer",{
+  force_setup = true,
+  settings = {
+    ["rust-analyzer"] = {
+      imports = {
+          granularity = {
+              group = "module",
+          },
+          prefix = "self",
+      },
+      cargo = {
+          buildScripts = {
+              enable = true,
+          },
+      },
+      procMacro = {
+          enable = true
+      },
+    },
+  },
+})
 -- always finish lsp-zero config with this line
 lsp.setup()

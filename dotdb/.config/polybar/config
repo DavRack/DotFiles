@@ -39,11 +39,11 @@ brightWhite  = ${env:brightWhite:}
 
 alert = ${colors.brightRed}
 focus = ${colors.red}
-background = ${colors.black}
+background = #55000000
 background-alt = ${colors.brightBlack}
 foreground-alt =${colors.white}
 foreground =${colors.brightWhite}
-primary = ${colors.brightGreen}
+primary = ${colors.brightWhite}
 secondary = #e60053
 
 [vars]
@@ -54,8 +54,9 @@ enable-ipc = true
 monitor = ${env:MONITOR:}
 width = 100%
 height = ${env:bar_size:}
-radius = 0
+radius = 10
 fixed-center = false
+bottom = ${env:bar_botton:}
 
 background = ${colors.background}
 foreground = ${colors.foreground}
@@ -66,15 +67,17 @@ line-color = #f00
 border-size = 0
 border-color = #00000000
 
-padding-left = 2
-padding-right = 2
+; padding-left = 2
+; padding-right = 2
+; padding-top = 2
+; padding-bottom = 2
 
 module-margin-left = 1
 module-margin-right = 2
 
-font-0 = dejavu:pixelsize=10;1
-font-1 = FontAwesome6Free:fontformat=truetype:size=8:antialias=true;0
-font-2 = FontAwesome6Free:style=Solid:size=12;4
+font-0 = dejavu:pixelsize=14;1
+font-1 = FontAwesome6Free:fontformat=truetype:size=10:antialias=true;0
+font-2 = FontAwesome6Free:style=Solid:size=14;4
 
 modules-left = bspwm
 modules-center = 
@@ -94,7 +97,6 @@ type = internal/bspwm
 enable-scroll = true
 
 label-focused = %name%
-label-focused-background = ${colors.background-alt}
 label-focused-underline = ${colors.primary}
 label-focused-padding = 2
 

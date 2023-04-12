@@ -23,7 +23,7 @@ super+Return
     $TERMINAL
 
 super+space 
-    rofi -show drun
+    $HOME/.config/rofi/launch.sh
 
 super+q
     nautilus

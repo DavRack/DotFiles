@@ -1,6 +1,6 @@
 #!/bin/bash
 
-paths="~/scripts/programs/g/g $HOME"
+paths="fd . $HOME --type d"
 if [ "$1" == "--bookmarks" ]; then
     paths="cat $HOME/.data/g/bookmarks | sort"
 fi

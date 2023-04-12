@@ -61,6 +61,9 @@ map('n', '<leader><Space>', ':lua finders.grep_project()<cr>', { silent = true }
 -- search inside current buffer
 map('n', '<leader>s', '<cmd>Telescope current_buffer_fuzzy_find<cr>', { silent = true })
 
+-- goto definitions
+map('n', '<leader>r', ':lua finders.goto_references()<cr>', { silent = true })
+
 
 map('n', '<leader>x', ':bd<CR>', { silent = true })
 map('n', '<leader>u', ':bp<CR>', { silent = true })
@@ -73,3 +76,12 @@ map('n', '<leader>o', 'O<Esc>', { silent = true })
 map('x', '<leader>p', "\"_dP")
 map('v', 'J', ":m '>+1<CR>gv=gv")
 map('v', 'K', ":m '<-2<CR>gv=gv")
+map('v', '<leader>c', '"hy:%s/<C-r>h//g<left><left>')
+map('v', '<leader>s', '"hy:%s/<C-r>h//gc<left><left><left>')
+
+local nvim_lsp = require'lspconfig'
+
+local on_attach = function(client)
+    require'completion'.on_attach(client)
+end
+
