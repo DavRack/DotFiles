@@ -77,7 +77,7 @@ require('packer').startup(function(use)
 	}
 
 	-- indent guides
-	use {"lukas-reineke/indent-blankline.nvim"}
+	use {"lukas-reineke/indent-blankline.nvim", main = "ibl", opts = {}}
 
 	-- make open vim faster precompiling lua files
 	use {"lewis6991/impatient.nvim"}
@@ -87,5 +87,8 @@ require('packer').startup(function(use)
 
 	-- git diff
 	use { 'lewis6991/gitsigns.nvim', }
+
+  -- leap movements
+	use { 'ggandor/leap.nvim', }
 
 end)

@@ -12,6 +12,7 @@ require("colorSchemeConfig")
 require("indentConfig")
 require("dapConfig")
 require("gitsignsConfig")
+require("leapConfig")
 
 -- random things
 local set = vim.opt
@@ -27,6 +28,8 @@ set.mouse="a"
 set.clipboard = "unnamedplus"
 set.swapfile = false
 vim.opt.completeopt = 'menu,menuone,noselect'
+vim.opt.scrolloff = 10
+vim.opt.incsearch = true
 
 -- show buffer tabs
 set.showtabline=2
@@ -78,6 +81,8 @@ map('v', 'J', ":m '>+1<CR>gv=gv")
 map('v', 'K', ":m '<-2<CR>gv=gv")
 map('v', '<leader>c', '"hy:%s/<C-r>h//g<left><left>')
 map('v', '<leader>s', '"hy:%s/<C-r>h//gc<left><left><left>')
+
+map('n', '<leader>n', ':!nohup $TERMINAL -e nvim % &<CR><CR>', { silent = true })
 
 local nvim_lsp = require'lspconfig'
 

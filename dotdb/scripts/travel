@@ -7,14 +7,15 @@ if [ "$1" = "off" ]; then
 fi
 
 if [ "$mode" = "on" ]; then
-    supergfxctl -m integrated
+    supergfxctl -m Integrated
     asusctl -c 100
     echo "Cambiando graficos a integrados y límite de carga a 100%"
     gnome-session-quit
 fi
 
 if [ "$mode" = "off" ]; then
-    supergfxctl -m nvidia
+    supergfxctl -m Hybrid
     asusctl -c 80
     echo "Cambiando graficos a nvidia y límite de carga a 80%"
+    gnome-session-quit
 fi

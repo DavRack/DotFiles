@@ -1,8 +1,9 @@
 #!/bin/bash
 
-paths="fd . $HOME --type d"
 if [ "$1" == "--bookmarks" ]; then
-    paths="cat $HOME/.data/g/bookmarks | sort"
+  paths="cat $HOME/.data/g/bookmarks | sort"
+else
+  paths="fd . $HOME --type d"
 fi
 
 path=$(exec $paths | grep -v "^\s*$"| fzf)

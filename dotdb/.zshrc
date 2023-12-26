@@ -98,9 +98,12 @@ alias ls='ls --color=auto'
 alias runback="swag init -p pascalcase --generatedTime && go run main.go"
 alias conectdb="psql -h 172.21.9.49 -p 5432 -U meallabs meal_labs -W"
 alias enterdb="docker exec -it postgres psql -U meal_labs meal_labs_db"
-alias enterapp="docker exec -it meal_labs_app bash"
+alias enterapp="docker exec -it meal_labs-back bash"
 alias lasttag="git tag --sort=committerdate | tail -1"
 alias arduinoupload="arduino-cli compile --fqbn arduino:avr:uno && sudo arduino-cli upload -b arduino:avr:uno -p /dev/ttyACM0"
+alias timeit='/usr/bin/time -f "total time: %e"'
+alias cleanimg='detox . && for file in *; do convert $file "$(uuidgen).png"; done'
+alias localsend="oneshot send --qr-code"
 
 alias deploytofix="./devscripts/deploytofix"
 alias start="docker-compose up"
