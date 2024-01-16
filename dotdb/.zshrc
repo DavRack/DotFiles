@@ -82,53 +82,39 @@ bindkey '^e' edit-command-line
 #[ -f "$HOME/.config/aliasrc" ] && source "$HOME/.config/aliasrc"
 
 # Load zsh-syntax-highlighting; should be last.
-progl() {
- export LD_LIBRARY_PATH="${HOME}/pro/drivers:${LD_LIBRARY_PATH}"
-  export LIBGL_DRIVERS_PATH="${HOME}/pro/drivers/dri"
-  export dri_driver="amdgpu"
-}
-
-export PATH="$PATH:/opt/android-ndk"
-export ANDROID_NDK=/opt/android-ndk
-# Some programs such as gradle ask this as well:
-export ANDROID_NDK_HOME=/opt/android-ndk
-export LLVM_DIR=/usr
 
 alias ls='ls --color=auto'
-alias runback="swag init -p pascalcase --generatedTime && go run main.go"
-alias conectdb="psql -h 172.21.9.49 -p 5432 -U meallabs meal_labs -W"
-alias enterdb="docker exec -it postgres psql -U meal_labs meal_labs_db"
-alias enterapp="docker exec -it meal_labs-back bash"
-alias lasttag="git tag --sort=committerdate | tail -1"
-alias arduinoupload="arduino-cli compile --fqbn arduino:avr:uno && sudo arduino-cli upload -b arduino:avr:uno -p /dev/ttyACM0"
-alias timeit='/usr/bin/time -f "total time: %e"'
-alias cleanimg='detox . && for file in *; do convert $file "$(uuidgen).png"; done'
-alias localsend="oneshot send --qr-code"
 
-alias deploytofix="./devscripts/deploytofix"
-alias start="docker-compose up"
-
-export XDG_SESSION_TYPE="wayland dbus-run-session gnome-session"
+# export XDG_SESSION_TYPE="wayland dbus-run-session gnome-session"
 export PATH="$HOME/scripts:$PATH"
-alias npm="source /usr/share/nvm/init-nvm.sh; npm"
+# alias npm="source /usr/share/nvm/init-nvm.sh; npm"
 
 # create config variables
-source $HOME/.config/vars
-if [[ -n $VIRTUAL_ENV && -e "${VIRTUAL_ENV}/bin/activate" ]]; then
-  source "${VIRTUAL_ENV}/bin/activate"
-fi
+# source $HOME/.config/vars
+# if [[ -n $VIRTUAL_ENV && -e "${VIRTUAL_ENV}/bin/activate" ]]; then
+#   source "${VIRTUAL_ENV}/bin/activate"
+# fi
 # neofetch
 
-eval "$(direnv hook zsh)"
+# eval "$(direnv hook zsh)"
 
-export CHROME_EXECUTABLE=/usr/bin/brave
-source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh 2>/dev/null
+# export CHROME_EXECUTABLE=/usr/bin/brave
 # source /usr/share/nvm/init-nvm.sh
 
 # pnpm
-export PNPM_HOME="/home/david/.local/share/pnpm"
-case ":$PATH:" in
-  *":$PNPM_HOME:"*) ;;
-  *) export PATH="$PNPM_HOME:$PATH" ;;
-esac
+# export PNPM_HOME="/home/david/.local/share/pnpm"
+# case ":$PATH:" in
+#   *":$PNPM_HOME:"*) ;;
+#   *) export PATH="$PNPM_HOME:$PATH" ;;
+# esac
 # pnpm end
+
+alias awslogin="aws-okta login && aws-okta creds -r arn:aws:iam::182162384657:role/NonProd_MLDataPipelines_DevUsers && source <(aws-okta exec nordstrom-federated -- env | grep AWS - | sed 's/^/export /')"
+
+export DOCKER_HOST=unix:///Users/david_londono/.lima/docker/sock/docker.sock
+export KUBECONFIG=~/.kube/clusters/nsk-oxtail-nonprod:~/.kube/clusters/nsk-oxtail-prod:~/.kube/clusters/nsk-gumbo-prod:~/.kube/clusters/nsk-gumbo-nonprod:~/.kube/config
+
+source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh 2>/dev/null
+
+# opam configuration
+[[ ! -r /Users/david_londono/.opam/opam-init/init.zsh ]] || source /Users/david_londono/.opam/opam-init/init.zsh  > /dev/null 2> /dev/null
