@@ -8,11 +8,11 @@ set.wrap = false
 set.number = true
 set.relativenumber = true
 set.signcolumn = "yes"
-set.tabstop = 2
-set.expandtab = true
+set.expandtab = false
 set.shiftwidth = 2
 set.cursorline = true
 set.mouse="a"
+set.tabstop=2
 set.clipboard = "unnamedplus"
 set.swapfile = false
 vim.opt.completeopt = 'menu,menuone,noselect'
@@ -24,6 +24,7 @@ set.showtabline=2
 
 set.foldmethod = "expr"
 vim.cmd("set foldexpr=nvim_treesitter#foldexpr()")
+set.foldlevel=99
 
 -- Helper functional wrapper for mapping custom keybindings
 function Map(mode, lhs, rhs, opts)
@@ -69,11 +70,53 @@ Map('v', '<leader>s', '"hy:%s/<C-r>h//gc<left><left><left>')
 
 Map('n', '<leader>n', ':!nohup $TERMINAL -e nvim % &<CR><CR>', { silent = true })
 
--- local nvim_lsp = require'lspconfig'
-
--- local on_attach = function(client)
---     require'completion'.on_attach(client)
--- end
 
 require("david.core")
 require("david.lazy")
+
+--
+-- enable lsp
+vim.lsp.enable({'go'})
+vim.api.nvim_create_autocmd('LspAttach', {
+  callback = function(ev)
+    local client = vim.lsp.get_client_by_id(ev.data.client_id)
+    if client:supports_method('textDocument/completion') then
+      vim.lsp.completion.enable(true, client.id, ev.buf, { autotrigger = true })
+    end
+  end,
+})
+
+keymap = vim.keymap
+opts = { noremap = true, silent = true }
+opts.desc = "show lsp references"
+keymap.set("n", "gR", "<cmd>Telescope lsp_references<CR>", opts)
+
+opts.desc = "Go to declaration"
+keymap.set("n", "gD", vim.lsp.buf.declaration, opts)
+
+opts.desc = "show lsp definitions"
+keymap.set("n", "gd", "<cmd>Telescope lsp_definitions<CR>", opts)
+
+opts.desc = "show lsp implementations"
+keymap.set("n", "gi", "<cmd>Telescope lsp_implementations<CR>", opts)
+
+opts.desc = "show lsp type definitions"
+keymap.set("n", "gt", "<cmd>Telescope lsp_type_definitions<CR>", opts)
+
+opts.desc = "see lsp code actions"
+keymap.set({"n", "v"}, "<leader>ca", vim.lsp.buf.code_action, opts)
+
+opts.desc = "smart rename"
+keymap.set("n", "<leader>rn", vim.lsp.buf.rename, opts)
+
+opts.desc = "show buffer diagnostics"
+keymap.set("n", "<leader>D", "<cmd>Telescope diagnostics bufnr=0<CR>", opts)
+
+opts.desc = "show line diagnostics"
+keymap.set("n", "<leader>D", vim.diagnostic.open_float, opts)
+
+opts.desc = "show documentation"
+keymap.set("n", "<leader>k", vim.lsp.buf.hover, opts)
+
+opts.desc = "format file"
+keymap.set("n", "<leader>f", vim.lsp.buf.format, opts)

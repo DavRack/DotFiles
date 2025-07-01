@@ -1,3 +1,14 @@
+local exec = function(command)
+	local handle = io.popen(command)
+	local result = handle:read("*a"):gsub("\n","")
+	handle:close()
+	return result
+end
+
+getProjectName = function ()
+	local basename = exec('basename $(git rev-parse --show-toplevel 2> /dev/null || pwd)""')
+	return basename
+end
 return {
 	'nvim-lualine/lualine.nvim',
 	dependencies = {
@@ -14,8 +25,9 @@ return {
 				lualine_a = {
 					{ 'mode', separator = { left = '' }, right_padding = 2 },
 				},
-				lualine_b = { 'branch', 'diff', 'diagnostics' },
+				lualine_b = {getProjectName, 'branch', 'diff', 'diagnostics' },
 				lualine_c = { {'filename', path = 1} },
+				lualine_d = {},
 				lualine_x = {},
 				lualine_y = { 'filetype' },
 				lualine_z = {

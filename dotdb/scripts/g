@@ -1,14 +1,19 @@
 #!/bin/bash
 
+printPairs(){
+	echo $(basename $1) $1
+}
+
 if [ "$1" == "--bookmarks" ]; then
-  paths="cat $HOME/.data/g/bookmarks | sort"
+  paths="fd . $HOME/nord/ --max-depth 1 --type d -x echo {/} {}"
+	path=$(exec $paths | grep -v "^\s*$"| sort -f | fzf --with-nth 1 | awk '{print $2}')
 else
   paths="fd . $HOME --type d"
+	path=$(exec $paths | grep -v "^\s*$"| fzf)
 fi
 
-path=$(exec $paths | grep -v "^\s*$"| fzf)
 
 [[ ! -z "$path" ]] && cd $path
 clear
-exa
+ls
 $SHELL

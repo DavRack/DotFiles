@@ -10,9 +10,7 @@ precmd() { vcs_info }
 # Format the vcs_info_msg_0_ variable
 zstyle ':vcs_info:git:*' formats '(%b)'
 setopt PROMPT_SUBST
-PROMPT='%F{10}${PWD/#$HOME/~} %F{12}${vcs_info_msg_0_}%{$reset_color%} > '
-# PS1="%B%F{12}[%F{10}%n%F{12}@%M %F{13}%~%F{12}]%{$reset_color%}$ "
-# PS1='%F{10}%${PWD/#$HOME/~}%F{12}$(vcs_info_msg_0_)$%{$reset_color%} '
+PROMPT=$' %F{10}${PWD/#$HOME/~} %F{12}${vcs_info_msg_0_} %F{yellow}%T%f %{$reset_color%} \n > '
 
 # History in cache directory:
 HISTSIZE=10000
@@ -61,60 +59,37 @@ zle -N zle-line-init
 echo -ne '\e[5 q' # Use beam shape cursor on startup.
 preexec() { echo -ne '\e[5 q' ;} # Use beam shape cursor for each new prompt.
 
-# Use lf to switch directories and bind it to ctrl-o
-#lfcd () {
-#    tmp="$(mktemp)"
-#    lf -last-dir-path="$tmp" "$@"
-#    if [ -f "$tmp" ]; then
-#        dir="$(cat "$tmp")"
-#        rm -f "$tmp"
-#        [ -d "$dir" ] && [ "$dir" != "$(pwd)" ] && cd "$dir"
-#    fi
-#}
-#bindkey -s '^o' 'lfcd\n'
-
+export EDITOR="nvim"
 # Edit line in vim with ctrl-e:
 autoload edit-command-line; zle -N edit-command-line
 bindkey '^e' edit-command-line
 
-# Load aliases and shortcuts if existent.
-#[ -f "$HOME/.config/shortcutrc" ] && source "$HOME/.config/shortcutrc"
-#[ -f "$HOME/.config/aliasrc" ] && source "$HOME/.config/aliasrc"
-
-# Load zsh-syntax-highlighting; should be last.
-
 alias ls='ls --color=auto'
+alias awslogin="aws-okta login && aws-okta creds -r arn:aws:iam::182162384657:role/NonProd_MLDataPipelines_DevUsers && source <(aws-okta exec nordstrom-federated -- env | grep AWS - | sed 's/^/export /') && kubectl config get-contexts"
+alias venv="source venv/bin/activate"
+alias run="bash run.sh"
+alias mergec="git diff --check | sed s'/:.*:.*//' | sort -u"
+alias bbase="git merge-base --fork-point main"
+alias poetryenv="source $(poetry env list --full-path)/bin/activate"
 
-# export XDG_SESSION_TYPE="wayland dbus-run-session gnome-session"
-export PATH="$HOME/scripts:$PATH"
-# alias npm="source /usr/share/nvm/init-nvm.sh; npm"
-
-# create config variables
-# source $HOME/.config/vars
-# if [[ -n $VIRTUAL_ENV && -e "${VIRTUAL_ENV}/bin/activate" ]]; then
-#   source "${VIRTUAL_ENV}/bin/activate"
-# fi
-# neofetch
-
-# eval "$(direnv hook zsh)"
-
-# export CHROME_EXECUTABLE=/usr/bin/brave
-# source /usr/share/nvm/init-nvm.sh
-
-# pnpm
-# export PNPM_HOME="/home/david/.local/share/pnpm"
-# case ":$PATH:" in
-#   *":$PNPM_HOME:"*) ;;
-#   *) export PATH="$PNPM_HOME:$PATH" ;;
-# esac
-# pnpm end
-
-alias awslogin="aws-okta login && aws-okta creds -r arn:aws:iam::182162384657:role/NonProd_MLDataPipelines_DevUsers && source <(aws-okta exec nordstrom-federated -- env | grep AWS - | sed 's/^/export /')"
+source ~/.zprofile
 
 export DOCKER_HOST=unix:///Users/david_londono/.lima/docker/sock/docker.sock
 export KUBECONFIG=~/.kube/clusters/nsk-oxtail-nonprod:~/.kube/clusters/nsk-oxtail-prod:~/.kube/clusters/nsk-gumbo-prod:~/.kube/clusters/nsk-gumbo-nonprod:~/.kube/config
+export GOPROXY=https://david.londono:$ARTIFACTORY_API_KEY@artifactory.nordstrom.com/artifactory/api/go/go
+export GONOSUMDB="git.jwn.app/*"
+export PATH="$HOME/scripts:$HOME/.rustup:$PATH"
+
 
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh 2>/dev/null
 
 # opam configuration
 [[ ! -r /Users/david_londono/.opam/opam-init/init.zsh ]] || source /Users/david_londono/.opam/opam-init/init.zsh  > /dev/null 2> /dev/null
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/Users/david_londono/nord/pelican/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/david_londono/nord/pelican/google-cloud-sdk/path.zsh.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f '/Users/david_londono/nord/pelican/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/david_londono/nord/pelican/google-cloud-sdk/completion.zsh.inc'; fi
+
+fpath+=~/.zfunc; autoload -Uz compinit; compinit

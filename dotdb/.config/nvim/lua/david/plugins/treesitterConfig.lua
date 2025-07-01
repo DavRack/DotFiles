@@ -12,7 +12,7 @@ return {
       ensure_installed = "all",
 
       -- exclude php due to error downloading
-      ignore_install = { "phpdoc" },
+      ignore_install = { "phpdoc", "ipkg" },
 
       -- Install parsers synchronously (only applied to `ensure_installed`)
       sync_install = false,
@@ -43,7 +43,9 @@ return {
             ["is"] = "@statement.inner",
             ["ia"] = "@parameter.inner",
             ["aa"] = "@assignment.outer",
-            ["is"] = "@scopename.inner",
+            ["ra"] = "@assignment.rhs",
+            ["la"] = "@assignment.lhs",
+            -- ["is"] = "@scopename.inner",
             ["ic"] = "@call.inner",
             ["ac"] = "@call.inner",
             ["ik"] = "@class.inner",
