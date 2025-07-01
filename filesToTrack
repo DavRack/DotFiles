@@ -11,4 +11,5 @@
 ~/.config/vars
 ~/.vsnip
 ~/.zshrc
+~/.ssh/config
 ~/scripts
